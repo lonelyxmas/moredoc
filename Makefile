@@ -68,7 +68,7 @@ builddarwin:
 	cp -r app.example.toml release/${BRANCH}/${VERSION}/darwin
 	rm -rf release/${BRANCH}/${VERSION}/darwin/dist/_nuxt/icons
 	rm -rf release/${BRANCH}/${VERSION}/darwin/dist/_nuxt/manifest*
-	cd release/${BRANCH}/${VERSION}/darwin/ && tar -zcvf ../moredoc_cics_${VERSION}_darwin_amd64.tar.gz ./* && cd ../../
+	cd release/${BRANCH}/${VERSION}/darwin/ && tar -zcvf ../moredoc_${BRANCH}_${VERSION}_darwin_amd64.tar.gz ./* && cd ../../
 
 builddarwinarm:
 	rm -rf release/${BRANCH}/${VERSION}/darwin-arm
@@ -79,7 +79,7 @@ builddarwinarm:
 	cp -r app.example.toml release/${BRANCH}/${VERSION}/darwin-arm
 	rm -rf release/${BRANCH}/${VERSION}/darwin-arm/dist/_nuxt/icons
 	rm -rf release/${BRANCH}/${VERSION}/darwin-arm/dist/_nuxt/manifest*
-	cd release/${BRANCH}/${VERSION}/darwin-arm/ && tar -zcvf ../moredoc_pro_${VERSION}_darwin_arm64.tar.gz ./* && cd ../../
+	cd release/${BRANCH}/${VERSION}/darwin-arm/ && tar -zcvf ../moredoc_${BRANCH}_${VERSION}_darwin_arm64.tar.gz ./* && cd ../../
 
 buildlinux:
 	rm -rf release/${BRANCH}/${VERSION}/linux
@@ -90,7 +90,7 @@ buildlinux:
 	cp -r app.example.toml release/${BRANCH}/${VERSION}/linux
 	rm -rf release/${BRANCH}/${VERSION}/linux/dist/_nuxt/icons
 	rm -rf release/${BRANCH}/${VERSION}/linux/dist/_nuxt/manifest*
-	cd release/${BRANCH}/${VERSION}/linux/ && tar -zcvf ../moredoc_cics_${VERSION}_linux_amd64.tar.gz ./* && cd ../../
+	cd release/${BRANCH}/${VERSION}/linux/ && tar -zcvf ../moredoc_${BRANCH}_${VERSION}_linux_amd64.tar.gz ./* && cd ../../
 
 builddockeramd:
 	rm -rf release/${BRANCH}/${VERSION}/dockeramd
@@ -103,7 +103,7 @@ builddockeramd:
 	cp -r docker/mysql release/${BRANCH}/${VERSION}/dockeramd/mysql
 	rm -rf release/${BRANCH}/${VERSION}/dockeramd/dist/_nuxt/icons
 	rm -rf release/${BRANCH}/${VERSION}/dockeramd/dist/_nuxt/manifest*
-	cd release/${BRANCH}/${VERSION}/dockeramd/ && tar -zcvf ../moredoc_pro_${VERSION}_docker_amd64.tar.gz ./* && cd ../../
+	cd release/${BRANCH}/${VERSION}/dockeramd/ && tar -zcvf ../moredoc_${BRANCH}_${VERSION}_docker_amd64.tar.gz ./* && cd ../../
 
 
 builddockerarm:
@@ -117,7 +117,7 @@ builddockerarm:
 	cp -r docker/mysql release/${BRANCH}/${VERSION}/dockerarm/mysql
 	rm -rf release/${BRANCH}/${VERSION}/dockerarm/dist/_nuxt/icons
 	rm -rf release/${BRANCH}/${VERSION}/dockerarm/dist/_nuxt/manifest*
-	cd release/${BRANCH}/${VERSION}/dockerarm/ && tar -zcvf ../moredoc_pro_${VERSION}_docker_arm64.tar.gz ./* && cd ../../
+	cd release/${BRANCH}/${VERSION}/dockerarm/ && tar -zcvf ../moredoc_${BRANCH}_${VERSION}_docker_arm64.tar.gz ./* && cd ../../
 
 
 buildwin:
@@ -129,7 +129,7 @@ buildwin:
 	cp -r app.example.toml release/${BRANCH}/${VERSION}/windows
 	rm -rf release/${BRANCH}/${VERSION}/windows/dist/_nuxt/icons
 	rm -rf release/${BRANCH}/${VERSION}/windows/dist/_nuxt/manifest*
-	cd release/${BRANCH}/${VERSION}/windows/ && tar -zcvf ../moredoc_cics_${VERSION}_windows_amd64.tar.gz ./* && cd ../../
+	cd release/${BRANCH}/${VERSION}/windows/ && tar -zcvf ../moredoc_${BRANCH}_${VERSION}_windows_amd64.tar.gz ./* && cd ../../
 
 buildlinuxarm:
 	rm -rf release/${BRANCH}/${VERSION}/linux-arm
@@ -140,7 +140,7 @@ buildlinuxarm:
 	cp -r app.example.toml release/${BRANCH}/${VERSION}/linux-arm
 	rm -rf release/${BRANCH}/${VERSION}/linux-arm/dist/_nuxt/icons
 	rm -rf release/${BRANCH}/${VERSION}/linux-arm/dist/_nuxt/manifest*
-	cd release/${BRANCH}/${VERSION}/linux-arm/ && tar -zcvf ../moredoc_cics_${VERSION}_linux_arm64.tar.gz ./* && cd ../../
+	cd release/${BRANCH}/${VERSION}/linux-arm/ && tar -zcvf ../moredoc_${BRANCH}_${VERSION}_linux_arm64.tar.gz ./* && cd ../../
 
 buildwinarm:
 	rm -rf release/${BRANCH}/${VERSION}/windows-arm
@@ -150,7 +150,7 @@ buildwinarm:
 	cp -r app.example.toml release/${BRANCH}/${VERSION}/windows-arm
 	rm -rf release/${BRANCH}/${VERSION}/windows-arm/dist/_nuxt/icons
 	rm -rf release/${BRANCH}/${VERSION}/windows-arm/dist/_nuxt/manifest*
-	cd release/${BRANCH}/${VERSION}/windows-arm/ && tar -zcvf ../moredoc_cics_${VERSION}_windows_arm64.tar.gz ./* && cd ../../
+	cd release/${BRANCH}/${VERSION}/windows-arm/ && tar -zcvf ../moredoc_${BRANCH}_${VERSION}_windows_arm64.tar.gz ./* && cd ../../
 
 # 一键编译所有平台，包含web前端
 buildwebserver:
