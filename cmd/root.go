@@ -26,6 +26,7 @@ import (
 	"strings"
 	"syscall"
 
+	"github.com/alexandrevicenzi/unchained"
 	"github.com/mnt-ltd/command"
 
 	"github.com/spf13/cobra"
@@ -258,7 +259,24 @@ func runServer() {
 	}()
 
 	if cfg.JWT.Secret == "" || cfg.JWT.Secret == "moredoc" {
-		logger.Fatal("JWT.Secret", zap.String("安全风险提示", "JWT.Secret不能为空也不能为moredoc，请修改以保证安全性！！！"))
+		// 随机生成一个 JWT Secret
+		cfg.JWT.Secret = unchained.GetRandomString(32)
+		// 重新写回配置文件，并保留注释
+		if viper.ConfigFileUsed() != "" {
+			// 备份一下原配置
+			ext := filepath.Ext(viper.ConfigFileUsed())
+			backupFile := strings.TrimSuffix(viper.ConfigFileUsed(), ext) + ".auto-backup.toml"
+			util.CopyFile(viper.ConfigFileUsed(), backupFile)
+
+			viper.Set("JWT.Secret", cfg.JWT.Secret)
+			err := viper.WriteConfig()
+			if err != nil {
+				logger.Fatal("WriteConfig", zap.Error(err))
+			} else {
+				logger.Info("由于您的JWT.Secret值为空或者为moredoc，为确保安全性，已为 JWT.Secret 生成随机值并写回配置文件！", zap.String("JWT.Secret", cfg.JWT.Secret))
+			}
+		}
+		// logger.Fatal("JWT.Secret", zap.String("安全风险提示", "JWT.Secret不能为空也不能为moredoc，请修改以保证安全性！！！"))
 	}
 	service.Run(cfg, logger)
 }

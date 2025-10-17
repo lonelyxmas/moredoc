@@ -21,7 +21,7 @@ maxIdle = 10
 # 生成 token 的密钥，请务必修改！！！
 secret = "moredoc"
 # token 过期时间
-expireDays = 365
+expireDays = 3650
 
 # 日志配置
 [logger]
