@@ -49,11 +49,25 @@ func (m *DBModel) CreateGroup(group *Group) (err error) {
 		}
 	}
 
+	enableArticle := group.EnableArticle
+	enableComment := group.EnableComment
 	err = sess.Create(group).Error
 	if err != nil {
 		m.logger.Error("CreateGroup", zap.Error(err))
 		return
 	}
+
+	// 默认允许发布文章和评论的，在创建时，如果该值为false时，会被默认值覆盖，所以这里需要单独更新一次
+	if !enableArticle || !enableComment {
+		group.EnableArticle = enableArticle
+		group.EnableComment = enableComment
+		err = sess.Select("enable_article", "enable_comment").Updates(group).Error
+		if err != nil {
+			m.logger.Error("CreateGroup", zap.Error(err))
+			return
+		}
+	}
+
 	return
 }
 
