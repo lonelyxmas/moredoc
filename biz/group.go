@@ -49,13 +49,10 @@ func (s *GroupAPIService) CreateGroup(ctx context.Context, req *pb.Group) (*pb.G
 		return nil, status.Errorf(codes.AlreadyExists, "分组名称已存在")
 	}
 
-	group := &model.Group{
-		Title:       req.Title,
-		Color:       req.Color,
-		IsDefault:   req.IsDefault,
-		IsDisplay:   req.IsDisplay,
-		Sort:        int(req.Sort),
-		Description: req.Description,
+	group := &model.Group{}
+	err = util.CopyStruct(req, group)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, err.Error())
 	}
 	err = s.dbModel.CreateGroup(group)
 	if err != nil {
