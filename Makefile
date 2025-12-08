@@ -1,6 +1,6 @@
 GOPATH:=$(shell go env GOPATH)
 BRANCH=$(shell git rev-parse --abbrev-ref HEAD 2>/dev/null)
-VERSION=$(shell git tag --sort=-v:refname | grep ${BRANCH}- | head -n 1 | sed 's/${BRANCH}-//')
+VERSION=$(shell git tag --sort=-committerdate | grep ${BRANCH}- | head -n 1 | sed 's/${BRANCH}-//')
 GITHASH=$(shell git rev-parse HEAD 2>/dev/null)
 BUILDAT=$(shell date +%FT%T%z)
 API_PROTO_FILES=$(shell find api/* -name *.proto)
