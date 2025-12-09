@@ -155,8 +155,8 @@ buildwinarm:
 # 一键编译所有平台，包含web前端
 buildwebserver:
 	node -v
-	cd ../moredoc-web && git checkout ${BRANCH} && npm install && npm run generate
-	cd ../moredoc-web && git checkout ${BRANCH}-ssr && npm install && npm run pack
+	cd ../moredoc-web && git stash && git checkout ${BRANCH} && npm install && npm run generate
+	cd ../moredoc-web && git stash && git checkout ${BRANCH}-ssr && npm install && npm run pack
 
 # 一键编译所有平台
 buildall: buildwebserver  builddarwin builddarwinarm buildlinux buildwin buildlinuxarm buildwinarm builddockerarm builddockeramd
