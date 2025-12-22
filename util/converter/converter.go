@@ -279,7 +279,8 @@ func (c *Converter) convertPDFToPage(src string, fromPage, toPage int, ext strin
 	pageRange := fmt.Sprintf("%d-%d", fromPage, toPage)
 	cacheFileFormat := c.workspace + "/%d" + ext
 	args := []string{
-		"convert",
+		"draw",
+		"-w", "1000", // 将图片宽度设置为1000px
 		"-o",
 		cacheFileFormat,
 		src,
