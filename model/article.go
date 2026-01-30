@@ -36,6 +36,8 @@ type Article struct {
 	CategoryId    []int64        `form:"category_id" json:"category_id,omitempty" gorm:"-"`
 	Status        int32          `form:"status" json:"status,omitempty" gorm:"column:status;type:int(11);size:11;default:0;comment:状态;index:idx_status"`
 	RejectReason  string         `form:"reject_reason" json:"reject_reason,omitempty" gorm:"column:reject_reason;type:varchar(2048);size:2048;comment:审核拒绝信息;"`
+	Source        string         `form:"source" json:"source,omitempty" gorm:"column:source;type:varchar(255);size:255;comment:文章来源;"`
+	SourceURL     string         `form:"source_url" json:"source_url,omitempty" gorm:"column:source_url;type:varchar(1024);size:1024;comment:文章来源链接;"`
 }
 
 func (Article) TableName() string {
