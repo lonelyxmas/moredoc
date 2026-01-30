@@ -58,6 +58,8 @@ message Document {
   string language = 35;               // 文档语言
   string content = 36;                // 文档内容
   repeated Category category = 37;    // 文档分类
+  string source = 38;                 // 来源
+  string source_url = 39;             // 来源链接
 }
 
 // 删除文档，放入回收站
@@ -121,6 +123,8 @@ message CreateDocumentItem {
   string language = 4;     // 文档语言
   string keywords = 5;     // 文档关键字
   string description = 6;  // 文档描述
+  string source = 7;       // 来源
+  string source_url = 8;   // 来源链接
 }
 
 // 创建文档

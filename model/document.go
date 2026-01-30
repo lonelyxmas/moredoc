@@ -69,6 +69,9 @@ type Document struct {
 	PreviewExt    string          `form:"preview_ext" json:"preview_ext,omitempty" gorm:"column:preview_ext;type:varchar(16);size:16;default:.webp;comment:预览图扩展名;"`
 	UUID          string          `form:"uuid" json:"uuid,omitempty" gorm:"column:uuid;type:char(16);index:idx_uuid;size:16;default:;comment:uuid值，这里用uuid的md5加密串的16位;"`
 	Language      string          `form:"language" json:"language,omitempty" gorm:"column:language;type:varchar(16);size:16;comment:语言;index:idx_language;"`
+	// 来源和来源链接
+	Source    string `form:"source" json:"source,omitempty" gorm:"column:source;type:varchar(255);size:255;comment:来源;"`
+	SourceURL string `form:"source_url" json:"source_url,omitempty" gorm:"column:source_url;type:varchar(1024);size:1024;comment:来源链接;"`
 }
 
 func (Document) TableName() string {

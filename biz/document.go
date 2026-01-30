@@ -91,15 +91,17 @@ func (s *DocumentAPIService) CreateDocument(ctx context.Context, req *pb.CreateD
 		}
 
 		doc := model.Document{
-			Title:    item.Title,
-			UserId:   userClaims.UserId,
-			Score:    300,
-			Price:    int(item.Price),
-			Size:     attachment.Size,
-			Ext:      attachment.Ext,
-			Status:   documentStatus,
-			UUID:     util.GenDocumentMD5UUID(),
-			Language: item.Language,
+			Title:     item.Title,
+			UserId:    userClaims.UserId,
+			Score:     300,
+			Price:     int(item.Price),
+			Size:      attachment.Size,
+			Ext:       attachment.Ext,
+			Status:    documentStatus,
+			UUID:      util.GenDocumentMD5UUID(),
+			Language:  item.Language,
+			Source:    item.Source,
+			SourceURL: item.SourceUrl,
 		}
 		item.Keywords = strings.TrimSpace(item.Keywords)
 		item.Description = strings.TrimSpace(item.Description)
@@ -144,7 +146,7 @@ func (s *DocumentAPIService) UpdateDocument(ctx context.Context, req *pb.Documen
 	}
 
 	req.Content = strings.TrimSpace(req.Content)
-	fields := []string{"id", "title", "keywords", "description", "price", "language"}
+	fields := []string{"id", "title", "keywords", "description", "price", "language", "source", "source_url"}
 	doc := &model.Document{}
 	util.CopyStruct(req, doc)
 
