@@ -116,7 +116,7 @@ func Run(cfg *conf.Config, logger *zap.Logger) {
 	// 可以在 dist 目录下创建一个 index.html 文件并添加内容，然后访问 http://ip:port
 	app.Use(static.Serve("/uploads", static.LocalFile("./uploads", true)))
 	app.Use(static.Serve("/sitemap", static.LocalFile("./sitemap", true)))
-	app.Use(static.Serve("/", static.LocalFile("./dist", true)))
+	app.Use(distHandler())
 	app.NoRoute(wrapH(grpcHandlerFunc(grpcServer, gwmux))) // grpcServer and grpcGatewayServer
 
 	addr := fmt.Sprintf(":%v", cfg.Port)
@@ -127,6 +127,26 @@ func Run(cfg *conf.Config, logger *zap.Logger) {
 	}
 }
 
+func distHandler() gin.HandlerFunc {
+	s := func(urlPrefix string, fs static.ServeFileSystem) gin.HandlerFunc {
+		fileserver := http.FileServer(fs)
+		if urlPrefix != "" {
+			fileserver = http.StripPrefix(urlPrefix, fileserver)
+		}
+		return func(c *gin.Context) {
+			if fs.Exists(urlPrefix, c.Request.URL.Path) {
+				// 移除缓存
+				c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+				c.Writer.Header().Set("Pragma", "no-cache")
+				c.Writer.Header().Set("Expires", "0")
+				fileserver.ServeHTTP(c.Writer, c.Request)
+				c.Abort()
+			}
+		}
+	}
+	return s("/", static.LocalFile("./dist", true))
+}
+
 // See: https://github.com/philips/grpc-gateway-example/issues/22
 func grpcHandlerFunc(grpcServer *grpc.Server, otherHandler http.Handler) http.Handler {
 	return h2c.NewHandler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -134,6 +154,10 @@ func grpcHandlerFunc(grpcServer *grpc.Server, otherHandler http.Handler) http.Ha
 		if r.ProtoMajor == 2 { // grpc 请求
 			grpcServer.ServeHTTP(w, r)
 		} else if !strings.HasPrefix(r.URL.Path, "/api/") {
+			// 去除缓存
+			w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+			w.Header().Set("Pragma", "no-cache")
+			w.Header().Set("Expires", "0")
 			http.ServeFile(w, r, "./dist/index.html")
 		} else {
 			// 如 /api/v1/xxxx ，/api/v2/xxxx
