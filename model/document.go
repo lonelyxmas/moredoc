@@ -66,7 +66,7 @@ type Document struct {
 	DeletedUserId int64           `form:"deleted_user_id" json:"deleted_user_id,omitempty" gorm:"column:deleted_user_id;type:bigint(20);size:20;default:0;comment:删除用户ID;"`
 	EnableGZIP    bool            `form:"enable_gzip" json:"enable_gzip,omitempty" gorm:"column:enable_gzip;type:tinyint(1);size:1;default:0;comment:是否启用GZIP压缩;"`
 	RecommendAt   *time.Time      `form:"recommend_at" json:"recommend_at,omitempty" gorm:"column:recommend_at;type:datetime;comment:推荐时间;index:idx_recommend_at;"`
-	PreviewExt    string          `form:"preview_ext" json:"preview_ext,omitempty" gorm:"column:preview_ext;type:varchar(16);size:16;default:.svg;comment:预览图扩展名;"`
+	PreviewExt    string          `form:"preview_ext" json:"preview_ext,omitempty" gorm:"column:preview_ext;type:varchar(16);size:16;default:.webp;comment:预览图扩展名;"`
 	UUID          string          `form:"uuid" json:"uuid,omitempty" gorm:"column:uuid;type:char(16);index:idx_uuid;size:16;default:;comment:uuid值，这里用uuid的md5加密串的16位;"`
 	Language      string          `form:"language" json:"language,omitempty" gorm:"column:language;type:varchar(16);size:16;comment:语言;index:idx_language;"`
 }
@@ -652,14 +652,14 @@ func (m *DBModel) ConvertDocument() (err error) {
 		if len(hashMapDocs) > 0 && errCover == nil {                                 // 双重确认文档是否已转换成功：1. 存在相同hash的已转换的文档，2. 存在封面图片
 			m.logger.Info("ConvertDocument", zap.Bool("EnableConvertRepeatedDocument", cfg.EnableConvertRepeatedDocument), zap.String("hash", attachment.Hash), zap.Any("hashMapDocs", hashMapDocs))
 			// 已有文档转换成功，将hash相同的文档相关数据迁移到当前文档
-			sql := " UPDATE `%s` SET `description`= ? , `enable_gzip` = ?, `width` = ?, `height`= ?, `preview`= ?, `pages` = ?, `status` = ? WHERE status in ? and id in (select type_id from `%s` where `hash` = ? and `type` = ?)"
+			sql := " UPDATE `%s` SET `description`= ? , `enable_gzip` = ?, `width` = ?, `height`= ?, `preview`= ?,`preview_ext`= ?, `pages` = ?, `status` = ? WHERE status in ? and id in (select type_id from `%s` where `hash` = ? and `type` = ?)"
 			sql = fmt.Sprintf(sql, Document{}.TableName(), Attachment{}.TableName())
 			for hash, doc := range hashMapDocs {
 				if document.Description != "" {
 					doc.Description = document.Description
 				}
 				err = m.db.Exec(sql,
-					doc.Description, doc.EnableGZIP, doc.Width, doc.Height, doc.Preview, doc.Pages, DocumentStatusConverted, []int{DocumentStatusPending, DocumentStatusConverting, DocumentStatusFailed}, hash, AttachmentTypeDocument,
+					doc.Description, doc.EnableGZIP, doc.Width, doc.Height, doc.Preview, doc.PreviewExt, doc.Pages, DocumentStatusConverted, []int{DocumentStatusPending, DocumentStatusConverting, DocumentStatusFailed}, hash, AttachmentTypeDocument,
 				).Error
 				if err != nil {
 					m.logger.Error("ConvertDocument", zap.Error(err))
