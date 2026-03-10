@@ -96,5 +96,14 @@ func serveGatewayOpenAPI(ctx *gin.Context) {
 		ctx.String(http.StatusInternalServerError, "embedded openapi.swagger.yaml is empty")
 		return
 	}
-	ctx.Data(http.StatusOK, "application/yaml; charset=utf-8", moredocdocs.OpenAPIYAML)
+	securityDefinitions := `securityDefinitions:
+  BearerAuth:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: 'Optional JWT bearer token. Example: Bearer <token>'
+security:
+  - {}
+  - BearerAuth: []`
+	ctx.Data(http.StatusOK, "application/yaml; charset=utf-8", append(moredocdocs.OpenAPIYAML, []byte(securityDefinitions)...))
 }
