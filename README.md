@@ -131,6 +131,8 @@
 
 Gin 原生接口和 gRPC Gateway 的 OpenAPI 文档统一在同一个 Swagger 页面展示，默认访问地址为 `/swagger`，页面顶部可直接切换两套文档。
 
+gRPC Gateway 生成的 OpenAPI 文档会在 `make openapi` 时自动补充 `BearerAuth`，Swagger UI 中可直接填写 JWT 并对全部 gRPC API 生效。
+
 <a name="dev-env"></a>
 
 ### 环境要求

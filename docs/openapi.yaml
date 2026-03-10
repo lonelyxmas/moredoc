@@ -35,6 +35,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     put:
       tags:
         - ArticleAPI
@@ -56,6 +58,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     post:
       tags:
         - ArticleAPI
@@ -77,6 +81,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     delete:
       tags:
         - ArticleAPI
@@ -100,6 +106,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/article/list:
     get:
       tags:
@@ -144,6 +152,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/attachment:
     get:
       tags:
@@ -169,6 +179,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     put:
       tags:
         - AttachmentAPI
@@ -190,6 +202,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     delete:
       tags:
         - AttachmentAPI
@@ -213,6 +227,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/attachment/list:
     get:
       tags:
@@ -271,6 +287,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/banner:
     get:
       tags:
@@ -296,6 +314,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     put:
       tags:
         - BannerAPI
@@ -317,6 +337,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     post:
       tags:
         - BannerAPI
@@ -341,6 +363,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     delete:
       tags:
         - BannerAPI
@@ -364,6 +388,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/banner/list:
     get:
       tags:
@@ -417,6 +443,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/category:
     get:
       tags:
@@ -442,6 +470,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     put:
       tags:
         - CategoryAPI
@@ -463,6 +493,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     post:
       tags:
         - CategoryAPI
@@ -484,6 +516,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     delete:
       tags:
         - CategoryAPI
@@ -507,6 +541,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/category/list:
     get:
       tags:
@@ -560,6 +596,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/comment:
     get:
       tags:
@@ -585,6 +623,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     put:
       tags:
         - CommentAPI
@@ -606,6 +646,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     post:
       tags:
         - CommentAPI
@@ -627,6 +669,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     delete:
       tags:
         - CommentAPI
@@ -650,6 +694,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/comment/check:
     post:
       tags:
@@ -672,6 +718,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/comment/list:
     get:
       tags:
@@ -744,6 +792,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/config:
     put:
       tags:
@@ -766,6 +816,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/config/list:
     get:
       tags:
@@ -792,6 +844,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/document:
     get:
       tags:
@@ -821,6 +875,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     put:
       tags:
         - DocumentAPI
@@ -842,6 +898,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     post:
       tags:
         - DocumentAPI
@@ -863,6 +921,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     delete:
       tags:
         - DocumentAPI
@@ -886,6 +946,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/document/download:
     get:
       tags:
@@ -1287,6 +1349,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/document/home:
     get:
       tags:
@@ -1312,6 +1376,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/document/list:
     get:
       tags:
@@ -1388,6 +1454,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/document/recommend:
     put:
       tags:
@@ -1410,6 +1478,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/document/reconvert:
     put:
       tags:
@@ -1426,6 +1496,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/document/recycle:
     get:
       tags:
@@ -1502,6 +1574,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     put:
       tags:
         - RecycleAPI
@@ -1523,6 +1597,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     delete:
       tags:
         - RecycleAPI
@@ -1546,6 +1622,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/document/recycle/all:
     delete:
       tags:
@@ -1562,6 +1640,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/document/related:
     get:
       tags:
@@ -1963,6 +2043,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/document/score:
     get:
       tags:
@@ -2027,6 +2109,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     post:
       tags:
         - DocumentAPI
@@ -2048,6 +2132,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/document/search:
     get:
       tags:
@@ -2097,6 +2183,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/envs:
     get:
       tags:
@@ -2116,6 +2204,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/favorite:
     get:
       tags:
@@ -2141,6 +2231,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     post:
       tags:
         - FavoriteAPI
@@ -2165,6 +2257,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     delete:
       tags:
         - FavoriteAPI
@@ -2188,6 +2282,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/favorite/list:
     get:
       tags:
@@ -2223,6 +2319,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/friendlink:
     get:
       tags:
@@ -2248,6 +2346,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     put:
       tags:
         - FriendlinkAPI
@@ -2269,6 +2369,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     post:
       tags:
         - FriendlinkAPI
@@ -2293,6 +2395,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     delete:
       tags:
         - FriendlinkAPI
@@ -2316,6 +2420,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/friendlink/list:
     get:
       tags:
@@ -2362,6 +2468,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/group:
     get:
       tags:
@@ -2391,6 +2499,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     put:
       tags:
         - GroupAPI
@@ -2412,6 +2522,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     post:
       tags:
         - GroupAPI
@@ -2436,6 +2548,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     delete:
       tags:
         - GroupAPI
@@ -2459,6 +2573,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/group/list:
     get:
       tags:
@@ -2503,6 +2619,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/group/permission:
     get:
       tags:
@@ -2528,6 +2646,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     put:
       tags:
         - GroupAPI
@@ -2549,6 +2669,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/permission:
     get:
       tags:
@@ -2574,6 +2696,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     put:
       tags:
         - PermissionAPI
@@ -2595,6 +2719,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/permission/list:
     get:
       tags:
@@ -2639,6 +2765,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/ping:
     get:
       tags:
@@ -2662,6 +2790,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/report:
     put:
       tags:
@@ -2684,6 +2814,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     post:
       tags:
         - ReportAPI
@@ -2705,6 +2837,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     delete:
       tags:
         - ReportAPI
@@ -2728,6 +2862,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/report/list:
     get:
       tags:
@@ -2778,6 +2914,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/settings:
     get:
       tags:
@@ -2797,6 +2935,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/sitemap:
     put:
       tags:
@@ -2813,6 +2953,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/stats:
     get:
       tags:
@@ -2832,6 +2974,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/user:
     get:
       tags:
@@ -2857,6 +3001,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     put:
       tags:
         - UserAPI
@@ -2878,6 +3024,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     post:
       tags:
         - UserAPI
@@ -2899,6 +3047,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     delete:
       tags:
         - UserAPI
@@ -2922,6 +3072,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/user/caniuploaddocument:
     get:
       tags:
@@ -2938,6 +3090,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/user/captcha:
     get:
       tags:
@@ -2962,6 +3116,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/user/dynamic:
     get:
       tags:
@@ -2997,6 +3153,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/user/findpassword/stepone:
     post:
       tags:
@@ -3019,6 +3177,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/user/findpassword/steptwo:
     put:
       tags:
@@ -3041,6 +3201,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/user/list:
     get:
       tags:
@@ -3107,6 +3269,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/user/login:
     post:
       tags:
@@ -3132,6 +3296,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/user/logout:
     delete:
       tags:
@@ -3148,6 +3314,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/user/password:
     put:
       tags:
@@ -3172,6 +3340,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/user/permission:
     get:
       tags:
@@ -3191,6 +3361,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/user/profile:
     put:
       tags:
@@ -3215,6 +3387,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/user/register:
     post:
       tags:
@@ -3240,6 +3414,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /api/v1/user/sign:
     get:
       tags:
@@ -3259,6 +3435,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
     put:
       tags:
         - UserAPI
@@ -3277,6 +3455,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
   /health:
     get:
       tags:
@@ -3292,6 +3472,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+      security:
+        - BearerAuth: []
 components:
   schemas:
     Article:
@@ -4410,6 +4592,11 @@ components:
           type: integer
           format: int32
       description: 用户信息
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 tags:
   - name: ArticleAPI
     description: 文章API服务
@@ -4436,3 +4623,5 @@ tags:
   - name: ReportAPI
     description: 举报服务
   - name: UserAPI
+security:
+  - BearerAuth: []

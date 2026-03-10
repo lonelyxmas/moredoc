@@ -54,6 +54,7 @@ openapi:
 		--proto_path=./api \
 		--openapiv2_out ./docs \
 		$(API_PROTO_FILES)
+	go run ./tools/openapi-postprocess --input ./docs/openapi.yaml
 
 .PHONY: swagger-gin
 # generate swagger docs for gin handlers
