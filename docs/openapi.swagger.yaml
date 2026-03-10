@@ -1,0 +1,7392 @@
+swagger: "2.0"
+info:
+  title: api/v1/group.proto
+  version: version not set
+tags:
+  - name: GroupAPI
+  - name: CategoryAPI
+  - name: DocumentAPI
+  - name: RecycleAPI
+  - name: ArticleAPI
+  - name: SearchRecordAPI
+  - name: BannerAPI
+  - name: FavoriteAPI
+  - name: PunishmentAPI
+  - name: LanguageAPI
+  - name: AdvertisementAPI
+  - name: HealthAPI
+  - name: ReportAPI
+  - name: FriendlinkAPI
+  - name: PermissionAPI
+  - name: NavigationAPI
+  - name: CommentAPI
+  - name: AttachmentAPI
+  - name: ConfigAPI
+  - name: UserAPI
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /api/v1/advertisement:
+    get:
+      operationId: AdvertisementAPI_GetAdvertisement
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Advertisement'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: string
+          format: int64
+      tags:
+        - AdvertisementAPI
+    delete:
+      operationId: AdvertisementAPI_DeleteAdvertisement
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+      tags:
+        - AdvertisementAPI
+    post:
+      operationId: AdvertisementAPI_CreateAdvertisement
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Advertisement'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Advertisement'
+      tags:
+        - AdvertisementAPI
+    put:
+      operationId: AdvertisementAPI_UpdateAdvertisement
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Advertisement'
+      tags:
+        - AdvertisementAPI
+  /api/v1/advertisement/list:
+    get:
+      operationId: AdvertisementAPI_ListAdvertisement
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListAdvertisementReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: size
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: wd
+          in: query
+          required: false
+          type: string
+        - name: field
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: order
+          in: query
+          required: false
+          type: string
+        - name: position
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: enable
+          in: query
+          required: false
+          type: array
+          items:
+            type: boolean
+          collectionFormat: multi
+      tags:
+        - AdvertisementAPI
+  /api/v1/advertisement/position:
+    get:
+      operationId: AdvertisementAPI_GetAdvertisementByPosition
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListAdvertisementReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: position
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      tags:
+        - AdvertisementAPI
+  /api/v1/article:
+    get:
+      summary: 获取文章
+      operationId: ArticleAPI_GetArticle
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Article'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          description: 文章ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: identifier
+          description: 文章唯一标识
+          in: query
+          required: false
+          type: string
+      tags:
+        - ArticleAPI
+    delete:
+      summary: 删除文章
+      operationId: ArticleAPI_DeleteArticle
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+      tags:
+        - ArticleAPI
+    post:
+      summary: 创建文章
+      operationId: ArticleAPI_CreateArticle
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Article'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Article'
+      tags:
+        - ArticleAPI
+    put:
+      summary: 更新文章
+      operationId: ArticleAPI_UpdateArticle
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Article'
+      tags:
+        - ArticleAPI
+  /api/v1/article/category:
+    put:
+      summary: 批量更新文档分类
+      operationId: ArticleAPI_SetArticlesCategory
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1SetArticlesCategoryRequest'
+      tags:
+        - ArticleAPI
+  /api/v1/article/check:
+    put:
+      summary: 批量审核文档
+      operationId: ArticleAPI_CheckArticles
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1CheckArticlesRequest'
+      tags:
+        - ArticleAPI
+  /api/v1/article/list:
+    get:
+      summary: 文章列表
+      operationId: ArticleAPI_ListArticle
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListArticleReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          description: 页码
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: size
+          description: 每页数量
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: wd
+          description: 搜索关键字
+          in: query
+          required: false
+          type: string
+        - name: field
+          description: 查询字段
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: order
+          description: 排序字段，根据指定的字段倒序排序
+          in: query
+          required: false
+          type: string
+        - name: category_id
+          description: 分类ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: is_recommend
+          description: 是否推荐
+          in: query
+          required: false
+          type: array
+          items:
+            type: boolean
+          collectionFormat: multi
+        - name: status
+          description: 文章状态
+          in: query
+          required: false
+          type: array
+          items:
+            type: integer
+            format: int32
+          collectionFormat: multi
+        - name: user_id
+          description: 用户ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: created_at
+          description: 时间范围
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: sort
+          description: 排序：latest-最新
+          in: query
+          required: false
+          type: string
+      tags:
+        - ArticleAPI
+  /api/v1/article/recommend:
+    put:
+      summary: 批量推荐
+      operationId: ArticleAPI_RecommendArticles
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1RecommendArticlesRequest'
+      tags:
+        - ArticleAPI
+  /api/v1/article/recycle:
+    delete:
+      summary: 从回收站删除文章
+      operationId: ArticleAPI_DeleteRecycleArticle
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+      tags:
+        - ArticleAPI
+  /api/v1/article/recycle/empty:
+    delete:
+      summary: 清空回收站
+      operationId: ArticleAPI_EmptyRecycleArticle
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - ArticleAPI
+  /api/v1/article/recycle/list:
+    get:
+      summary: 回收站文章列表
+      operationId: ArticleAPI_ListRecycleArticle
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListArticleReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          description: 页码
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: size
+          description: 每页数量
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: wd
+          description: 搜索关键字
+          in: query
+          required: false
+          type: string
+        - name: field
+          description: 查询字段
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: order
+          description: 排序字段，根据指定的字段倒序排序
+          in: query
+          required: false
+          type: string
+        - name: category_id
+          description: 分类ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: is_recommend
+          description: 是否推荐
+          in: query
+          required: false
+          type: array
+          items:
+            type: boolean
+          collectionFormat: multi
+        - name: status
+          description: 文章状态
+          in: query
+          required: false
+          type: array
+          items:
+            type: integer
+            format: int32
+          collectionFormat: multi
+        - name: user_id
+          description: 用户ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: created_at
+          description: 时间范围
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: sort
+          description: 排序：latest-最新
+          in: query
+          required: false
+          type: string
+      tags:
+        - ArticleAPI
+  /api/v1/article/recycle/restore:
+    post:
+      summary: 恢复回收站文章
+      operationId: ArticleAPI_RestoreRecycleArticle
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1RestoreArticleRequest'
+      tags:
+        - ArticleAPI
+  /api/v1/article/related:
+    get:
+      summary: 相关文章
+      operationId: ArticleAPI_GetRelatedArticles
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListArticleReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          description: 文章ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: identifier
+          description: 文章唯一标识
+          in: query
+          required: false
+          type: string
+      tags:
+        - ArticleAPI
+  /api/v1/article/search:
+    get:
+      summary: 搜索文章
+      operationId: ArticleAPI_SearchArticle
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1SearchArticleReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          description: 页码
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: size
+          description: 每页数量
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: wd
+          description: 搜索关键字
+          in: query
+          required: false
+          type: string
+        - name: field
+          description: 查询字段
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: order
+          description: 排序字段，根据指定的字段倒序排序
+          in: query
+          required: false
+          type: string
+        - name: category_id
+          description: 分类ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: is_recommend
+          description: 是否推荐
+          in: query
+          required: false
+          type: array
+          items:
+            type: boolean
+          collectionFormat: multi
+        - name: status
+          description: 文章状态
+          in: query
+          required: false
+          type: array
+          items:
+            type: integer
+            format: int32
+          collectionFormat: multi
+        - name: user_id
+          description: 用户ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: created_at
+          description: 时间范围
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: sort
+          description: 排序：latest-最新
+          in: query
+          required: false
+          type: string
+      tags:
+        - ArticleAPI
+  /api/v1/attachment:
+    get:
+      summary: 查询附件
+      operationId: AttachmentAPI_GetAttachment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Attachment'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: string
+          format: int64
+      tags:
+        - AttachmentAPI
+    delete:
+      summary: 删除附件。这里只是软删除，不会真正删除附件，默认24小时候会真正清除附件
+      operationId: AttachmentAPI_DeleteAttachment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+      tags:
+        - AttachmentAPI
+    put:
+      summary: 更新附件
+      operationId: AttachmentAPI_UpdateAttachment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Attachment'
+      tags:
+        - AttachmentAPI
+  /api/v1/attachment/list:
+    get:
+      summary: 列出附件
+      operationId: AttachmentAPI_ListAttachment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListAttachmentReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          description: 页码
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: size
+          description: 每页数量
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: wd
+          description: 搜索关键字
+          in: query
+          required: false
+          type: string
+        - name: enable
+          description: 是否启用
+          in: query
+          required: false
+          type: array
+          items:
+            type: boolean
+          collectionFormat: multi
+        - name: user_id
+          description: 用户ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: type
+          description: 类型
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: ext
+          description: 扩展名
+          in: query
+          required: false
+          type: string
+      tags:
+        - AttachmentAPI
+  /api/v1/banner:
+    get:
+      summary: 查询轮播图
+      operationId: BannerAPI_GetBanner
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Banner'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: string
+          format: int64
+      tags:
+        - BannerAPI
+    delete:
+      summary: 删除轮播图
+      operationId: BannerAPI_DeleteBanner
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+      tags:
+        - BannerAPI
+    post:
+      summary: 创建轮播图
+      operationId: BannerAPI_CreateBanner
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Banner'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Banner'
+      tags:
+        - BannerAPI
+    put:
+      summary: 更新轮播图
+      operationId: BannerAPI_UpdateBanner
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Banner'
+      tags:
+        - BannerAPI
+  /api/v1/banner/list:
+    get:
+      summary: 轮播图列表
+      operationId: BannerAPI_ListBanner
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListBannerReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          description: 页码
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: size
+          description: 每页数量
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: type
+          description: 类型
+          in: query
+          required: false
+          type: array
+          items:
+            type: integer
+            format: int32
+          collectionFormat: multi
+        - name: enable
+          description: 是否启用
+          in: query
+          required: false
+          type: array
+          items:
+            type: boolean
+          collectionFormat: multi
+        - name: wd
+          description: 搜索关键字
+          in: query
+          required: false
+          type: string
+        - name: field
+          description: 查询字段，不指定，则查询全部
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      tags:
+        - BannerAPI
+  /api/v1/category:
+    get:
+      summary: 获取分类
+      operationId: CategoryAPI_GetCategory
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Category'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: string
+          format: int64
+      tags:
+        - CategoryAPI
+    delete:
+      summary: 删除分类
+      operationId: CategoryAPI_DeleteCategory
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+      tags:
+        - CategoryAPI
+    post:
+      summary: 创建分类
+      operationId: CategoryAPI_CreateCategory
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Category'
+      tags:
+        - CategoryAPI
+    put:
+      summary: 更新分类
+      operationId: CategoryAPI_UpdateCategory
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Category'
+      tags:
+        - CategoryAPI
+  /api/v1/category/list:
+    get:
+      summary: 分类列表
+      operationId: CategoryAPI_ListCategory
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListCategoryReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          description: 页码
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: size
+          description: 每页数量
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: parent_id
+          description: 父分类ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: wd
+          description: 搜索关键字
+          in: query
+          required: false
+          type: string
+        - name: enable
+          description: 是否启用
+          in: query
+          required: false
+          type: array
+          items:
+            type: boolean
+          collectionFormat: multi
+        - name: field
+          description: 查询字段
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: type
+          description: 分类类型
+          in: query
+          required: false
+          type: array
+          items:
+            type: integer
+            format: int32
+          collectionFormat: multi
+      tags:
+        - CategoryAPI
+  /api/v1/comment:
+    get:
+      summary: 获取单个评论
+      operationId: CommentAPI_GetComment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Comment'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: string
+          format: int64
+      tags:
+        - CommentAPI
+    delete:
+      summary: 管理员或用户自己删除自己的评论
+      operationId: CommentAPI_DeleteComment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+      tags:
+        - CommentAPI
+    post:
+      summary: 创建评论
+      operationId: CommentAPI_CreateComment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1CreateCommentRequest'
+      tags:
+        - CommentAPI
+    put:
+      summary: 更新评论，仅限管理员操作
+      operationId: CommentAPI_UpdateComment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Comment'
+      tags:
+        - CommentAPI
+  /api/v1/comment/check:
+    post:
+      summary: 审核评论
+      operationId: CommentAPI_CheckComment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1CheckCommentRequest'
+      tags:
+        - CommentAPI
+  /api/v1/comment/list:
+    get:
+      summary: 获取评论列表
+      operationId: CommentAPI_ListComment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListCommentReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          description: 页码
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: size
+          description: 每页数量
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: wd
+          description: 搜索关键词
+          in: query
+          required: false
+          type: string
+        - name: field
+          description: 查询的数据字段
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: order
+          description: 排序字段
+          in: query
+          required: false
+          type: string
+        - name: status
+          description: 状态，见 web/utils/enum.js 枚举
+          in: query
+          required: false
+          type: array
+          items:
+            type: integer
+            format: int32
+          collectionFormat: multi
+        - name: document_id
+          description: 文档ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: user_id
+          description: 用户ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: parent_id
+          description: 父评论ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: with_document_title
+          description: 是否返回文档标题
+          in: query
+          required: false
+          type: boolean
+        - name: type
+          description: 0 文档，1文章
+          in: query
+          required: false
+          type: array
+          items:
+            type: integer
+            format: int32
+          collectionFormat: multi
+      tags:
+        - CommentAPI
+  /api/v1/config:
+    put:
+      summary: UpdateConfig 更新配置
+      operationId: ConfigAPI_UpdateConfig
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Configs'
+      tags:
+        - ConfigAPI
+  /api/v1/config/list:
+    get:
+      summary: ListConfig 查询配置项
+      operationId: ConfigAPI_ListConfig
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Configs'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: category
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      tags:
+        - ConfigAPI
+  /api/v1/device:
+    get:
+      summary: 获取设备信息
+      operationId: ConfigAPI_GetDeviceInfo
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1DeviceInfo'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - ConfigAPI
+  /api/v1/document:
+    get:
+      summary: 查询文档
+      operationId: DocumentAPI_GetDocument
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Document'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          description: 文档ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: with_author
+          description: 是否查询作者信息
+          in: query
+          required: false
+          type: boolean
+        - name: uuid
+          description: 文档UUID
+          in: query
+          required: false
+          type: string
+        - name: with_all_content
+          description: 是否查询所有文本内容
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - DocumentAPI
+    delete:
+      summary: 删除文档
+      operationId: DocumentAPI_DeleteDocument
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+      tags:
+        - DocumentAPI
+    post:
+      summary: 创建文档
+      operationId: DocumentAPI_CreateDocument
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1CreateDocumentRequest'
+      tags:
+        - DocumentAPI
+    put:
+      summary: 更新文档
+      operationId: DocumentAPI_UpdateDocument
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Document'
+      tags:
+        - DocumentAPI
+  /api/v1/document/category:
+    put:
+      summary: 批量更新文档分类
+      operationId: DocumentAPI_SetDocumentsCategory
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1SetDocumentsCategoryRequest'
+      tags:
+        - DocumentAPI
+  /api/v1/document/check:
+    put:
+      summary: 批量审核文档
+      operationId: DocumentAPI_CheckDocument
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1CheckDocumentRequest'
+      tags:
+        - DocumentAPI
+  /api/v1/document/download:
+    get:
+      summary: 根据文档ID，获取文档下载链接
+      operationId: DocumentAPI_DownloadDocument
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1DownloadDocumentReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          description: 文档ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: title
+          description: 文档标题
+          in: query
+          required: false
+          type: string
+        - name: keywords
+          description: 文档关键字
+          in: query
+          required: false
+          type: string
+        - name: description
+          description: 文档描述
+          in: query
+          required: false
+          type: string
+        - name: user_id
+          description: 文档作者
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: cover
+          description: 文档封面
+          in: query
+          required: false
+          type: string
+        - name: width
+          description: 文档宽度
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: height
+          description: 文档高度
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: preview
+          description: 文档可预览页数，0表示不限制
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: pages
+          description: 文档页数
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: uuid
+          description: 文档UUID
+          in: query
+          required: false
+          type: string
+        - name: download_count
+          description: 文档下载次数
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: view_count
+          description: 文档浏览次数
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: favorite_count
+          description: 文档收藏次数
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: comment_count
+          description: 文档评论次数
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: score
+          description: 文档评分
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: score_count
+          description: 文档评分次数
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: price
+          description: 文档价格
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: size
+          description: 文档大小
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: status
+          description: 文档状态，见 web/utils/enum.js
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: created_at
+          description: 文档创建时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: updated_at
+          description: 文档更新时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: deleted_at
+          description: 文档删除时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: recommend_at
+          description: 文档推荐时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: deleted_user_id
+          description: 删除文档的用户
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: username
+          description: 文档作者用户名
+          in: query
+          required: false
+          type: string
+        - name: category_id
+          description: 文档分类ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: deleted_username
+          description: 删除文档的用户名
+          in: query
+          required: false
+          type: string
+        - name: ext
+          description: 文档扩展名
+          in: query
+          required: false
+          type: string
+        - name: attachment.id
+          description: 附件ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: attachment.hash
+          description: 附件哈希值，MD5
+          in: query
+          required: false
+          type: string
+        - name: attachment.user_id
+          description: 上传用户ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: attachment.type_id
+          description: 附件类型ID，如果是文档类型，则为文档ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: attachment.type
+          description: 附件类型，见 web/utils/enum.js
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: attachment.enable
+          description: 是否启用
+          in: query
+          required: false
+          type: boolean
+        - name: attachment.path
+          description: 附件路径
+          in: query
+          required: false
+          type: string
+        - name: attachment.name
+          description: 附件名称
+          in: query
+          required: false
+          type: string
+        - name: attachment.size
+          description: 附件大小，单位：字节
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: attachment.width
+          description: 附件宽度，单位：像素。针对图片附件
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: attachment.height
+          description: 附件高度，单位：像素。针对图片附件
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: attachment.ext
+          description: 扩展名，如：.docx
+          in: query
+          required: false
+          type: string
+        - name: attachment.ip
+          description: 上传IP地址
+          in: query
+          required: false
+          type: string
+        - name: attachment.username
+          description: 用户名称
+          in: query
+          required: false
+          type: string
+        - name: attachment.type_name
+          description: 附件类型名称
+          in: query
+          required: false
+          type: string
+        - name: attachment.description
+          description: 附件描述、备注
+          in: query
+          required: false
+          type: string
+        - name: attachment.created_at
+          description: 创建时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: attachment.updated_at
+          description: 更新时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: user.login_at
+          description: 最后登录时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: user.created_at
+          description: 注册时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: user.updated_at
+          description: 更新时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: user.id
+          description: 用户ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: user.username
+          description: 用户名
+          in: query
+          required: false
+          type: string
+        - name: user.mobile
+          description: 手机号
+          in: query
+          required: false
+          type: string
+        - name: user.email
+          description: 邮箱，唯一
+          in: query
+          required: false
+          type: string
+        - name: user.address
+          description: 地址
+          in: query
+          required: false
+          type: string
+        - name: user.signature
+          description: 个性签名
+          in: query
+          required: false
+          type: string
+        - name: user.last_login_ip
+          description: 最后登录IP
+          in: query
+          required: false
+          type: string
+        - name: user.register_ip
+          description: 注册IP
+          in: query
+          required: false
+          type: string
+        - name: user.doc_count
+          description: 文档数量
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.follow_count
+          description: 关注数量
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.fans_count
+          description: 粉丝数量
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.favorite_count
+          description: 收藏数量
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.comment_count
+          description: 评论数量
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.status
+          description: 用户状态，见 web/utils/enum.js，当前没有使用
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.avatar
+          description: 头像
+          in: query
+          required: false
+          type: string
+        - name: user.identity
+          description: 身份证
+          in: query
+          required: false
+          type: string
+        - name: user.realname
+          description: 真实姓名
+          in: query
+          required: false
+          type: string
+        - name: user.group_id
+          description: 用户组ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: user.credit_count
+          description: 积分
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.article_count
+          description: 文章数量
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.remark
+          description: 备注
+          in: query
+          required: false
+          type: string
+        - name: enable_gzip
+          description: 是否启用gzip压缩
+          in: query
+          required: false
+          type: boolean
+        - name: convert_error
+          description: 转换错误信息
+          in: query
+          required: false
+          type: string
+        - name: preview_ext
+          description: 预览文件扩展名
+          in: query
+          required: false
+          type: string
+        - name: language
+          description: 文档语言
+          in: query
+          required: false
+          type: string
+        - name: content
+          description: 文档内容
+          in: query
+          required: false
+          type: string
+        - name: source
+          description: 来源
+          in: query
+          required: false
+          type: string
+        - name: source_url
+          description: 来源链接
+          in: query
+          required: false
+          type: string
+      tags:
+        - DocumentAPI
+  /api/v1/document/download/bereviewed:
+    get:
+      summary: 下载待审核的文档(只有待审核、审核拒绝的文档才能下载)
+      operationId: DocumentAPI_DownloadDocumentToBeReviewed
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1DownloadDocumentReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          description: 文档ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: title
+          description: 文档标题
+          in: query
+          required: false
+          type: string
+        - name: keywords
+          description: 文档关键字
+          in: query
+          required: false
+          type: string
+        - name: description
+          description: 文档描述
+          in: query
+          required: false
+          type: string
+        - name: user_id
+          description: 文档作者
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: cover
+          description: 文档封面
+          in: query
+          required: false
+          type: string
+        - name: width
+          description: 文档宽度
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: height
+          description: 文档高度
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: preview
+          description: 文档可预览页数，0表示不限制
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: pages
+          description: 文档页数
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: uuid
+          description: 文档UUID
+          in: query
+          required: false
+          type: string
+        - name: download_count
+          description: 文档下载次数
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: view_count
+          description: 文档浏览次数
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: favorite_count
+          description: 文档收藏次数
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: comment_count
+          description: 文档评论次数
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: score
+          description: 文档评分
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: score_count
+          description: 文档评分次数
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: price
+          description: 文档价格
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: size
+          description: 文档大小
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: status
+          description: 文档状态，见 web/utils/enum.js
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: created_at
+          description: 文档创建时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: updated_at
+          description: 文档更新时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: deleted_at
+          description: 文档删除时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: recommend_at
+          description: 文档推荐时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: deleted_user_id
+          description: 删除文档的用户
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: username
+          description: 文档作者用户名
+          in: query
+          required: false
+          type: string
+        - name: category_id
+          description: 文档分类ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: deleted_username
+          description: 删除文档的用户名
+          in: query
+          required: false
+          type: string
+        - name: ext
+          description: 文档扩展名
+          in: query
+          required: false
+          type: string
+        - name: attachment.id
+          description: 附件ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: attachment.hash
+          description: 附件哈希值，MD5
+          in: query
+          required: false
+          type: string
+        - name: attachment.user_id
+          description: 上传用户ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: attachment.type_id
+          description: 附件类型ID，如果是文档类型，则为文档ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: attachment.type
+          description: 附件类型，见 web/utils/enum.js
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: attachment.enable
+          description: 是否启用
+          in: query
+          required: false
+          type: boolean
+        - name: attachment.path
+          description: 附件路径
+          in: query
+          required: false
+          type: string
+        - name: attachment.name
+          description: 附件名称
+          in: query
+          required: false
+          type: string
+        - name: attachment.size
+          description: 附件大小，单位：字节
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: attachment.width
+          description: 附件宽度，单位：像素。针对图片附件
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: attachment.height
+          description: 附件高度，单位：像素。针对图片附件
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: attachment.ext
+          description: 扩展名，如：.docx
+          in: query
+          required: false
+          type: string
+        - name: attachment.ip
+          description: 上传IP地址
+          in: query
+          required: false
+          type: string
+        - name: attachment.username
+          description: 用户名称
+          in: query
+          required: false
+          type: string
+        - name: attachment.type_name
+          description: 附件类型名称
+          in: query
+          required: false
+          type: string
+        - name: attachment.description
+          description: 附件描述、备注
+          in: query
+          required: false
+          type: string
+        - name: attachment.created_at
+          description: 创建时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: attachment.updated_at
+          description: 更新时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: user.login_at
+          description: 最后登录时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: user.created_at
+          description: 注册时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: user.updated_at
+          description: 更新时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: user.id
+          description: 用户ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: user.username
+          description: 用户名
+          in: query
+          required: false
+          type: string
+        - name: user.mobile
+          description: 手机号
+          in: query
+          required: false
+          type: string
+        - name: user.email
+          description: 邮箱，唯一
+          in: query
+          required: false
+          type: string
+        - name: user.address
+          description: 地址
+          in: query
+          required: false
+          type: string
+        - name: user.signature
+          description: 个性签名
+          in: query
+          required: false
+          type: string
+        - name: user.last_login_ip
+          description: 最后登录IP
+          in: query
+          required: false
+          type: string
+        - name: user.register_ip
+          description: 注册IP
+          in: query
+          required: false
+          type: string
+        - name: user.doc_count
+          description: 文档数量
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.follow_count
+          description: 关注数量
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.fans_count
+          description: 粉丝数量
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.favorite_count
+          description: 收藏数量
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.comment_count
+          description: 评论数量
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.status
+          description: 用户状态，见 web/utils/enum.js，当前没有使用
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.avatar
+          description: 头像
+          in: query
+          required: false
+          type: string
+        - name: user.identity
+          description: 身份证
+          in: query
+          required: false
+          type: string
+        - name: user.realname
+          description: 真实姓名
+          in: query
+          required: false
+          type: string
+        - name: user.group_id
+          description: 用户组ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: user.credit_count
+          description: 积分
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.article_count
+          description: 文章数量
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.remark
+          description: 备注
+          in: query
+          required: false
+          type: string
+        - name: enable_gzip
+          description: 是否启用gzip压缩
+          in: query
+          required: false
+          type: boolean
+        - name: convert_error
+          description: 转换错误信息
+          in: query
+          required: false
+          type: string
+        - name: preview_ext
+          description: 预览文件扩展名
+          in: query
+          required: false
+          type: string
+        - name: language
+          description: 文档语言
+          in: query
+          required: false
+          type: string
+        - name: content
+          description: 文档内容
+          in: query
+          required: false
+          type: string
+        - name: source
+          description: 来源
+          in: query
+          required: false
+          type: string
+        - name: source_url
+          description: 来源链接
+          in: query
+          required: false
+          type: string
+      tags:
+        - DocumentAPI
+  /api/v1/document/home:
+    get:
+      summary: 针对首页的文档查询
+      operationId: DocumentAPI_ListDocumentForHome
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListDocumentForHomeResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: field
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      tags:
+        - DocumentAPI
+  /api/v1/document/language:
+    put:
+      summary: 批量更新文档所属语言
+      operationId: DocumentAPI_SetDocumentsLanguage
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1SetDocumentsLanguageRequest'
+      tags:
+        - DocumentAPI
+  /api/v1/document/list:
+    get:
+      summary: 文档列表查询
+      operationId: DocumentAPI_ListDocument
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListDocumentReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          description: 页码
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: size
+          description: 每页数量
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: wd
+          description: 搜索关键字
+          in: query
+          required: false
+          type: string
+        - name: field
+          description: 查询字段
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: order
+          description: 排序
+          in: query
+          required: false
+          type: string
+        - name: category_id
+          description: 分类ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: user_id
+          description: 用户ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: status
+          description: 文档状态
+          in: query
+          required: false
+          type: array
+          items:
+            type: integer
+            format: int32
+          collectionFormat: multi
+        - name: is_recommend
+          description: 是否推荐
+          in: query
+          required: false
+          type: array
+          items:
+            type: boolean
+          collectionFormat: multi
+        - name: limit
+          description: 查询数量显示。当该值大于0时，page和size无效
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: ext
+          description: 文档扩展名
+          in: query
+          required: false
+          type: string
+        - name: created_at
+          description: 创建时间
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: fee_type
+          description: 收费类型
+          in: query
+          required: false
+          type: string
+        - name: language
+          description: 文档语言
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      tags:
+        - DocumentAPI
+  /api/v1/document/recommend:
+    put:
+      summary: 设置文档推荐
+      operationId: DocumentAPI_SetDocumentRecommend
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1SetDocumentRecommendRequest'
+      tags:
+        - DocumentAPI
+  /api/v1/document/reconvert:
+    put:
+      summary: 将文档一键设置为重转
+      operationId: DocumentAPI_SetDocumentReconvert
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - DocumentAPI
+  /api/v1/document/recycle:
+    get:
+      summary: 文档回收站列表
+      operationId: RecycleAPI_ListRecycleDocument
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListDocumentReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          description: 页码
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: size
+          description: 每页数量
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: wd
+          description: 搜索关键字
+          in: query
+          required: false
+          type: string
+        - name: field
+          description: 查询字段
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: order
+          description: 排序
+          in: query
+          required: false
+          type: string
+        - name: category_id
+          description: 分类ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: user_id
+          description: 用户ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: status
+          description: 文档状态
+          in: query
+          required: false
+          type: array
+          items:
+            type: integer
+            format: int32
+          collectionFormat: multi
+        - name: is_recommend
+          description: 是否推荐
+          in: query
+          required: false
+          type: array
+          items:
+            type: boolean
+          collectionFormat: multi
+        - name: limit
+          description: 查询数量显示。当该值大于0时，page和size无效
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: ext
+          description: 文档扩展名
+          in: query
+          required: false
+          type: string
+        - name: created_at
+          description: 创建时间
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: fee_type
+          description: 收费类型
+          in: query
+          required: false
+          type: string
+        - name: language
+          description: 文档语言
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      tags:
+        - RecycleAPI
+    delete:
+      summary: 删除回收站文档
+      operationId: RecycleAPI_DeleteRecycleDocument
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+      tags:
+        - RecycleAPI
+    put:
+      summary: 恢复回收站文档，支持恢复单个文档或者是批量恢复
+      operationId: RecycleAPI_RecoverRecycleDocument
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1RecoverRecycleDocumentRequest'
+      tags:
+        - RecycleAPI
+  /api/v1/document/recycle/all:
+    delete:
+      summary: 清空回收站文档
+      operationId: RecycleAPI_ClearRecycleDocument
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - RecycleAPI
+  /api/v1/document/related:
+    get:
+      summary: 根据文档ID查询当前文档的相关文档
+      operationId: DocumentAPI_GetRelatedDocuments
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListDocumentReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          description: 文档ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: title
+          description: 文档标题
+          in: query
+          required: false
+          type: string
+        - name: keywords
+          description: 文档关键字
+          in: query
+          required: false
+          type: string
+        - name: description
+          description: 文档描述
+          in: query
+          required: false
+          type: string
+        - name: user_id
+          description: 文档作者
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: cover
+          description: 文档封面
+          in: query
+          required: false
+          type: string
+        - name: width
+          description: 文档宽度
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: height
+          description: 文档高度
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: preview
+          description: 文档可预览页数，0表示不限制
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: pages
+          description: 文档页数
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: uuid
+          description: 文档UUID
+          in: query
+          required: false
+          type: string
+        - name: download_count
+          description: 文档下载次数
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: view_count
+          description: 文档浏览次数
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: favorite_count
+          description: 文档收藏次数
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: comment_count
+          description: 文档评论次数
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: score
+          description: 文档评分
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: score_count
+          description: 文档评分次数
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: price
+          description: 文档价格
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: size
+          description: 文档大小
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: status
+          description: 文档状态，见 web/utils/enum.js
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: created_at
+          description: 文档创建时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: updated_at
+          description: 文档更新时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: deleted_at
+          description: 文档删除时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: recommend_at
+          description: 文档推荐时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: deleted_user_id
+          description: 删除文档的用户
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: username
+          description: 文档作者用户名
+          in: query
+          required: false
+          type: string
+        - name: category_id
+          description: 文档分类ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: deleted_username
+          description: 删除文档的用户名
+          in: query
+          required: false
+          type: string
+        - name: ext
+          description: 文档扩展名
+          in: query
+          required: false
+          type: string
+        - name: attachment.id
+          description: 附件ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: attachment.hash
+          description: 附件哈希值，MD5
+          in: query
+          required: false
+          type: string
+        - name: attachment.user_id
+          description: 上传用户ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: attachment.type_id
+          description: 附件类型ID，如果是文档类型，则为文档ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: attachment.type
+          description: 附件类型，见 web/utils/enum.js
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: attachment.enable
+          description: 是否启用
+          in: query
+          required: false
+          type: boolean
+        - name: attachment.path
+          description: 附件路径
+          in: query
+          required: false
+          type: string
+        - name: attachment.name
+          description: 附件名称
+          in: query
+          required: false
+          type: string
+        - name: attachment.size
+          description: 附件大小，单位：字节
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: attachment.width
+          description: 附件宽度，单位：像素。针对图片附件
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: attachment.height
+          description: 附件高度，单位：像素。针对图片附件
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: attachment.ext
+          description: 扩展名，如：.docx
+          in: query
+          required: false
+          type: string
+        - name: attachment.ip
+          description: 上传IP地址
+          in: query
+          required: false
+          type: string
+        - name: attachment.username
+          description: 用户名称
+          in: query
+          required: false
+          type: string
+        - name: attachment.type_name
+          description: 附件类型名称
+          in: query
+          required: false
+          type: string
+        - name: attachment.description
+          description: 附件描述、备注
+          in: query
+          required: false
+          type: string
+        - name: attachment.created_at
+          description: 创建时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: attachment.updated_at
+          description: 更新时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: user.login_at
+          description: 最后登录时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: user.created_at
+          description: 注册时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: user.updated_at
+          description: 更新时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: user.id
+          description: 用户ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: user.username
+          description: 用户名
+          in: query
+          required: false
+          type: string
+        - name: user.mobile
+          description: 手机号
+          in: query
+          required: false
+          type: string
+        - name: user.email
+          description: 邮箱，唯一
+          in: query
+          required: false
+          type: string
+        - name: user.address
+          description: 地址
+          in: query
+          required: false
+          type: string
+        - name: user.signature
+          description: 个性签名
+          in: query
+          required: false
+          type: string
+        - name: user.last_login_ip
+          description: 最后登录IP
+          in: query
+          required: false
+          type: string
+        - name: user.register_ip
+          description: 注册IP
+          in: query
+          required: false
+          type: string
+        - name: user.doc_count
+          description: 文档数量
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.follow_count
+          description: 关注数量
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.fans_count
+          description: 粉丝数量
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.favorite_count
+          description: 收藏数量
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.comment_count
+          description: 评论数量
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.status
+          description: 用户状态，见 web/utils/enum.js，当前没有使用
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.avatar
+          description: 头像
+          in: query
+          required: false
+          type: string
+        - name: user.identity
+          description: 身份证
+          in: query
+          required: false
+          type: string
+        - name: user.realname
+          description: 真实姓名
+          in: query
+          required: false
+          type: string
+        - name: user.group_id
+          description: 用户组ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: user.credit_count
+          description: 积分
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.article_count
+          description: 文章数量
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: user.remark
+          description: 备注
+          in: query
+          required: false
+          type: string
+        - name: enable_gzip
+          description: 是否启用gzip压缩
+          in: query
+          required: false
+          type: boolean
+        - name: convert_error
+          description: 转换错误信息
+          in: query
+          required: false
+          type: string
+        - name: preview_ext
+          description: 预览文件扩展名
+          in: query
+          required: false
+          type: string
+        - name: language
+          description: 文档语言
+          in: query
+          required: false
+          type: string
+        - name: content
+          description: 文档内容
+          in: query
+          required: false
+          type: string
+        - name: source
+          description: 来源
+          in: query
+          required: false
+          type: string
+        - name: source_url
+          description: 来源链接
+          in: query
+          required: false
+          type: string
+      tags:
+        - DocumentAPI
+  /api/v1/document/score:
+    get:
+      summary: 获取当前登录用户的文档评分
+      operationId: DocumentAPI_GetDocumentScore
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1DocumentScore'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          description: 评分ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: document_id
+          description: 文档ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: user_id
+          description: 用户ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: score
+          description: 评分，100~500，100为1分，500为5分
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: created_at
+          description: 评分时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: updated_at
+          description: 更新时间
+          in: query
+          required: false
+          type: string
+          format: date-time
+      tags:
+        - DocumentAPI
+    post:
+      summary: 设置文档评分
+      operationId: DocumentAPI_SetDocumentScore
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1DocumentScore'
+      tags:
+        - DocumentAPI
+  /api/v1/document/search:
+    get:
+      summary: 文档搜索
+      operationId: DocumentAPI_SearchDocument
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1SearchDocumentReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          description: 页码
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: size
+          description: 每页数量
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: wd
+          description: 搜索关键字
+          in: query
+          required: false
+          type: string
+        - name: category_id
+          description: 分类
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: sort
+          description: 排序
+          in: query
+          required: false
+          type: string
+        - name: ext
+          description: 类型
+          in: query
+          required: false
+          type: string
+        - name: user_id
+          description: 用户ID
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: created_at
+          description: |-
+            时间区间
+
+            时间范围
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: language
+          description: 文档语言
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      tags:
+        - DocumentAPI
+  /api/v1/envs:
+    get:
+      summary: 获取系统环境依赖检测
+      operationId: ConfigAPI_GetEnvs
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Envs'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - ConfigAPI
+  /api/v1/favorite:
+    get:
+      summary: 根据文章id，查询用户是否有收藏某篇文档
+      operationId: FavoriteAPI_GetFavorite
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Favorite'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: document_id
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: type
+          in: query
+          required: false
+          type: integer
+          format: int32
+      tags:
+        - FavoriteAPI
+    delete:
+      summary: 取消收藏
+      operationId: FavoriteAPI_DeleteFavorite
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+      tags:
+        - FavoriteAPI
+    post:
+      summary: 添加收藏
+      operationId: FavoriteAPI_CreateFavorite
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Favorite'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Favorite'
+      tags:
+        - FavoriteAPI
+  /api/v1/favorite/list:
+    get:
+      summary: 查询用户的收藏
+      operationId: FavoriteAPI_ListFavorite
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListFavoriteReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: size
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: type
+          description: '0: 文档 1: 文章'
+          in: query
+          required: false
+          type: integer
+          format: int32
+      tags:
+        - FavoriteAPI
+  /api/v1/friendlink:
+    get:
+      summary: 获取友情链接
+      operationId: FriendlinkAPI_GetFriendlink
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Friendlink'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: string
+          format: int64
+      tags:
+        - FriendlinkAPI
+    delete:
+      summary: 删除友情链接
+      operationId: FriendlinkAPI_DeleteFriendlink
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+      tags:
+        - FriendlinkAPI
+    post:
+      summary: 创建友情链接
+      operationId: FriendlinkAPI_CreateFriendlink
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Friendlink'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Friendlink'
+      tags:
+        - FriendlinkAPI
+    put:
+      summary: 更新友情链接
+      operationId: FriendlinkAPI_UpdateFriendlink
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Friendlink'
+      tags:
+        - FriendlinkAPI
+  /api/v1/friendlink/list:
+    get:
+      summary: 获取友情链接
+      operationId: FriendlinkAPI_ListFriendlink
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListFriendlinkReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: size
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: wd
+          in: query
+          required: false
+          type: string
+        - name: enable
+          in: query
+          required: false
+          type: array
+          items:
+            type: boolean
+          collectionFormat: multi
+        - name: field
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      tags:
+        - FriendlinkAPI
+  /api/v1/group:
+    get:
+      summary: 获取用户组
+      operationId: GroupAPI_GetGroup
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Group'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: title
+          in: query
+          required: false
+          type: string
+      tags:
+        - GroupAPI
+    delete:
+      summary: 删除用户组
+      operationId: GroupAPI_DeleteGroup
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+      tags:
+        - GroupAPI
+    post:
+      summary: 创建用户组
+      operationId: GroupAPI_CreateGroup
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Group'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Group'
+      tags:
+        - GroupAPI
+    put:
+      summary: 更新用户组
+      operationId: GroupAPI_UpdateGroup
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Group'
+      tags:
+        - GroupAPI
+  /api/v1/group/list:
+    get:
+      summary: 获取用户组列表
+      operationId: GroupAPI_ListGroup
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListGroupReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: wd
+          in: query
+          required: false
+          type: string
+        - name: page
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: size
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: sort
+          in: query
+          required: false
+          type: string
+        - name: field
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      tags:
+        - GroupAPI
+  /api/v1/group/permission:
+    get:
+      summary: 获取用户组权限列表
+      operationId: GroupAPI_GetGroupPermission
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GroupPermissions'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: string
+          format: int64
+      tags:
+        - GroupAPI
+    put:
+      summary: 更新用户组权限，给用户组设置权限
+      operationId: GroupAPI_UpdateGroupPermission
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1UpdateGroupPermissionRequest'
+      tags:
+        - GroupAPI
+  /api/v1/language:
+    delete:
+      operationId: LanguageAPI_DeleteLanguage
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+      tags:
+        - LanguageAPI
+    post:
+      operationId: LanguageAPI_CreateLanguage
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Language'
+      tags:
+        - LanguageAPI
+    put:
+      operationId: LanguageAPI_UpdateLanguage
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Language'
+      tags:
+        - LanguageAPI
+  /api/v1/language/list:
+    get:
+      operationId: LanguageAPI_ListLanguage
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListLanguageReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: wd
+          in: query
+          required: false
+          type: string
+        - name: enable
+          in: query
+          required: false
+          type: array
+          items:
+            type: boolean
+          collectionFormat: multi
+        - name: field
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: page
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: size
+          in: query
+          required: false
+          type: integer
+          format: int32
+      tags:
+        - LanguageAPI
+  /api/v1/language/status:
+    put:
+      operationId: LanguageAPI_UpdateLanguageStatus
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1UpdateLanguageStatusRequest'
+      tags:
+        - LanguageAPI
+  /api/v1/navigation:
+    get:
+      operationId: NavigationAPI_GetNavigation
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Navigation'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: string
+          format: int64
+      tags:
+        - NavigationAPI
+    delete:
+      operationId: NavigationAPI_DeleteNavigation
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+      tags:
+        - NavigationAPI
+    post:
+      operationId: NavigationAPI_CreateNavigation
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Navigation'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Navigation'
+      tags:
+        - NavigationAPI
+    put:
+      operationId: NavigationAPI_UpdateNavigation
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Navigation'
+      tags:
+        - NavigationAPI
+  /api/v1/navigation/list:
+    get:
+      operationId: NavigationAPI_ListNavigation
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListNavigationReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: size
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: wd
+          in: query
+          required: false
+          type: string
+        - name: field
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: order
+          in: query
+          required: false
+          type: string
+      tags:
+        - NavigationAPI
+  /api/v1/permission:
+    get:
+      summary: 查询权限信息
+      operationId: PermissionAPI_GetPermission
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Permission'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: string
+          format: int64
+      tags:
+        - PermissionAPI
+    put:
+      summary: 更新权限信息。这里只能操作title和description
+      operationId: PermissionAPI_UpdatePermission
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Permission'
+      tags:
+        - PermissionAPI
+  /api/v1/permission/list:
+    get:
+      summary: 查询权限列表
+      operationId: PermissionAPI_ListPermission
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListPermissionReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: size
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: wd
+          in: query
+          required: false
+          type: string
+        - name: method
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: path
+          in: query
+          required: false
+          type: string
+      tags:
+        - PermissionAPI
+  /api/v1/ping:
+    get:
+      operationId: HealthAPI_Ping
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/PongReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: name
+          in: query
+          required: false
+          type: string
+      tags:
+        - HealthAPI
+  /api/v1/punishment:
+    get:
+      operationId: PunishmentAPI_GetPunishment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Punishment'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: string
+          format: int64
+      tags:
+        - PunishmentAPI
+    post:
+      operationId: PunishmentAPI_CreatePunishment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1CreatePunishmentRequest'
+      tags:
+        - PunishmentAPI
+    put:
+      operationId: PunishmentAPI_UpdatePunishment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Punishment'
+      tags:
+        - PunishmentAPI
+  /api/v1/punishment/cancel:
+    put:
+      summary: 批量取消惩罚
+      operationId: PunishmentAPI_CancelPunishment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1CancelPunishmentRequest'
+      tags:
+        - PunishmentAPI
+  /api/v1/punishment/list:
+    get:
+      operationId: PunishmentAPI_ListPunishment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListPunishmentReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: size
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: wd
+          in: query
+          required: false
+          type: string
+        - name: field
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: order
+          in: query
+          required: false
+          type: string
+        - name: type
+          in: query
+          required: false
+          type: array
+          items:
+            type: integer
+            format: int32
+          collectionFormat: multi
+        - name: enable
+          in: query
+          required: false
+          type: array
+          items:
+            type: integer
+            format: int32
+          collectionFormat: multi
+        - name: user_id
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+      tags:
+        - PunishmentAPI
+  /api/v1/release:
+    get:
+      summary: 获取最近发布版本
+      operationId: ConfigAPI_GetLatestRelease
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Release'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - ConfigAPI
+    post:
+      summary: 更新最新发布版本
+      operationId: ConfigAPI_RefreshLatestRelease
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Release'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - ConfigAPI
+  /api/v1/release/ignore:
+    put:
+      summary: 忽略版本，设置ignore字段
+      operationId: ConfigAPI_IgnoreRelease
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Release'
+      tags:
+        - ConfigAPI
+  /api/v1/release/source:
+    put:
+      summary: 设置release源，主要是更新 source 字段
+      operationId: ConfigAPI_SetReleaseSource
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Release'
+      tags:
+        - ConfigAPI
+  /api/v1/report:
+    delete:
+      summary: 删除举报
+      operationId: ReportAPI_DeleteReport
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+      tags:
+        - ReportAPI
+    post:
+      summary: 创建举报
+      operationId: ReportAPI_CreateReport
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Report'
+      tags:
+        - ReportAPI
+    put:
+      summary: 更新举报，审核举报内容
+      operationId: ReportAPI_UpdateReport
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Report'
+      tags:
+        - ReportAPI
+  /api/v1/report/list:
+    get:
+      summary: 获取举报列表
+      operationId: ReportAPI_ListReport
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListReportReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: size
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: wd
+          in: query
+          required: false
+          type: string
+        - name: field
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: order
+          in: query
+          required: false
+          type: string
+        - name: status
+          in: query
+          required: false
+          type: array
+          items:
+            type: boolean
+          collectionFormat: multi
+      tags:
+        - ReportAPI
+  /api/v1/searchrecord:
+    delete:
+      operationId: SearchRecordAPI_DeleteSearchRecord
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+      tags:
+        - SearchRecordAPI
+  /api/v1/searchrecord/list:
+    get:
+      operationId: SearchRecordAPI_ListSearchRecord
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListSearchRecordReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: size
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: keywords
+          in: query
+          required: false
+          type: string
+        - name: field
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: order
+          in: query
+          required: false
+          type: string
+        - name: user_id
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: ip
+          in: query
+          required: false
+          type: string
+      tags:
+        - SearchRecordAPI
+  /api/v1/settings:
+    get:
+      summary: 获取系统配置（针对所有用户，只读）
+      operationId: ConfigAPI_GetSettings
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Settings'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - ConfigAPI
+  /api/v1/sitemap:
+    put:
+      summary: 更新站点地图
+      operationId: ConfigAPI_UpdateSitemap
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - ConfigAPI
+  /api/v1/sqlmode:
+    put:
+      summary: 设置SQL mode，只针对id=1的用户，且sql_mode只处理only_full_group_by问题
+      operationId: ConfigAPI_SetSQLMode
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - ConfigAPI
+  /api/v1/stats:
+    get:
+      summary: 获取系统配置
+      operationId: ConfigAPI_GetStats
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Stats'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - ConfigAPI
+  /api/v1/user:
+    get:
+      summary: 查询用户信息。如果传递了Id参数，则表示查询用户的公开信息，否则查询当前用户的私有信息
+      operationId: UserAPI_GetUser
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1User'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: string
+          format: int64
+      tags:
+        - UserAPI
+    delete:
+      summary: 删除用户。需要验证用户权限
+      operationId: UserAPI_DeleteUser
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: password
+          description: 管理员删除用户时需要验证密码
+          in: query
+          required: false
+          type: string
+      tags:
+        - UserAPI
+    post:
+      summary: 新增用户
+      operationId: UserAPI_AddUser
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1SetUserRequest'
+      tags:
+        - UserAPI
+    put:
+      summary: 设置用户
+      operationId: UserAPI_SetUser
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1SetUserRequest'
+      tags:
+        - UserAPI
+  /api/v1/user/canipublisharticle:
+    get:
+      summary: 用户是否可以发布文章
+      operationId: UserAPI_CanIPublishArticle
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - UserAPI
+  /api/v1/user/caniuploaddocument:
+    get:
+      summary: 用户是否可以上传文档
+      operationId: UserAPI_CanIUploadDocument
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - UserAPI
+  /api/v1/user/captcha:
+    get:
+      summary: GetUserCaptcha 获取用户验证码
+      operationId: UserAPI_GetUserCaptcha
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GetUserCaptchaReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: type
+          description: 验证码类型：register、login、comment、find_password、upload
+          in: query
+          required: false
+          type: string
+      tags:
+        - UserAPI
+  /api/v1/user/download:
+    get:
+      summary: 查询用户的下载记录
+      operationId: UserAPI_ListUserDownload
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListUserDownloadReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          description: 页码
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: size
+          description: 每页数量
+          in: query
+          required: false
+          type: string
+          format: int64
+      tags:
+        - UserAPI
+  /api/v1/user/dynamic:
+    get:
+      summary: 获取用户动态，包括获取关注的用户的动态
+      operationId: UserAPI_ListUserDynamic
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListUserDynamicReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          description: 页码
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: size
+          description: 每页数量
+          in: query
+          required: false
+          type: string
+          format: int64
+      tags:
+        - UserAPI
+  /api/v1/user/email/code:
+    post:
+      summary: 发送邮箱验证码。
+      operationId: UserAPI_SendEmailCode
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1SendEmailCodeRequest'
+      tags:
+        - UserAPI
+  /api/v1/user/findpassword/stepone:
+    post:
+      summary: 找回密码：第一步，发送验证码
+      operationId: UserAPI_FindPasswordStepOne
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1FindPasswordRequest'
+      tags:
+        - UserAPI
+  /api/v1/user/findpassword/steptwo:
+    put:
+      summary: 找回密码：第二步，修改密码
+      operationId: UserAPI_FindPasswordStepTwo
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1FindPasswordRequest'
+      tags:
+        - UserAPI
+  /api/v1/user/group:
+    get:
+      operationId: UserAPI_ListUserGroup
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListUserGroupReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - UserAPI
+  /api/v1/user/list:
+    get:
+      summary: |-
+        查询用户列表。对于非管理员，返回相应用户的公开信息；
+        对于管理员，返回相应用户的绝大部分信息
+      operationId: UserAPI_ListUser
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListUserReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: page
+          description: 页码
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: size
+          description: 每页数量
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: wd
+          description: 搜索关键词
+          in: query
+          required: false
+          type: string
+        - name: sort
+          description: 排序字段
+          in: query
+          required: false
+          type: string
+        - name: id
+          description: 用户ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: group_id
+          description: 用户组ID
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            format: int64
+          collectionFormat: multi
+        - name: status
+          description: 用户状态
+          in: query
+          required: false
+          type: array
+          items:
+            type: integer
+            format: int32
+          collectionFormat: multi
+        - name: limit
+          description: 请求数量限制，大于0时，page和size无效
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: field
+          description: 返回字段
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      tags:
+        - UserAPI
+  /api/v1/user/login:
+    post:
+      summary: 用户登录
+      operationId: UserAPI_Login
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1LoginReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1RegisterAndLoginRequest'
+      tags:
+        - UserAPI
+  /api/v1/user/logout:
+    delete:
+      summary: 退出登录
+      operationId: UserAPI_Logout
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - UserAPI
+  /api/v1/user/password:
+    put:
+      summary: |-
+        更新用户密码。如果不传用户ID，则表示更新当前用户的密码；
+        如果穿了用户ID，则表示更新指定用户的密码，这时需要验证当前用户的权限
+      operationId: UserAPI_UpdateUserPassword
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1UpdateUserPasswordRequest'
+      tags:
+        - UserAPI
+  /api/v1/user/permission:
+    get:
+      summary: GetUserCaptcha 获取用户验证码
+      operationId: UserAPI_GetUserPermissions
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GetUserPermissionsReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - UserAPI
+  /api/v1/user/profile:
+    put:
+      summary: |-
+        更新用户密码。如果不传用户ID，则表示更新当前用户的密码；
+        如果穿了用户ID，则表示更新指定用户的密码，这时需要验证当前用户的权限
+      operationId: UserAPI_UpdateUserProfile
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1User'
+      tags:
+        - UserAPI
+  /api/v1/user/register:
+    post:
+      summary: 用户注册
+      operationId: UserAPI_Register
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1LoginReply'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1RegisterAndLoginRequest'
+      tags:
+        - UserAPI
+  /api/v1/user/sign:
+    get:
+      summary: 获取今日已签到记录
+      operationId: UserAPI_GetSignedToday
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Sign'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - UserAPI
+    put:
+      summary: 每日签到
+      operationId: UserAPI_SignToday
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1Sign'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - UserAPI
+  /health:
+    get:
+      operationId: HealthAPI_Health
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - HealthAPI
+definitions:
+  PongReply:
+    type: object
+    properties:
+      name:
+        type: string
+      created_at:
+        type: string
+        format: date-time
+  protobufAny:
+    type: object
+    properties:
+      '@type':
+        type: string
+    additionalProperties: {}
+  rpcStatus:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      details:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protobufAny'
+  v1Advertisement:
+    type: object
+    properties:
+      start_time:
+        type: string
+        format: date-time
+      end_time:
+        type: string
+        format: date-time
+      created_at:
+        type: string
+        format: date-time
+      updated_at:
+        type: string
+        format: date-time
+      id:
+        type: string
+        format: int64
+      user_id:
+        type: string
+        format: int64
+      position:
+        type: string
+      content:
+        type: string
+      enable:
+        type: boolean
+      remark:
+        type: string
+      title:
+        type: string
+  v1Article:
+    type: object
+    properties:
+      id:
+        type: string
+        format: int64
+        title: 文章ID
+      identifier:
+        type: string
+        title: 文章唯一标识
+      author:
+        type: string
+        title: 文章作者。如果为空，则使用网站名称作为作者
+      view_count:
+        type: string
+        format: int64
+        title: 文章浏览次数
+      title:
+        type: string
+        title: 文章标题
+      keywords:
+        type: string
+        title: 文章关键字
+      description:
+        type: string
+        title: 文章描述
+      content:
+        type: string
+        title: 文章内容
+      created_at:
+        type: string
+        format: date-time
+        title: 文章创建时间
+      updated_at:
+        type: string
+        format: date-time
+        title: 文章更新时间
+      deleted_at:
+        type: string
+        format: date-time
+        title: 文章删除时间
+      category_id:
+        type: array
+        items:
+          type: string
+          format: int64
+        title: 文章分类ID
+      favorite_count:
+        type: string
+        format: int64
+        title: 文章收藏次数
+      comment_count:
+        type: string
+        format: int64
+        title: 文章评论次数
+      recommend_at:
+        type: string
+        format: date-time
+        title: 文章推荐时间
+      is_recommend:
+        type: boolean
+        title: 是否推荐
+      user_id:
+        type: string
+        format: int64
+        title: 文章作者ID
+      user:
+        $ref: '#/definitions/v1User'
+        title: 文章作者
+      status:
+        type: integer
+        format: int32
+        title: 文章状态
+      reject_reason:
+        type: string
+        title: 文章拒绝原因
+      category:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Category'
+        title: 文章分类
+      source:
+        type: string
+        title: 文章来源
+      source_url:
+        type: string
+        title: 文章来源链接
+    title: 文章
+  v1Attachment:
+    type: object
+    properties:
+      id:
+        type: string
+        format: int64
+        title: 附件ID
+      hash:
+        type: string
+        title: 附件哈希值，MD5
+      user_id:
+        type: string
+        format: int64
+        title: 上传用户ID
+      type_id:
+        type: string
+        format: int64
+        title: 附件类型ID，如果是文档类型，则为文档ID
+      type:
+        type: integer
+        format: int32
+        title: 附件类型，见 web/utils/enum.js
+      enable:
+        type: boolean
+        title: 是否启用
+      path:
+        type: string
+        title: 附件路径
+      name:
+        type: string
+        title: 附件名称
+      size:
+        type: string
+        format: int64
+        title: 附件大小，单位：字节
+      width:
+        type: string
+        format: int64
+        title: 附件宽度，单位：像素。针对图片附件
+      height:
+        type: string
+        format: int64
+        title: 附件高度，单位：像素。针对图片附件
+      ext:
+        type: string
+        title: 扩展名，如：.docx
+      ip:
+        type: string
+        title: 上传IP地址
+      username:
+        type: string
+        title: 用户名称
+      type_name:
+        type: string
+        title: 附件类型名称
+      description:
+        type: string
+        title: 附件描述、备注
+      created_at:
+        type: string
+        format: date-time
+        title: 创建时间
+      updated_at:
+        type: string
+        format: date-time
+        title: 更新时间
+    title: 附件
+  v1Banner:
+    type: object
+    properties:
+      id:
+        type: string
+        format: int64
+        title: 主键
+      title:
+        type: string
+        title: 标题，名称
+      path:
+        type: string
+        title: 图片地址
+      sort:
+        type: integer
+        format: int32
+        title: 排序，值越大越靠前
+      enable:
+        type: boolean
+        title: 是否启用
+      type:
+        type: integer
+        format: int32
+        title: 类型，如PC轮播图、小程序轮播图等，见 web/utils/enum.js 中的枚举
+      url:
+        type: string
+        title: 跳转地址
+      description:
+        type: string
+        title: 描述
+      created_at:
+        type: string
+        format: date-time
+        title: 创建时间
+      updated_at:
+        type: string
+        format: date-time
+        title: 更新时间
+    title: banner，轮播图
+  v1CPUInfo:
+    type: object
+    properties:
+      cores:
+        type: integer
+        format: int32
+        title: CPU核心数
+      model_name:
+        type: string
+        title: CPU型号
+      mhz:
+        type: number
+        format: float
+        title: CPU主频
+      percent:
+        type: number
+        format: float
+        title: CPU使用率
+  v1CancelPunishmentRequest:
+    type: object
+    properties:
+      id:
+        type: array
+        items:
+          type: string
+          format: int64
+  v1Category:
+    type: object
+    properties:
+      id:
+        type: string
+        format: int64
+        title: 分类ID
+      parent_id:
+        type: string
+        format: int64
+        title: 父分类ID
+      title:
+        type: string
+        title: 分类标题
+      doc_count:
+        type: integer
+        format: int32
+        title: 文档数量
+      sort:
+        type: integer
+        format: int32
+        title: 排序，倒序排序，值越大越靠前
+      enable:
+        type: boolean
+        title: 是否启用
+      cover:
+        type: string
+        title: 分类封面
+      created_at:
+        type: string
+        format: date-time
+        title: 创建时间
+      updated_at:
+        type: string
+        format: date-time
+        title: 更新时间
+      icon:
+        type: string
+        title: 分类图标
+      description:
+        type: string
+        title: 分类描述
+      show_description:
+        type: boolean
+        title: 是否在分类筛选文档列表处显示分类描述
+      type:
+        type: integer
+        format: int32
+        title: 分类类型
+    title: 文档分类
+  v1CheckArticlesRequest:
+    type: object
+    properties:
+      article_id:
+        type: array
+        items:
+          type: string
+          format: int64
+        title: 文章ID
+      status:
+        type: integer
+        format: int32
+        title: 文章状态
+      rejeact_reason:
+        type: string
+        title: 拒绝原因
+  v1CheckCommentRequest:
+    type: object
+    properties:
+      id:
+        type: array
+        items:
+          type: string
+          format: int64
+        title: 评论ID
+      status:
+        type: integer
+        format: int32
+        title: 状态，见 web/utils/enum.js 枚举
+    title: 审核评论，修改评论状态
+  v1CheckDocumentRequest:
+    type: object
+    properties:
+      id:
+        type: array
+        items:
+          type: string
+          format: int64
+        title: 文档ID
+      status:
+        type: integer
+        format: int32
+        title: 文档状态
+  v1Comment:
+    type: object
+    properties:
+      created_at:
+        type: string
+        format: date-time
+        title: 创建时间
+      updated_at:
+        type: string
+        format: date-time
+        title: 更新时间
+      id:
+        type: string
+        format: int64
+        title: 评论ID
+      parent_id:
+        type: string
+        format: int64
+        title: 父评论ID
+      content:
+        type: string
+        title: 评论内容
+      document_id:
+        type: string
+        format: int64
+        title: 文档ID
+      status:
+        type: integer
+        format: int32
+        title: 状态，见 web/utils/enum.js 枚举
+      comment_count:
+        type: integer
+        format: int32
+        title: 回复数量
+      user_id:
+        type: string
+        format: int64
+        title: 用户ID
+      user:
+        $ref: '#/definitions/v1User'
+        title: 用户信息
+      document_title:
+        type: string
+        title: 文档标题
+      type:
+        type: integer
+        format: int32
+        title: 评论类型：0, 文档评论；1 文章评论
+      document_uuid:
+        type: string
+        title: 唯一标识
+    title: 评论
+  v1Config:
+    type: object
+    properties:
+      id:
+        type: string
+        format: int64
+        title: 配置ID
+      label:
+        type: string
+        title: 配置标签
+      name:
+        type: string
+        title: 配置名称
+      value:
+        type: string
+        title: 配置值
+      placeholder:
+        type: string
+        title: 配置占位符
+      input_type:
+        type: string
+        title: 输入类型，如：textarea、number、switch等
+      category:
+        type: string
+        title: 配置分类，如：system、footer、security等，见 web/utils/enum.js
+      sort:
+        type: integer
+        format: int32
+        title: 排序，越小越靠前
+      options:
+        type: string
+        title: 配置项枚举，一个一行，如select的option选项，用 key=value 的形式
+      created_at:
+        type: string
+        format: date-time
+        title: 创建时间
+      updated_at:
+        type: string
+        format: date-time
+        title: 更新时间
+      col_num:
+        type: integer
+        format: int32
+        title: 配置项占据的列数
+    title: 配置
+  v1ConfigDisplay:
+    type: object
+    properties:
+      show_register_user_count:
+        type: boolean
+        title: 是否显示注册用户数量
+      show_index_categories:
+        type: boolean
+        title: 是否显示首页分类
+      pages_per_read:
+        type: integer
+        format: int32
+        title: 每次阅读的页数
+      copyright_statement:
+        type: string
+        title: 在页面最底部的版权声明
+      show_document_descriptions:
+        type: boolean
+        title: 是否显示文档描述
+      hide_keywords_on_lists:
+        type: boolean
+        title: 是否在文档列表页隐藏右侧关键词
+      show_document_count:
+        type: boolean
+        title: 是否显示文档数量
+      show_document_view_count:
+        type: boolean
+        title: 是否显示文档阅读数量
+      show_document_download_count:
+        type: boolean
+        title: 是否显示文档评论数量
+      show_document_favorite_count:
+        type: boolean
+        title: 是否显示文档收藏数量
+      hide_category_without_document:
+        type: boolean
+        title: 是否隐藏没有文档的分类
+      wechat_tip:
+        type: string
+        title: 微信公众号提示文案
+      wechat_qrcode:
+        type: string
+        title: 微信公众号链接二维码
+      contact_tip:
+        type: string
+        title: 联系我们提示文案
+      contact_link:
+        type: string
+        title: 联系我们跳转地址
+      index_document_style:
+        type: string
+        title: 首页文档样式
+      home_version:
+        type: string
+  v1ConfigFooter:
+    type: object
+    properties:
+      about:
+        type: string
+        title: 关于我们
+      contact:
+        type: string
+        title: 联系我们
+      agreement:
+        type: string
+        title: 用户协议、文库协议
+      copyright:
+        type: string
+        title: 版权声明
+      feedback:
+        type: string
+        title: 意见和建议反馈
+    title: 底链配置项，为跳转的链接地址
+  v1ConfigSecurity:
+    type: object
+    properties:
+      is_close:
+        type: boolean
+        title: 是否关闭站点
+      close_statement:
+        type: string
+        title: 关闭站点的说明，支持HTML
+      enable_register:
+        type: boolean
+        title: 是否开放注册
+      enable_captcha_login:
+        type: boolean
+        title: 是否开启登录验证码
+      enable_captcha_register:
+        type: boolean
+        title: 是否开启注册验证码
+      enable_captcha_comment:
+        type: boolean
+        title: 是否开启评论验证码
+      enable_captcha_find_password:
+        type: boolean
+        title: 是否开启找回密码验证码
+      enable_captcha_upload:
+        type: boolean
+        title: 是否开启上传验证码
+      max_document_size:
+        type: integer
+        format: int32
+        title: 文档最大大小
+      document_allowed_ext:
+        type: array
+        items:
+          type: string
+        title: 文档允许的扩展名
+      login_required:
+        type: boolean
+        title: 是否登录才能访问
+      enable_verify_register_email:
+        type: boolean
+        title: 是否开启注册邮箱验证
+    title: 安全配置
+  v1ConfigSystem:
+    type: object
+    properties:
+      domain:
+        type: string
+        title: 站点域名，如： https://moredoc.mnt.ltd
+      title:
+        type: string
+        title: 站点标题，首页显示
+      keywords:
+        type: string
+        title: 站点关键词，SEO用
+      description:
+        type: string
+        title: 站点描述，SEO用
+      logo:
+        type: string
+        title: 站点logo
+      favicon:
+        type: string
+        title: 站点favicon
+      icp:
+        type: string
+        title: 站点备案号
+      analytics:
+        type: string
+        title: 站点统计代码，目前只支持百度统计
+      sitename:
+        type: string
+        title: 站点名称
+      copyright_start_year:
+        type: string
+        title: 站点版权起始年份，如：2018，则底部显示 2018 - 2023
+      register_background:
+        type: string
+        title: 注册页背景图
+      login_background:
+        type: string
+        title: 登录页背景图
+      recommend_words:
+        type: array
+        items:
+          type: string
+        title: 推荐搜索词，首页展示
+      version:
+        type: string
+        title: 程序版本号
+      credit_name:
+        type: string
+        title: 积分名称
+      sec_icp:
+        type: string
+        title: 京公网安备
+    title: 系统配置项
+  v1Configs:
+    type: object
+    properties:
+      config:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Config'
+    title: 配置列表
+  v1CreateCommentRequest:
+    type: object
+    properties:
+      document_id:
+        type: string
+        format: int64
+        title: 文档ID
+      parent_id:
+        type: string
+        format: int64
+        title: 父评论ID
+      content:
+        type: string
+        title: 评论内容
+      captcha_id:
+        type: string
+        title: 验证码ID
+      captcha:
+        type: string
+        title: 验证码
+      type:
+        type: integer
+        format: int32
+    title: 创建评论请求
+  v1CreateDocumentItem:
+    type: object
+    properties:
+      title:
+        type: string
+        title: 文档标题
+      attachment_id:
+        type: string
+        format: int64
+        title: 文档附件ID
+      price:
+        type: integer
+        format: int32
+        title: 文档价格
+      language:
+        type: string
+        title: 文档语言
+      keywords:
+        type: string
+        title: 文档关键字
+      description:
+        type: string
+        title: 文档描述
+      source:
+        type: string
+        title: 来源
+      source_url:
+        type: string
+        title: 来源链接
+    title: 创建文档
+  v1CreateDocumentRequest:
+    type: object
+    properties:
+      overwrite:
+        type: boolean
+        title: 是否覆盖。暂时用不到
+      category_id:
+        type: array
+        items:
+          type: string
+          format: int64
+        title: 文档分类ID
+      document:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1CreateDocumentItem'
+        title: 文档列表
+    title: 创建文档
+  v1CreatePunishmentRequest:
+    type: object
+    properties:
+      end_time:
+        type: string
+        format: date-time
+      id:
+        type: string
+        format: int64
+      user_id:
+        type: array
+        items:
+          type: string
+          format: int64
+      type:
+        type: array
+        items:
+          type: integer
+          format: int32
+      enable:
+        type: boolean
+      remark:
+        type: string
+      reason:
+        type: string
+  v1DeviceInfo:
+    type: object
+    properties:
+      cpu:
+        $ref: '#/definitions/v1CPUInfo'
+        title: CPU信息
+      memory:
+        $ref: '#/definitions/v1MemoryInfo'
+        title: 内存信息
+      disk:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1DiskInfo'
+        title: 磁盘信息
+  v1DiskInfo:
+    type: object
+    properties:
+      disk_name:
+        type: string
+        title: 磁盘名称
+      total:
+        type: string
+        format: int64
+        title: 总空间
+      used:
+        type: string
+        format: int64
+        title: 已用空间
+      free:
+        type: string
+        format: int64
+        title: 空闲空间
+      percent:
+        type: number
+        format: float
+        title: 磁盘使用率
+  v1Document:
+    type: object
+    properties:
+      id:
+        type: string
+        format: int64
+        title: 文档ID
+      title:
+        type: string
+        title: 文档标题
+      keywords:
+        type: string
+        title: 文档关键字
+      description:
+        type: string
+        title: 文档描述
+      user_id:
+        type: string
+        format: int64
+        title: 文档作者
+      cover:
+        type: string
+        title: 文档封面
+      width:
+        type: integer
+        format: int32
+        title: 文档宽度
+      height:
+        type: integer
+        format: int32
+        title: 文档高度
+      preview:
+        type: integer
+        format: int32
+        title: 文档可预览页数，0表示不限制
+      pages:
+        type: integer
+        format: int32
+        title: 文档页数
+      uuid:
+        type: string
+        title: 文档UUID
+      download_count:
+        type: integer
+        format: int32
+        title: 文档下载次数
+      view_count:
+        type: integer
+        format: int32
+        title: 文档浏览次数
+      favorite_count:
+        type: integer
+        format: int32
+        title: 文档收藏次数
+      comment_count:
+        type: integer
+        format: int32
+        title: 文档评论次数
+      score:
+        type: integer
+        format: int32
+        title: 文档评分
+      score_count:
+        type: integer
+        format: int32
+        title: 文档评分次数
+      price:
+        type: integer
+        format: int32
+        title: 文档价格
+      size:
+        type: string
+        format: int64
+        title: 文档大小
+      status:
+        type: integer
+        format: int32
+        title: 文档状态，见 web/utils/enum.js
+      created_at:
+        type: string
+        format: date-time
+        title: 文档创建时间
+      updated_at:
+        type: string
+        format: date-time
+        title: 文档更新时间
+      deleted_at:
+        type: string
+        format: date-time
+        title: 文档删除时间
+      recommend_at:
+        type: string
+        format: date-time
+        title: 文档推荐时间
+      deleted_user_id:
+        type: string
+        format: int64
+        title: 删除文档的用户
+      username:
+        type: string
+        title: 文档作者用户名
+      category_id:
+        type: array
+        items:
+          type: string
+          format: int64
+        title: 文档分类ID
+      deleted_username:
+        type: string
+        title: 删除文档的用户名
+      ext:
+        type: string
+        title: 文档扩展名
+      attachment:
+        $ref: '#/definitions/v1Attachment'
+        title: 文档附件
+      user:
+        $ref: '#/definitions/v1User'
+        title: 文档作者
+      enable_gzip:
+        type: boolean
+        title: 是否启用gzip压缩
+      convert_error:
+        type: string
+        title: 转换错误信息
+      preview_ext:
+        type: string
+        title: 预览文件扩展名
+      language:
+        type: string
+        title: 文档语言
+      content:
+        type: string
+        title: 文档内容
+      category:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Category'
+        title: 文档分类
+      source:
+        type: string
+        title: 来源
+      source_url:
+        type: string
+        title: 来源链接
+    title: 文档
+  v1DocumentScore:
+    type: object
+    properties:
+      id:
+        type: string
+        format: int64
+        title: 评分ID
+      document_id:
+        type: string
+        format: int64
+        title: 文档ID
+      user_id:
+        type: string
+        format: int64
+        title: 用户ID
+      score:
+        type: integer
+        format: int32
+        title: 评分，100~500，100为1分，500为5分
+      created_at:
+        type: string
+        format: date-time
+        title: 评分时间
+      updated_at:
+        type: string
+        format: date-time
+        title: 更新时间
+    title: 文档评分
+  v1Download:
+    type: object
+    properties:
+      id:
+        type: string
+        format: int64
+      user_id:
+        type: string
+        format: int64
+      document_id:
+        type: string
+        format: int64
+      ip:
+        type: string
+      is_pay:
+        type: boolean
+      created_at:
+        type: string
+        format: date-time
+      updated_at:
+        type: string
+        format: date-time
+      title:
+        type: string
+      ext:
+        type: string
+      score:
+        type: integer
+        format: int32
+      size:
+        type: string
+        format: int64
+      pages:
+        type: integer
+        format: int32
+      document_uuid:
+        type: string
+  v1DownloadDocumentReply:
+    type: object
+    properties:
+      url:
+        type: string
+    title: 文档下载
+  v1Dynamic:
+    type: object
+    properties:
+      id:
+        type: string
+        format: int64
+        title: 动态ID
+      user_id:
+        type: string
+        format: int64
+        title: 用户ID
+      content:
+        type: string
+        title: 内容
+      type:
+        type: integer
+        format: int32
+        title: 类型
+      username:
+        type: string
+        title: 用户名
+      created_at:
+        type: string
+        format: date-time
+        title: 创建时间
+      updated_at:
+        type: string
+        format: date-time
+        title: 更新时间
+    title: 用户动态
+  v1EmailCodeType:
+    type: string
+    enum:
+      - EmailCodeTypeRegister
+      - EmailCodeTypeLogin
+    default: EmailCodeTypeRegister
+    title: |-
+      - EmailCodeTypeRegister: 注册
+       - EmailCodeTypeLogin: 登录
+  v1EnvDependent:
+    type: object
+    properties:
+      name:
+        type: string
+        title: 依赖名称
+      description:
+        type: string
+        title: 依赖描述
+      is_installed:
+        type: boolean
+        title: 是否已安装
+      error:
+        type: string
+        title: 错误信息
+      checked_at:
+        type: string
+        format: date-time
+        title: 检测时间
+      cmd:
+        type: string
+        title: 检测命令
+      is_required:
+        type: boolean
+        title: 是否必须
+      version:
+        type: string
+        title: 版本号
+    title: 依赖项
+  v1Envs:
+    type: object
+    properties:
+      envs:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1EnvDependent'
+    title: 依赖项列表
+  v1Favorite:
+    type: object
+    properties:
+      id:
+        type: string
+        format: int64
+      user_id:
+        type: string
+        format: int64
+      document_id:
+        type: string
+        format: int64
+      title:
+        type: string
+      ext:
+        type: string
+      score:
+        type: integer
+        format: int32
+      size:
+        type: string
+        format: int64
+      pages:
+        type: integer
+        format: int32
+      document_uuid:
+        type: string
+      type:
+        type: integer
+        format: int32
+        title: '0: 文档 1: 文章'
+      created_at:
+        type: string
+        format: date-time
+      updated_at:
+        type: string
+        format: date-time
+    title: 文档收藏
+  v1FindPasswordRequest:
+    type: object
+    properties:
+      email:
+        type: string
+        title: 邮箱
+      token:
+        type: string
+        title: 签名token
+      password:
+        type: string
+        title: 新密码
+      captcha:
+        type: string
+        title: 验证码
+      captcha_id:
+        type: string
+        title: 验证码ID
+    title: 找回密码
+  v1Friendlink:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+        title: 主键
+      title:
+        type: string
+        title: 标题
+      link:
+        type: string
+        title: 链接
+      description:
+        type: string
+        title: 描述
+      sort:
+        type: integer
+        format: int32
+        title: 排序
+      enable:
+        type: boolean
+        title: 是否启用
+      created_at:
+        type: string
+        format: date-time
+        title: 创建时间
+      updated_at:
+        type: string
+        format: date-time
+        title: 更新时间
+    title: 友情链接
+  v1GetUserCaptchaReply:
+    type: object
+    properties:
+      enable:
+        type: boolean
+        title: 是否启用验证码
+      id:
+        type: string
+        title: 验证码ID
+      captcha:
+        type: string
+        title: 验证码
+      type:
+        type: string
+        title: 验证码类型
+    title: 验证码响应
+  v1GetUserPermissionsReply:
+    type: object
+    properties:
+      permission:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Permission'
+    title: 用户权限信息查询
+  v1Group:
+    type: object
+    properties:
+      id:
+        type: string
+        format: int64
+        title: 用户组ID
+      title:
+        type: string
+        title: 用户组名称
+      color:
+        type: string
+        title: 用户组颜色
+      is_default:
+        type: boolean
+        title: 是否是默认用户组
+      is_display:
+        type: boolean
+        title: 是否显示
+      description:
+        type: string
+        title: 用户组描述
+      user_count:
+        type: integer
+        format: int32
+        title: 用户组下的用户数量
+      sort:
+        type: integer
+        format: int32
+        title: 排序
+      enable_upload:
+        type: boolean
+        title: 是否允许上传文档
+      enable_comment_approval:
+        type: boolean
+        title: 是否需要审核评论
+      created_at:
+        type: string
+        format: date-time
+        title: 创建时间
+      updated_at:
+        type: string
+        format: date-time
+        title: 更新时间
+      enable_comment:
+        type: boolean
+        title: 是否允许评论
+      enable_document_review:
+        type: boolean
+        title: 文档是否需要审核
+      enable_article:
+        type: boolean
+        title: 是否允许发布文章
+      enable_article_approval:
+        type: boolean
+        title: 是否需要审核文章
+    title: 用户组，角色
+  v1GroupPermissions:
+    type: object
+    properties:
+      permission_id:
+        type: array
+        items:
+          type: string
+          format: int64
+    title: 用户组权限
+  v1Language:
+    type: object
+    properties:
+      id:
+        type: string
+        format: int64
+      language:
+        type: string
+      enable:
+        type: boolean
+      code:
+        type: string
+      total:
+        type: integer
+        format: int32
+      sort:
+        type: integer
+        format: int32
+      created_at:
+        type: string
+        format: date-time
+      updated_at:
+        type: string
+        format: date-time
+  v1ListAdvertisementReply:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+      advertisement:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Advertisement'
+  v1ListArticleReply:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+        title: 文章总数
+      article:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Article'
+        title: 文章列表
+    title: 文章列表响应
+  v1ListAttachmentReply:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+      attachment:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Attachment'
+    title: 列出附件响应
+  v1ListBannerReply:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+        title: 总数
+      banner:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Banner'
+        title: 轮播图数组
+    title: 轮播图列表
+  v1ListCategoryReply:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+        title: 总数
+      category:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Category'
+        title: 分类列表
+    title: 分类列表响应
+  v1ListCommentReply:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+        title: 总数
+      comment:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Comment'
+        title: 评论列表
+    title: 获取评论列表响应
+  v1ListDocumentForHomeItem:
+    type: object
+    properties:
+      category_id:
+        type: string
+        format: int64
+        title: 分类ID
+      category_cover:
+        type: string
+        title: 分类封面
+      category_name:
+        type: string
+        title: 分类名称
+      document:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Document'
+        title: 文档列表
+    title: 首页文档查询返回项
+  v1ListDocumentForHomeResponse:
+    type: object
+    properties:
+      document:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1ListDocumentForHomeItem'
+        title: 文档列表
+    title: 查询文档（针对首页的查询）
+  v1ListDocumentReply:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+        title: 文档总数
+      document:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Document'
+        title: 文档列表
+    title: 文档列表
+  v1ListFavoriteReply:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+      favorite:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Favorite'
+    title: 查询用户的收藏
+  v1ListFriendlinkReply:
+    type: object
+    properties:
+      friendlink:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Friendlink'
+      total:
+        type: string
+        format: int64
+    title: 友情链接列表
+  v1ListGroupReply:
+    type: object
+    properties:
+      group:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Group'
+      total:
+        type: string
+        format: int64
+    title: 用户组列表
+  v1ListLanguageReply:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+      language:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Language'
+  v1ListNavigationReply:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+      navigation:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Navigation'
+  v1ListPermissionReply:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+      permission:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Permission'
+    title: 权限列表响应
+  v1ListPunishmentReply:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+      punishment:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Punishment'
+  v1ListReportReply:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+      report:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Report'
+    title: 举报列表响应
+  v1ListSearchRecordReply:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+      search_record:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1SearchRecord'
+  v1ListUserDownloadReply:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+        title: 总数
+      download:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Download'
+        title: 下载列表
+  v1ListUserDynamicReply:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+        title: 总数
+      dynamic:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Dynamic'
+        title: 动态列表
+    title: 用户动态列表响应
+  v1ListUserGroupReply:
+    type: object
+    properties:
+      group:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Group'
+  v1ListUserReply:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+        title: 总数
+      user:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1User'
+        title: 用户列表
+    title: 用户列表响应
+  v1LoginReply:
+    type: object
+    properties:
+      token:
+        type: string
+      user:
+        $ref: '#/definitions/v1User'
+    title: 用户登录响应
+  v1MemoryInfo:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+        title: 总内存
+      available:
+        type: string
+        format: int64
+        title: 可用内存
+      used:
+        type: string
+        format: int64
+        title: 已用内存
+      free:
+        type: string
+        format: int64
+        title: 空闲内存
+      percent:
+        type: number
+        format: float
+        title: 内存使用率
+  v1Navigation:
+    type: object
+    properties:
+      id:
+        type: string
+        format: int64
+      title:
+        type: string
+      href:
+        type: string
+      target:
+        type: string
+      color:
+        type: string
+      sort:
+        type: integer
+        format: int32
+      enable:
+        type: boolean
+      parent_id:
+        type: string
+        format: int64
+      description:
+        type: string
+      created_at:
+        type: string
+        format: date-time
+      updated_at:
+        type: string
+        format: date-time
+      fixed:
+        type: boolean
+  v1Permission:
+    type: object
+    properties:
+      id:
+        type: string
+        format: int64
+        title: 权限ID
+      method:
+        type: string
+        title: 请求方法
+      path:
+        type: string
+        title: 请求路径
+      title:
+        type: string
+        title: 权限名称
+      description:
+        type: string
+        title: 权限描述
+      created_at:
+        type: string
+        format: date-time
+        title: 创建时间
+      updated_at:
+        type: string
+        format: date-time
+        title: 更新时间
+    title: 权限
+  v1Punishment:
+    type: object
+    properties:
+      end_time:
+        type: string
+        format: date-time
+      created_at:
+        type: string
+        format: date-time
+      updated_at:
+        type: string
+        format: date-time
+      id:
+        type: string
+        format: int64
+      user_id:
+        type: string
+        format: int64
+      type:
+        type: integer
+        format: int32
+      enable:
+        type: boolean
+      operators:
+        type: string
+      remark:
+        type: string
+      reason:
+        type: string
+      username:
+        type: string
+    title: 这里是proto文件中的结构体，可以根据需要删除或者调整
+  v1RecommendArticlesRequest:
+    type: object
+    properties:
+      article_id:
+        type: array
+        items:
+          type: string
+          format: int64
+        title: 文章ID
+      is_recommend:
+        type: boolean
+        title: 是否推荐
+  v1RecoverRecycleDocumentRequest:
+    type: object
+    properties:
+      id:
+        type: array
+        items:
+          type: string
+          format: int64
+    title: 恢复文档
+  v1RegisterAndLoginRequest:
+    type: object
+    properties:
+      username:
+        type: string
+        title: 用户名
+      password:
+        type: string
+        title: 密码
+      captcha:
+        type: string
+        title: 验证码
+      captcha_id:
+        type: string
+        title: 验证码ID
+      email:
+        type: string
+        title: 邮箱
+      code:
+        type: string
+        title: 邮箱验证码(如果用户注册需要验证邮箱，则必须传递该参数)
+    title: 用户注册登录请求
+  v1Release:
+    type: object
+    properties:
+      tag_name:
+        type: string
+        title: 版本号
+      name:
+        type: string
+        title: 版本名称
+      body:
+        type: string
+        title: 版本说明
+      release_at:
+        type: string
+        title: 发布时间
+      ignore:
+        type: string
+        title: 忽略版本
+      source:
+        type: string
+        title: 更新源
+      current:
+        type: string
+        title: 当前版本
+  v1Report:
+    type: object
+    properties:
+      id:
+        type: string
+        format: int64
+        title: 举报ID
+      document_id:
+        type: string
+        format: int64
+        title: 文档ID
+      user_id:
+        type: string
+        format: int64
+        title: 举报人ID
+      reason:
+        type: integer
+        format: int32
+        title: 举报原因
+      status:
+        type: boolean
+        title: 举报处理状态
+      created_at:
+        type: string
+        format: date-time
+        title: 举报时间
+      updated_at:
+        type: string
+        format: date-time
+        title: 处理时间
+      document_title:
+        type: string
+        title: 文档标题
+      remark:
+        type: string
+        title: 处理备注
+      username:
+        type: string
+        title: 举报人
+    title: 举报
+  v1RestoreArticleRequest:
+    type: object
+    properties:
+      id:
+        type: array
+        items:
+          type: string
+          format: int64
+  v1SearchArticleReply:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+        title: 文档总数
+      spend:
+        type: string
+        title: 搜索耗时
+      article:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Article'
+        title: 文档列表
+    title: 文档搜索响应
+  v1SearchDocumentReply:
+    type: object
+    properties:
+      total:
+        type: string
+        format: int64
+        title: 文档总数
+      spend:
+        type: string
+        title: 搜索耗时
+      document:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Document'
+        title: 文档列表
+    title: 文档搜索响应
+  v1SearchRecord:
+    type: object
+    properties:
+      id:
+        type: string
+        format: int64
+      user_id:
+        type: string
+        format: int64
+      ip:
+        type: string
+      total:
+        type: integer
+        format: int32
+      page:
+        type: integer
+        format: int32
+      user_agent:
+        type: string
+      keywords:
+        type: string
+      created_at:
+        type: string
+        format: date-time
+      updated_at:
+        type: string
+        format: date-time
+      spend_time:
+        type: number
+        format: float
+      username:
+        type: string
+    title: 这里是proto文件中的结构体，可以根据需要删除或者调整
+  v1SendEmailCodeRequest:
+    type: object
+    properties:
+      email:
+        type: string
+        title: 邮箱
+      captcha:
+        type: string
+      captcha_id:
+        type: string
+      type:
+        $ref: '#/definitions/v1EmailCodeType'
+  v1SetArticlesCategoryRequest:
+    type: object
+    properties:
+      article_id:
+        type: array
+        items:
+          type: string
+          format: int64
+        title: 文章ID
+      category_id:
+        type: array
+        items:
+          type: string
+          format: int64
+        title: 分类ID
+  v1SetDocumentRecommendRequest:
+    type: object
+    properties:
+      id:
+        type: array
+        items:
+          type: string
+          format: int64
+        title: 文档ID
+      type:
+        type: integer
+        format: int32
+        title: 0, 取消推荐，1:推荐 2:重新推荐
+    title: 设置文档推荐
+  v1SetDocumentsCategoryRequest:
+    type: object
+    properties:
+      document_id:
+        type: array
+        items:
+          type: string
+          format: int64
+        title: 文档ID
+      category_id:
+        type: array
+        items:
+          type: string
+          format: int64
+        title: 分类ID
+  v1SetDocumentsLanguageRequest:
+    type: object
+    properties:
+      document_id:
+        type: array
+        items:
+          type: string
+          format: int64
+        title: 文档ID
+      language:
+        type: string
+        title: 文档语言代码
+  v1SetUserRequest:
+    type: object
+    properties:
+      id:
+        type: string
+        format: int64
+        title: 用户ID
+      username:
+        type: string
+        title: 用户名
+      password:
+        type: string
+        title: 密码
+      group_id:
+        type: array
+        items:
+          type: string
+          format: int64
+        title: 用户组ID
+      email:
+        type: string
+        title: 邮箱
+    title: 管理后台设置用户信息
+  v1Settings:
+    type: object
+    properties:
+      system:
+        $ref: '#/definitions/v1ConfigSystem'
+        title: 系统配置
+      footer:
+        $ref: '#/definitions/v1ConfigFooter'
+        title: 底链配置
+      security:
+        $ref: '#/definitions/v1ConfigSecurity'
+        title: 安全配置
+      display:
+        $ref: '#/definitions/v1ConfigDisplay'
+        title: 显示配置
+      language:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Language'
+        title: 语言配置
+    title: 系统配置
+  v1Sign:
+    type: object
+    properties:
+      id:
+        type: string
+        format: int64
+        title: 签到ID
+      user_id:
+        type: string
+        format: int64
+        title: 用户ID
+      sign_at:
+        type: integer
+        format: int32
+        title: 签到日期
+      ip:
+        type: string
+        title: 签到IP
+      created_at:
+        type: string
+        format: date-time
+        title: 创建时间
+      award:
+        type: integer
+        format: int32
+        title: 签到积分奖励
+    title: 用户签到
+  v1Stats:
+    type: object
+    properties:
+      user_count:
+        type: string
+        format: int64
+        title: 用户数量
+      document_count:
+        type: string
+        format: int64
+        title: 文档数量
+      category_count:
+        type: string
+        format: int64
+        title: 分类数量
+      article_count:
+        type: string
+        format: int64
+        title: 文章数量
+      comment_count:
+        type: string
+        format: int64
+        title: 评论数量
+      banner_count:
+        type: string
+        format: int64
+        title: banner数量
+      friendlink_count:
+        type: string
+        format: int64
+        title: 友情链接数量
+      os:
+        type: string
+        title: 操作系统
+      version:
+        type: string
+        title: 程序版本号
+      hash:
+        type: string
+        title: 程序构建时的 git hash
+      build_at:
+        type: string
+        title: 程序构建时间
+      report_count:
+        type: string
+        format: int64
+        title: 举报数量
+    title: 系统状态
+  v1UpdateGroupPermissionRequest:
+    type: object
+    properties:
+      group_id:
+        type: string
+        format: int64
+      permission_id:
+        type: array
+        items:
+          type: string
+          format: int64
+    title: 更新用户组权限
+  v1UpdateLanguageStatusRequest:
+    type: object
+    properties:
+      id:
+        type: array
+        items:
+          type: string
+          format: int64
+      enable:
+        type: boolean
+  v1UpdateUserPasswordRequest:
+    type: object
+    properties:
+      id:
+        type: string
+        format: int64
+        title: 用户ID
+      old_password:
+        type: string
+        title: 旧密码
+      new_password:
+        type: string
+        title: 新密码
+    title: 修改用户密码
+  v1User:
+    type: object
+    properties:
+      login_at:
+        type: string
+        format: date-time
+        title: 最后登录时间
+      created_at:
+        type: string
+        format: date-time
+        title: 注册时间
+      updated_at:
+        type: string
+        format: date-time
+        title: 更新时间
+      id:
+        type: string
+        format: int64
+        title: 用户ID
+      username:
+        type: string
+        title: 用户名
+      mobile:
+        type: string
+        title: 手机号
+      email:
+        type: string
+        title: 邮箱，唯一
+      address:
+        type: string
+        title: 地址
+      signature:
+        type: string
+        title: 个性签名
+      last_login_ip:
+        type: string
+        title: 最后登录IP
+      register_ip:
+        type: string
+        title: 注册IP
+      doc_count:
+        type: integer
+        format: int32
+        title: 文档数量
+      follow_count:
+        type: integer
+        format: int32
+        title: 关注数量
+      fans_count:
+        type: integer
+        format: int32
+        title: 粉丝数量
+      favorite_count:
+        type: integer
+        format: int32
+        title: 收藏数量
+      comment_count:
+        type: integer
+        format: int32
+        title: 评论数量
+      status:
+        type: integer
+        format: int32
+        title: 用户状态，见 web/utils/enum.js，当前没有使用
+      avatar:
+        type: string
+        title: 头像
+      identity:
+        type: string
+        title: 身份证
+      realname:
+        type: string
+        title: 真实姓名
+      group_id:
+        type: array
+        items:
+          type: string
+          format: int64
+        title: 用户组ID
+      credit_count:
+        type: integer
+        format: int32
+        title: 积分
+      article_count:
+        type: integer
+        format: int32
+        title: 文章数量
+      remark:
+        type: string
+        title: 备注
+    title: 用户信息

@@ -15,6 +15,7 @@ init:
 	go install github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway@latest
 	go install github.com/gogo/protobuf/protoc-gen-gogofaster@latest
 	go install github.com/google/gnostic/cmd/protoc-gen-openapi@latest
+	go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
 	go install github.com/swaggo/swag/cmd/swag@v1.16.4
 
 
@@ -35,7 +36,6 @@ doc:
 		--proto_path=./api \
 		--doc_out=docs \
 		--doc_opt=markdown,apis.md \
-		--openapi_out==paths=source_relative:docs \
 		$(API_PROTO_FILES)
 
 # 生成openapi
@@ -43,9 +43,8 @@ openapi:
 	protoc --proto_path=. \
 		--proto_path=./third_party \
 		--proto_path=./api \
-		--openapiv2_out ./docs \
+		--openapiv2_out=json_names_for_fields=false,logtostderr=true,output_format=yaml,allow_merge=true,merge_file_name=openapi:./docs \
 		$(API_PROTO_FILES)
-	go run ./tools/openapi-postprocess --input ./docs/openapi.yaml
 
 .PHONY: swagger-gin
 # generate swagger docs for gin handlers

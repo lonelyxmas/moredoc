@@ -3,7 +3,7 @@ package docs
 import _ "embed"
 
 var (
-	//go:embed openapi.yaml
+	//go:embed openapi.swagger.yaml
 	OpenAPIYAML []byte
 
 	//go:embed swagger.json

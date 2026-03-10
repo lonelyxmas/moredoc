@@ -37,7 +37,7 @@ const swaggerIndexHTML = `<!DOCTYPE html>
 const swaggerInitializerJS = `window.onload = function() {
   window.ui = SwaggerUIBundle({
     urls: [
-      { url: "./openapi.yaml", name: "gRPC Gateway API" },
+      { url: "./openapi.swagger.yaml", name: "gRPC Gateway API" },
       { url: "./doc.json", name: "Gin Upload API" }
     ],
     "urls.primaryName": "gRPC Gateway API",
@@ -67,7 +67,7 @@ func RegisterSwaggerRoutes(app *gin.Engine) {
 	app.GET("/swagger/index.html", serveSwaggerIndex)
 	app.GET("/swagger/swagger-initializer.js", serveSwaggerInitializer)
 	app.GET("/swagger/doc.json", serveGinSwaggerDoc)
-	app.GET("/swagger/openapi.yaml", serveGatewayOpenAPI)
+	app.GET("/swagger/openapi.swagger.yaml", serveGatewayOpenAPI)
 	app.GET("/swagger/static/*any", assetHandler)
 }
 
@@ -93,7 +93,7 @@ func serveGinSwaggerDoc(ctx *gin.Context) {
 
 func serveGatewayOpenAPI(ctx *gin.Context) {
 	if len(moredocdocs.OpenAPIYAML) == 0 {
-		ctx.String(http.StatusInternalServerError, "embedded openapi.yaml is empty")
+		ctx.String(http.StatusInternalServerError, "embedded openapi.swagger.yaml is empty")
 		return
 	}
 	ctx.Data(http.StatusOK, "application/yaml; charset=utf-8", moredocdocs.OpenAPIYAML)
