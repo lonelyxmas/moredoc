@@ -12,6 +12,7 @@ type LoggerConfig struct {
 type Config struct {
 	Level         string //
 	LogEncoding   string // log encoding, json or console
+	EnableSwagger bool   // 是否启用 Swagger 文档
 	Logger        LoggerConfig
 	Port          int // listent port
 	Database      Database
