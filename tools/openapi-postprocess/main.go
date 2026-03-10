@@ -5,6 +5,8 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strings"
+	"unicode"
 
 	"gopkg.in/yaml.v3"
 )
@@ -59,6 +61,7 @@ func process(input, output string) error {
 	securitySchemes := ensureMappingValue(components, "securitySchemes")
 	setMapValue(securitySchemes, "BearerAuth", bearerSchemeNode())
 	setMapValue(root, "security", bearerSecurityNode())
+	normalizeFieldNames(root)
 
 	paths := findMapValue(root, "paths")
 	if paths != nil && paths.Kind == yaml.MappingNode {
@@ -90,6 +93,115 @@ func process(input, output string) error {
 	}
 
 	return os.WriteFile(output, buffer.Bytes(), 0644)
+}
+
+func normalizeFieldNames(node *yaml.Node) {
+	if node == nil {
+		return
+	}
+
+	switch node.Kind {
+	case yaml.DocumentNode, yaml.SequenceNode:
+		for _, child := range node.Content {
+			normalizeFieldNames(child)
+		}
+	case yaml.MappingNode:
+		for index := 0; index < len(node.Content); index += 2 {
+			keyNode := node.Content[index]
+			valueNode := node.Content[index+1]
+
+			switch keyNode.Value {
+			case "properties":
+				normalizeProperties(valueNode)
+			case "required":
+				normalizeRequired(valueNode)
+			case "parameters":
+				normalizeParameters(valueNode)
+			}
+
+			normalizeFieldNames(valueNode)
+		}
+	}
+}
+
+func normalizeProperties(node *yaml.Node) {
+	if node == nil || node.Kind != yaml.MappingNode {
+		return
+	}
+
+	for index := 0; index < len(node.Content); index += 2 {
+		node.Content[index].Value = toSnakePath(node.Content[index].Value)
+	}
+}
+
+func normalizeRequired(node *yaml.Node) {
+	if node == nil || node.Kind != yaml.SequenceNode {
+		return
+	}
+
+	for _, item := range node.Content {
+		if item.Kind == yaml.ScalarNode {
+			item.Value = toSnakePath(item.Value)
+		}
+	}
+}
+
+func normalizeParameters(node *yaml.Node) {
+	if node == nil || node.Kind != yaml.SequenceNode {
+		return
+	}
+
+	for _, item := range node.Content {
+		if item.Kind != yaml.MappingNode {
+			continue
+		}
+
+		nameNode := findMapValue(item, "name")
+		inNode := findMapValue(item, "in")
+		if nameNode == nil || inNode == nil || nameNode.Kind != yaml.ScalarNode {
+			continue
+		}
+
+		switch inNode.Value {
+		case "query", "path", "header", "cookie":
+			nameNode.Value = toSnakePath(nameNode.Value)
+		}
+	}
+}
+
+func toSnakePath(value string) string {
+	parts := strings.Split(value, ".")
+	for index, part := range parts {
+		parts[index] = toSnakeCase(part)
+	}
+	return strings.Join(parts, ".")
+}
+
+func toSnakeCase(value string) string {
+	if value == "" {
+		return value
+	}
+
+	var builder strings.Builder
+	runes := []rune(value)
+	for index, current := range runes {
+		if unicode.IsUpper(current) {
+			if index > 0 {
+				previous := runes[index-1]
+				hasNext := index+1 < len(runes)
+				nextIsLower := hasNext && unicode.IsLower(runes[index+1])
+				if previous != '_' && (unicode.IsLower(previous) || unicode.IsDigit(previous) || nextIsLower) {
+					builder.WriteRune('_')
+				}
+			}
+			builder.WriteRune(unicode.ToLower(current))
+			continue
+		}
+
+		builder.WriteRune(current)
+	}
+
+	return builder.String()
 }
 
 func ensureMappingValue(node *yaml.Node, key string) *yaml.Node {

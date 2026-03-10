@@ -256,7 +256,7 @@ paths:
             type: array
             items:
               type: boolean
-        - name: userId
+        - name: user_id
           in: query
           schema:
             type: array
@@ -560,7 +560,7 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: parentId
+        - name: parent_id
           in: query
           schema:
             type: array
@@ -758,24 +758,24 @@ paths:
             items:
               type: integer
               format: int32
-        - name: documentId
+        - name: document_id
           in: query
           schema:
             type: integer
             format: int64
-        - name: userId
+        - name: user_id
           in: query
           schema:
             type: integer
             format: int64
-        - name: parentId
+        - name: parent_id
           in: query
           schema:
             type: array
             items:
               type: integer
               format: int64
-        - name: withDocumentTitle
+        - name: with_document_title
           in: query
           schema:
             type: boolean
@@ -858,7 +858,7 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: withAuthor
+        - name: with_author
           in: query
           schema:
             type: boolean
@@ -972,7 +972,7 @@ paths:
           in: query
           schema:
             type: string
-        - name: userId
+        - name: user_id
           in: query
           schema:
             type: integer
@@ -1005,22 +1005,22 @@ paths:
           in: query
           schema:
             type: string
-        - name: downloadCount
+        - name: download_count
           in: query
           schema:
             type: integer
             format: int32
-        - name: viewCount
+        - name: view_count
           in: query
           schema:
             type: integer
             format: int32
-        - name: favoriteCount
+        - name: favorite_count
           in: query
           schema:
             type: integer
             format: int32
-        - name: commentCount
+        - name: comment_count
           in: query
           schema:
             type: integer
@@ -1030,7 +1030,7 @@ paths:
           schema:
             type: integer
             format: int32
-        - name: scoreCount
+        - name: score_count
           in: query
           schema:
             type: integer
@@ -1050,55 +1050,55 @@ paths:
           schema:
             type: integer
             format: int32
-        - name: createdAt.seconds
+        - name: created_at.seconds
           in: query
           description: Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
           schema:
             type: integer
             format: int64
-        - name: createdAt.nanos
+        - name: created_at.nanos
           in: query
           description: Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
           schema:
             type: integer
             format: int32
-        - name: updatedAt.seconds
+        - name: updated_at.seconds
           in: query
           description: Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
           schema:
             type: integer
             format: int64
-        - name: updatedAt.nanos
+        - name: updated_at.nanos
           in: query
           description: Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
           schema:
             type: integer
             format: int32
-        - name: deletedAt.seconds
+        - name: deleted_at.seconds
           in: query
           description: Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
           schema:
             type: integer
             format: int64
-        - name: deletedAt.nanos
+        - name: deleted_at.nanos
           in: query
           description: Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
           schema:
             type: integer
             format: int32
-        - name: recommendAt.seconds
+        - name: recommend_at.seconds
           in: query
           description: Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
           schema:
             type: integer
             format: int64
-        - name: recommendAt.nanos
+        - name: recommend_at.nanos
           in: query
           description: Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
           schema:
             type: integer
             format: int32
-        - name: deletedUserId
+        - name: deleted_user_id
           in: query
           schema:
             type: integer
@@ -1107,14 +1107,14 @@ paths:
           in: query
           schema:
             type: string
-        - name: categoryId
+        - name: category_id
           in: query
           schema:
             type: array
             items:
               type: integer
               format: int64
-        - name: deletedUsername
+        - name: deleted_username
           in: query
           schema:
             type: string
@@ -1131,12 +1131,12 @@ paths:
           in: query
           schema:
             type: string
-        - name: attachment.userId
+        - name: attachment.user_id
           in: query
           schema:
             type: integer
             format: int64
-        - name: attachment.typeId
+        - name: attachment.type_id
           in: query
           schema:
             type: integer
@@ -1185,7 +1185,7 @@ paths:
           in: query
           schema:
             type: string
-        - name: attachment.typeName
+        - name: attachment.type_name
           in: query
           schema:
             type: string
@@ -1193,49 +1193,49 @@ paths:
           in: query
           schema:
             type: string
-        - name: attachment.createdAt.seconds
+        - name: attachment.created_at.seconds
           in: query
           description: Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
           schema:
             type: integer
             format: int64
-        - name: attachment.createdAt.nanos
+        - name: attachment.created_at.nanos
           in: query
           description: Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
           schema:
             type: integer
             format: int32
-        - name: attachment.updatedAt.seconds
+        - name: attachment.updated_at.seconds
           in: query
           description: Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
           schema:
             type: integer
             format: int64
-        - name: attachment.updatedAt.nanos
+        - name: attachment.updated_at.nanos
           in: query
           description: Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
           schema:
             type: integer
             format: int32
-        - name: user.loginAt.seconds
+        - name: user.login_at.seconds
           in: query
           description: Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
           schema:
             type: integer
             format: int64
-        - name: user.loginAt.nanos
+        - name: user.login_at.nanos
           in: query
           description: Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
           schema:
             type: integer
             format: int32
-        - name: user.createdAt.seconds
+        - name: user.created_at.seconds
           in: query
           description: Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
           schema:
             type: integer
             format: int64
-        - name: user.createdAt.nanos
+        - name: user.created_at.nanos
           in: query
           description: Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
           schema:
@@ -1266,35 +1266,35 @@ paths:
           in: query
           schema:
             type: string
-        - name: user.lastLoginIp
+        - name: user.last_login_ip
           in: query
           schema:
             type: string
-        - name: user.registerIp
+        - name: user.register_ip
           in: query
           schema:
             type: string
-        - name: user.docCount
+        - name: user.doc_count
           in: query
           schema:
             type: integer
             format: int32
-        - name: user.followCount
+        - name: user.follow_count
           in: query
           schema:
             type: integer
             format: int32
-        - name: user.fansCount
+        - name: user.fans_count
           in: query
           schema:
             type: integer
             format: int32
-        - name: user.favoriteCount
+        - name: user.favorite_count
           in: query
           schema:
             type: integer
             format: int32
-        - name: user.commentCount
+        - name: user.comment_count
           in: query
           schema:
             type: integer
@@ -1316,23 +1316,23 @@ paths:
           in: query
           schema:
             type: string
-        - name: user.groupId
+        - name: user.group_id
           in: query
           schema:
             type: array
             items:
               type: integer
               format: int64
-        - name: user.creditCount
+        - name: user.credit_count
           in: query
           schema:
             type: integer
             format: int32
-        - name: enableGzip
+        - name: enable_gzip
           in: query
           schema:
             type: boolean
-        - name: convertError
+        - name: convert_error
           in: query
           schema:
             type: string
@@ -1409,14 +1409,14 @@ paths:
           in: query
           schema:
             type: string
-        - name: categoryId
+        - name: category_id
           in: query
           schema:
             type: array
             items:
               type: integer
               format: int64
-        - name: userId
+        - name: user_id
           in: query
           schema:
             type: array
@@ -1430,7 +1430,7 @@ paths:
             items:
               type: integer
               format: int32
-        - name: isRecommend
+        - name: is_recommend
           in: query
           schema:
             type: array
@@ -1529,14 +1529,14 @@ paths:
           in: query
           schema:
             type: string
-        - name: categoryId
+        - name: category_id
           in: query
           schema:
             type: array
             items:
               type: integer
               format: int64
-        - name: userId
+        - name: user_id
           in: query
           schema:
             type: array
@@ -1550,7 +1550,7 @@ paths:
             items:
               type: integer
               format: int32
-        - name: isRecommend
+        - name: is_recommend
           in: query
           schema:
             type: array
@@ -1666,7 +1666,7 @@ paths:
           in: query
           schema:
             type: string
-        - name: userId
+        - name: user_id
           in: query
           schema:
             type: integer
@@ -1699,22 +1699,22 @@ paths:
           in: query
           schema:
             type: string
-        - name: downloadCount
+        - name: download_count
           in: query
           schema:
             type: integer
             format: int32
-        - name: viewCount
+        - name: view_count
           in: query
           schema:
             type: integer
             format: int32
-        - name: favoriteCount
+        - name: favorite_count
           in: query
           schema:
             type: integer
             format: int32
-        - name: commentCount
+        - name: comment_count
           in: query
           schema:
             type: integer
@@ -1724,7 +1724,7 @@ paths:
           schema:
             type: integer
             format: int32
-        - name: scoreCount
+        - name: score_count
           in: query
           schema:
             type: integer
@@ -1744,55 +1744,55 @@ paths:
           schema:
             type: integer
             format: int32
-        - name: createdAt.seconds
+        - name: created_at.seconds
           in: query
           description: Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
           schema:
             type: integer
             format: int64
-        - name: createdAt.nanos
+        - name: created_at.nanos
           in: query
           description: Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
           schema:
             type: integer
             format: int32
-        - name: updatedAt.seconds
+        - name: updated_at.seconds
           in: query
           description: Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
           schema:
             type: integer
             format: int64
-        - name: updatedAt.nanos
+        - name: updated_at.nanos
           in: query
           description: Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
           schema:
             type: integer
             format: int32
-        - name: deletedAt.seconds
+        - name: deleted_at.seconds
           in: query
           description: Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
           schema:
             type: integer
             format: int64
-        - name: deletedAt.nanos
+        - name: deleted_at.nanos
           in: query
           description: Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
           schema:
             type: integer
             format: int32
-        - name: recommendAt.seconds
+        - name: recommend_at.seconds
           in: query
           description: Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
           schema:
             type: integer
             format: int64
-        - name: recommendAt.nanos
+        - name: recommend_at.nanos
           in: query
           description: Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
           schema:
             type: integer
             format: int32
-        - name: deletedUserId
+        - name: deleted_user_id
           in: query
           schema:
             type: integer
@@ -1801,14 +1801,14 @@ paths:
           in: query
           schema:
             type: string
-        - name: categoryId
+        - name: category_id
           in: query
           schema:
             type: array
             items:
               type: integer
               format: int64
-        - name: deletedUsername
+        - name: deleted_username
           in: query
           schema:
             type: string
@@ -1825,12 +1825,12 @@ paths:
           in: query
           schema:
             type: string
-        - name: attachment.userId
+        - name: attachment.user_id
           in: query
           schema:
             type: integer
             format: int64
-        - name: attachment.typeId
+        - name: attachment.type_id
           in: query
           schema:
             type: integer
@@ -1879,7 +1879,7 @@ paths:
           in: query
           schema:
             type: string
-        - name: attachment.typeName
+        - name: attachment.type_name
           in: query
           schema:
             type: string
@@ -1887,49 +1887,49 @@ paths:
           in: query
           schema:
             type: string
-        - name: attachment.createdAt.seconds
+        - name: attachment.created_at.seconds
           in: query
           description: Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
           schema:
             type: integer
             format: int64
-        - name: attachment.createdAt.nanos
+        - name: attachment.created_at.nanos
           in: query
           description: Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
           schema:
             type: integer
             format: int32
-        - name: attachment.updatedAt.seconds
+        - name: attachment.updated_at.seconds
           in: query
           description: Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
           schema:
             type: integer
             format: int64
-        - name: attachment.updatedAt.nanos
+        - name: attachment.updated_at.nanos
           in: query
           description: Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
           schema:
             type: integer
             format: int32
-        - name: user.loginAt.seconds
+        - name: user.login_at.seconds
           in: query
           description: Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
           schema:
             type: integer
             format: int64
-        - name: user.loginAt.nanos
+        - name: user.login_at.nanos
           in: query
           description: Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
           schema:
             type: integer
             format: int32
-        - name: user.createdAt.seconds
+        - name: user.created_at.seconds
           in: query
           description: Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
           schema:
             type: integer
             format: int64
-        - name: user.createdAt.nanos
+        - name: user.created_at.nanos
           in: query
           description: Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
           schema:
@@ -1960,35 +1960,35 @@ paths:
           in: query
           schema:
             type: string
-        - name: user.lastLoginIp
+        - name: user.last_login_ip
           in: query
           schema:
             type: string
-        - name: user.registerIp
+        - name: user.register_ip
           in: query
           schema:
             type: string
-        - name: user.docCount
+        - name: user.doc_count
           in: query
           schema:
             type: integer
             format: int32
-        - name: user.followCount
+        - name: user.follow_count
           in: query
           schema:
             type: integer
             format: int32
-        - name: user.fansCount
+        - name: user.fans_count
           in: query
           schema:
             type: integer
             format: int32
-        - name: user.favoriteCount
+        - name: user.favorite_count
           in: query
           schema:
             type: integer
             format: int32
-        - name: user.commentCount
+        - name: user.comment_count
           in: query
           schema:
             type: integer
@@ -2010,23 +2010,23 @@ paths:
           in: query
           schema:
             type: string
-        - name: user.groupId
+        - name: user.group_id
           in: query
           schema:
             type: array
             items:
               type: integer
               format: int64
-        - name: user.creditCount
+        - name: user.credit_count
           in: query
           schema:
             type: integer
             format: int32
-        - name: enableGzip
+        - name: enable_gzip
           in: query
           schema:
             type: boolean
-        - name: convertError
+        - name: convert_error
           in: query
           schema:
             type: string
@@ -2057,12 +2057,12 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: documentId
+        - name: document_id
           in: query
           schema:
             type: integer
             format: int64
-        - name: userId
+        - name: user_id
           in: query
           schema:
             type: integer
@@ -2072,25 +2072,25 @@ paths:
           schema:
             type: integer
             format: int32
-        - name: createdAt.seconds
+        - name: created_at.seconds
           in: query
           description: Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
           schema:
             type: integer
             format: int64
-        - name: createdAt.nanos
+        - name: created_at.nanos
           in: query
           description: Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
           schema:
             type: integer
             format: int32
-        - name: updatedAt.seconds
+        - name: updated_at.seconds
           in: query
           description: Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
           schema:
             type: integer
             format: int64
-        - name: updatedAt.nanos
+        - name: updated_at.nanos
           in: query
           description: Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
           schema:
@@ -2155,7 +2155,7 @@ paths:
           in: query
           schema:
             type: string
-        - name: categoryId
+        - name: category_id
           in: query
           schema:
             type: array
@@ -2213,7 +2213,7 @@ paths:
       description: 根据文章id，查询用户是否有收藏某篇文档
       operationId: FavoriteAPI_GetFavorite
       parameters:
-        - name: documentId
+        - name: document_id
           in: query
           schema:
             type: integer
@@ -2301,7 +2301,7 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: userId
+        - name: user_id
           in: query
           schema:
             type: integer
@@ -3237,7 +3237,7 @@ paths:
             items:
               type: integer
               format: int64
-        - name: groupId
+        - name: group_id
           in: query
           schema:
             type: array
@@ -3486,7 +3486,7 @@ components:
           type: string
         author:
           type: string
-        viewCount:
+        view_count:
           type: integer
           format: int64
         title:
@@ -3497,10 +3497,10 @@ components:
           type: string
         content:
           type: string
-        createdAt:
+        created_at:
           type: string
           format: date-time
-        updatedAt:
+        updated_at:
           type: string
           format: date-time
       description: 文章
@@ -3512,10 +3512,10 @@ components:
           format: int64
         hash:
           type: string
-        userId:
+        user_id:
           type: integer
           format: int64
-        typeId:
+        type_id:
           type: integer
           format: int64
         type:
@@ -3542,14 +3542,14 @@ components:
           type: string
         username:
           type: string
-        typeName:
+        type_name:
           type: string
         description:
           type: string
-        createdAt:
+        created_at:
           type: string
           format: date-time
-        updatedAt:
+        updated_at:
           type: string
           format: date-time
       description: 附件
@@ -3575,10 +3575,10 @@ components:
           type: string
         description:
           type: string
-        createdAt:
+        created_at:
           type: string
           format: date-time
-        updatedAt:
+        updated_at:
           type: string
           format: date-time
       description: banner，轮播图
@@ -3588,12 +3588,12 @@ components:
         id:
           type: integer
           format: int32
-        parentId:
+        parent_id:
           type: integer
           format: int32
         title:
           type: string
-        docCount:
+        doc_count:
           type: integer
           format: int32
         sort:
@@ -3603,10 +3603,10 @@ components:
           type: boolean
         cover:
           type: string
-        createdAt:
+        created_at:
           type: string
           format: date-time
-        updatedAt:
+        updated_at:
           type: string
           format: date-time
       description: 文档分类
@@ -3625,35 +3625,35 @@ components:
     Comment:
       type: object
       properties:
-        createdAt:
+        created_at:
           type: string
           format: date-time
-        updatedAt:
+        updated_at:
           type: string
           format: date-time
         id:
           type: integer
           format: int64
-        parentId:
+        parent_id:
           type: integer
           format: int64
         content:
           type: string
-        documentId:
+        document_id:
           type: integer
           format: int64
         status:
           type: integer
           format: int32
-        commentCount:
+        comment_count:
           type: integer
           format: int32
-        userId:
+        user_id:
           type: integer
           format: int64
         user:
           $ref: '#/components/schemas/User'
-        documentTitle:
+        document_title:
           type: string
       description: 评论
     Config:
@@ -3670,7 +3670,7 @@ components:
           type: string
         placeholder:
           type: string
-        inputType:
+        input_type:
           type: string
         category:
           type: string
@@ -3679,10 +3679,10 @@ components:
           format: int32
         options:
           type: string
-        createdAt:
+        created_at:
           type: string
           format: date-time
-        updatedAt:
+        updated_at:
           type: string
           format: date-time
       description: 配置
@@ -3703,30 +3703,30 @@ components:
     ConfigSecurity:
       type: object
       properties:
-        isClose:
+        is_close:
           type: boolean
-        closeStatement:
+        close_statement:
           type: string
-        enableRegister:
+        enable_register:
           type: boolean
-        enableCaptchaLogin:
+        enable_captcha_login:
           type: boolean
-        enableCaptchaRegister:
+        enable_captcha_register:
           type: boolean
-        enableCaptchaComment:
+        enable_captcha_comment:
           type: boolean
-        enableCaptchaFindPassword:
+        enable_captcha_find_password:
           type: boolean
-        enableCaptchaUpload:
+        enable_captcha_upload:
           type: boolean
-        maxDocumentSize:
+        max_document_size:
           type: integer
           format: int32
-        documentAllowedExt:
+        document_allowed_ext:
           type: array
           items:
             type: string
-        loginRequired:
+        login_required:
           type: boolean
       description: 安全配置
     ConfigSystem:
@@ -3750,13 +3750,13 @@ components:
           type: string
         sitename:
           type: string
-        copyrightStartYear:
+        copyright_start_year:
           type: string
-        registerBackground:
+        register_background:
           type: string
-        loginBackground:
+        login_background:
           type: string
-        recommendWords:
+        recommend_words:
           type: array
           items:
             type: string
@@ -3774,15 +3774,15 @@ components:
     CreateCommentRequest:
       type: object
       properties:
-        documentId:
+        document_id:
           type: integer
           format: int64
-        parentId:
+        parent_id:
           type: integer
           format: int64
         content:
           type: string
-        captchaId:
+        captcha_id:
           type: string
         captcha:
           type: string
@@ -3792,7 +3792,7 @@ components:
       properties:
         title:
           type: string
-        attachmentId:
+        attachment_id:
           type: integer
           format: int64
         price:
@@ -3804,7 +3804,7 @@ components:
       properties:
         overwrite:
           type: boolean
-        categoryId:
+        category_id:
           type: array
           items:
             type: integer
@@ -3826,7 +3826,7 @@ components:
           type: string
         description:
           type: string
-        userId:
+        user_id:
           type: integer
           format: int64
         cover:
@@ -3845,22 +3845,22 @@ components:
           format: int32
         uuid:
           type: string
-        downloadCount:
+        download_count:
           type: integer
           format: int32
-        viewCount:
+        view_count:
           type: integer
           format: int32
-        favoriteCount:
+        favorite_count:
           type: integer
           format: int32
-        commentCount:
+        comment_count:
           type: integer
           format: int32
         score:
           type: integer
           format: int32
-        scoreCount:
+        score_count:
           type: integer
           format: int32
         price:
@@ -3872,29 +3872,29 @@ components:
         status:
           type: integer
           format: int32
-        createdAt:
+        created_at:
           type: string
           format: date-time
-        updatedAt:
+        updated_at:
           type: string
           format: date-time
-        deletedAt:
+        deleted_at:
           type: string
           format: date-time
-        recommendAt:
+        recommend_at:
           type: string
           format: date-time
-        deletedUserId:
+        deleted_user_id:
           type: integer
           format: int64
         username:
           type: string
-        categoryId:
+        category_id:
           type: array
           items:
             type: integer
             format: int64
-        deletedUsername:
+        deleted_username:
           type: string
         ext:
           type: string
@@ -3902,9 +3902,9 @@ components:
           $ref: '#/components/schemas/Attachment'
         user:
           $ref: '#/components/schemas/User'
-        enableGzip:
+        enable_gzip:
           type: boolean
-        convertError:
+        convert_error:
           type: string
       description: 文档
     DocumentScore:
@@ -3913,19 +3913,19 @@ components:
         id:
           type: integer
           format: int64
-        documentId:
+        document_id:
           type: integer
           format: int64
-        userId:
+        user_id:
           type: integer
           format: int64
         score:
           type: integer
           format: int32
-        createdAt:
+        created_at:
           type: string
           format: date-time
-        updatedAt:
+        updated_at:
           type: string
           format: date-time
       description: 文档评分
@@ -3941,7 +3941,7 @@ components:
         id:
           type: integer
           format: int64
-        userId:
+        user_id:
           type: integer
           format: int64
         content:
@@ -3951,10 +3951,10 @@ components:
           format: int32
         username:
           type: string
-        createdAt:
+        created_at:
           type: string
           format: date-time
-        updatedAt:
+        updated_at:
           type: string
           format: date-time
       description: 用户动态
@@ -3965,16 +3965,16 @@ components:
           type: string
         description:
           type: string
-        isInstalled:
+        is_installed:
           type: boolean
         error:
           type: string
-        checkedAt:
+        checked_at:
           type: string
           format: date-time
         cmd:
           type: string
-        isRequired:
+        is_required:
           type: boolean
       description: 依赖项
     Envs:
@@ -3991,10 +3991,10 @@ components:
         id:
           type: integer
           format: int64
-        userId:
+        user_id:
           type: integer
           format: int64
-        documentId:
+        document_id:
           type: integer
           format: int64
         title:
@@ -4010,10 +4010,10 @@ components:
         pages:
           type: integer
           format: int32
-        createdAt:
+        created_at:
           type: string
           format: date-time
-        updatedAt:
+        updated_at:
           type: string
           format: date-time
       description: 文档收藏
@@ -4028,7 +4028,7 @@ components:
           type: string
         captcha:
           type: string
-        captchaId:
+        captcha_id:
           type: string
       description: 找回密码
     Friendlink:
@@ -4048,10 +4048,10 @@ components:
           format: int32
         enable:
           type: boolean
-        createdAt:
+        created_at:
           type: string
           format: date-time
-        updatedAt:
+        updated_at:
           type: string
           format: date-time
       description: 友情链接
@@ -4093,33 +4093,33 @@ components:
           type: string
         color:
           type: string
-        isDefault:
+        is_default:
           type: boolean
-        isDisplay:
+        is_display:
           type: boolean
         description:
           type: string
-        userCount:
+        user_count:
           type: integer
           format: int32
         sort:
           type: integer
           format: int32
-        enableUpload:
+        enable_upload:
           type: boolean
-        enableCommentApproval:
+        enable_comment_approval:
           type: boolean
-        createdAt:
+        created_at:
           type: string
           format: date-time
-        updatedAt:
+        updated_at:
           type: string
           format: date-time
       description: 用户组，角色
     GroupPermissions:
       type: object
       properties:
-        permissionId:
+        permission_id:
           type: array
           items:
             type: integer
@@ -4183,12 +4183,12 @@ components:
     ListDocumentForHomeItem:
       type: object
       properties:
-        categoryId:
+        category_id:
           type: integer
           format: int64
-        categoryCover:
+        category_cover:
           type: string
-        categoryName:
+        category_name:
           type: string
         document:
           type: array
@@ -4313,10 +4313,10 @@ components:
           type: string
         description:
           type: string
-        createdAt:
+        created_at:
           type: string
           format: date-time
-        updatedAt:
+        updated_at:
           type: string
           format: date-time
       description: 权限
@@ -4325,7 +4325,7 @@ components:
       properties:
         name:
           type: string
-        createdAt:
+        created_at:
           type: string
           format: date-time
     RecoverRecycleDocumentRequest:
@@ -4346,7 +4346,7 @@ components:
           type: string
         captcha:
           type: string
-        captchaId:
+        captcha_id:
           type: string
         email:
           type: string
@@ -4357,10 +4357,10 @@ components:
         id:
           type: integer
           format: int64
-        documentId:
+        document_id:
           type: integer
           format: int64
-        userId:
+        user_id:
           type: integer
           format: int64
         reason:
@@ -4368,13 +4368,13 @@ components:
           format: int32
         status:
           type: boolean
-        createdAt:
+        created_at:
           type: string
           format: date-time
-        updatedAt:
+        updated_at:
           type: string
           format: date-time
-        documentTitle:
+        document_title:
           type: string
         remark:
           type: string
@@ -4416,7 +4416,7 @@ components:
           type: string
         password:
           type: string
-        groupId:
+        group_id:
           type: array
           items:
             type: integer
@@ -4440,15 +4440,15 @@ components:
         id:
           type: integer
           format: int64
-        userId:
+        user_id:
           type: integer
           format: int64
-        signAt:
+        sign_at:
           type: integer
           format: int32
         ip:
           type: string
-        createdAt:
+        created_at:
           type: string
           format: date-time
         award:
@@ -4458,25 +4458,25 @@ components:
     Stats:
       type: object
       properties:
-        userCount:
+        user_count:
           type: integer
           format: int64
-        documentCount:
+        document_count:
           type: integer
           format: int64
-        categoryCount:
+        category_count:
           type: integer
           format: int64
-        articleCount:
+        article_count:
           type: integer
           format: int64
-        commentCount:
+        comment_count:
           type: integer
           format: int64
-        bannerCount:
+        banner_count:
           type: integer
           format: int64
-        friendlinkCount:
+        friendlink_count:
           type: integer
           format: int64
         os:
@@ -4485,9 +4485,9 @@ components:
           type: string
         hash:
           type: string
-        buildAt:
+        build_at:
           type: string
-        reportCount:
+        report_count:
           type: integer
           format: int64
       description: 系统状态
@@ -4510,10 +4510,10 @@ components:
     UpdateGroupPermissionRequest:
       type: object
       properties:
-        groupId:
+        group_id:
           type: integer
           format: int64
-        permissionId:
+        permission_id:
           type: array
           items:
             type: integer
@@ -4525,21 +4525,21 @@ components:
         id:
           type: integer
           format: int64
-        oldPassword:
+        old_password:
           type: string
-        newPassword:
+        new_password:
           type: string
       description: 修改用户密码
     User:
       type: object
       properties:
-        loginAt:
+        login_at:
           type: string
           format: date-time
-        createdAt:
+        created_at:
           type: string
           format: date-time
-        updatedAt:
+        updated_at:
           type: string
           format: date-time
         id:
@@ -4555,23 +4555,23 @@ components:
           type: string
         signature:
           type: string
-        lastLoginIp:
+        last_login_ip:
           type: string
-        registerIp:
+        register_ip:
           type: string
-        docCount:
+        doc_count:
           type: integer
           format: int32
-        followCount:
+        follow_count:
           type: integer
           format: int32
-        fansCount:
+        fans_count:
           type: integer
           format: int32
-        favoriteCount:
+        favorite_count:
           type: integer
           format: int32
-        commentCount:
+        comment_count:
           type: integer
           format: int32
         status:
@@ -4583,12 +4583,12 @@ components:
           type: string
         realname:
           type: string
-        groupId:
+        group_id:
           type: array
           items:
             type: integer
             format: int64
-        creditCount:
+        credit_count:
           type: integer
           format: int32
       description: 用户信息
