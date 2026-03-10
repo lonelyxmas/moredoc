@@ -15,6 +15,7 @@ init:
 	go install github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway@latest
 	go install github.com/gogo/protobuf/protoc-gen-gogofaster@latest
 	go install github.com/google/gnostic/cmd/protoc-gen-openapi@latest
+	go install github.com/swaggo/swag/cmd/swag@v1.16.4
 
 
 .PHONY: api
@@ -53,6 +54,15 @@ openapi:
 		--proto_path=./api \
 		--openapiv2_out ./docs \
 		$(API_PROTO_FILES)
+
+.PHONY: swagger-gin
+# generate swagger docs for gin handlers
+swagger-gin:
+	swag init -g main.go -o docs --parseInternal
+
+.PHONY: swagger
+# generate unified docs assets for swagger ui
+swagger: openapi swagger-gin
 
 .PHONY: clean-api-go
 # clean api go file

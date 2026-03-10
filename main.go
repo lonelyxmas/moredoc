@@ -19,6 +19,15 @@ import (
 	"moredoc/cmd"
 )
 
+// @title MoreDoc API
+// @version 1.0
+// @description MoreDoc 后端 API 文档，包含 Gin 原生接口的 Swagger 描述。
+// @description 通过 gRPC Gateway 暴露的接口仍按 proto/openapi 流程维护，Swagger 页面主要覆盖 Gin 侧文件上传与静态资源相关接口。
+// @BasePath /
+// @schemes http https
+// @securityDefinitions.apikey BearerAuth
+// @in header
+// @name Authorization
 func main() {
 	cmd.Execute()
 }

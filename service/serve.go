@@ -99,6 +99,7 @@ func Run(cfg *conf.Config, logger *zap.Logger) {
 	}
 
 	serve.RegisterGinRouter(app, dbModel, logger, auth)
+	serve.RegisterSwaggerRoutes(app)
 
 	if cfg.NuxtCDNAddr != "" {
 		app.GET("/_nuxt/*filepath", func(c *gin.Context) {

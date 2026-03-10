@@ -33,6 +33,55 @@ type ginResponse struct {
 	Data    interface{} `json:"data,omitempty"`
 }
 
+type attachmentDoc struct {
+	Id        int64  `json:"id"`
+	UserId    int64  `json:"user_id"`
+	Type      int    `json:"type"`
+	TypeId    int64  `json:"type_id"`
+	Path      string `json:"path"`
+	Name      string `json:"name"`
+	Hash      string `json:"hash"`
+	Ext       string `json:"ext"`
+	Ip        string `json:"ip"`
+	Size      int64  `json:"size"`
+	Width     int    `json:"width"`
+	Height    int    `json:"height"`
+	Enable    bool   `json:"enable"`
+	CreatedAt int64  `json:"created_at"`
+	UpdatedAt int64  `json:"updated_at"`
+	Username  string `json:"username"`
+	TypeName  string `json:"type_name"`
+}
+
+type ginResponseAttachment struct {
+	Error   string         `json:"error,omitempty"`
+	Message string         `json:"message,omitempty"`
+	Code    int            `json:"code,omitempty"`
+	Data    *attachmentDoc `json:"data,omitempty"`
+}
+
+type uploadDocumentData struct {
+	Id int64 `json:"id"`
+}
+
+type ginResponseUploadDocument struct {
+	Error   string              `json:"error,omitempty"`
+	Message string              `json:"message,omitempty"`
+	Code    int                 `json:"code,omitempty"`
+	Data    *uploadDocumentData `json:"data,omitempty"`
+}
+
+type articleUploadData struct {
+	URL string `json:"url"`
+	Alt string `json:"alt,omitempty"`
+}
+
+type articleUploadResponse struct {
+	Errno int                `json:"errno"`
+	Msg   string             `json:"msg,omitempty"`
+	Data  *articleUploadData `json:"data,omitempty"`
+}
+
 type AttachmentAPIService struct {
 	pb.UnimplementedAttachmentAPIServer
 	dbModel *model.DBModel
@@ -183,6 +232,19 @@ func (s *AttachmentAPIService) ListAttachment(ctx context.Context, req *pb.ListA
 }
 
 // UploadDocument 上传文档
+// @Summary 上传文档
+// @Description 上传文档文件，要求用户已登录并具备文档上传权限。
+// @Tags attachment
+// @Accept multipart/form-data
+// @Produce json
+// @Security BearerAuth
+// @Param file formData file true "文档文件"
+// @Success 200 {object} ginResponseUploadDocument
+// @Failure 400 {object} ginResponse
+// @Failure 401 {object} ginResponse
+// @Failure 403 {object} ginResponse
+// @Failure 500 {object} ginResponse
+// @Router /api/v1/upload/document [post]
 func (s *AttachmentAPIService) UploadDocument(ctx *gin.Context) {
 	// 检查用户是否已登录
 	userClaims, statusCodes, err := s.checkLogin(ctx)
@@ -237,16 +299,50 @@ func (s *AttachmentAPIService) UploadDocument(ctx *gin.Context) {
 }
 
 // UploadAvatar 上传头像
+// @Summary 上传头像
+// @Description 上传用户头像图片，要求用户已登录。
+// @Tags attachment
+// @Accept multipart/form-data
+// @Produce json
+// @Security BearerAuth
+// @Param file formData file true "头像图片"
+// @Success 200 {object} ginResponseAttachment
+// @Failure 400 {object} ginResponse
+// @Failure 401 {object} ginResponse
+// @Failure 500 {object} ginResponse
+// @Router /api/v1/upload/avatar [post]
 func (s *AttachmentAPIService) UploadAvatar(ctx *gin.Context) {
 	s.uploadImage(ctx, model.AttachmentTypeAvatar)
 }
 
 // UploadConfig 上传配置项中的相关图片
+// @Summary 上传配置图片
+// @Description 上传系统配置中使用的图片资源，要求具备上传权限。
+// @Tags attachment
+// @Accept multipart/form-data
+// @Produce json
+// @Security BearerAuth
+// @Param file formData file true "配置图片"
+// @Success 200 {object} ginResponseAttachment
+// @Failure 400 {object} ginResponse
+// @Failure 401 {object} ginResponse
+// @Failure 403 {object} ginResponse
+// @Failure 500 {object} ginResponse
+// @Router /api/v1/upload/config [post]
 func (s *AttachmentAPIService) UploadConfig(ctx *gin.Context) {
 	s.uploadImage(ctx, model.AttachmentTypeConfig)
 }
 
 // ViewDocumentPages 浏览文档页面
+// @Summary 预览文档页面资源
+// @Description 读取指定文档分页渲染后的页面资源。
+// @Tags attachment
+// @Produce octet-stream
+// @Param hash path string true "文档哈希"
+// @Param page path string true "页码或资源路径"
+// @Success 200 {file} binary
+// @Failure 404 {object} map[string]interface{}
+// @Router /view/page/{hash}/{page} [get]
 func (s *AttachmentAPIService) ViewDocumentPages(ctx *gin.Context) {
 	hash := ctx.Param("hash")
 	if len(hash) != 32 {
@@ -266,6 +362,15 @@ func (s *AttachmentAPIService) ViewDocumentPages(ctx *gin.Context) {
 	ctx.File(file)
 }
 
+// ViewDocumentCover 浏览文档封面
+// @Summary 获取文档封面
+// @Description 读取指定文档的封面图片。
+// @Tags attachment
+// @Produce image/png
+// @Param hash path string true "文档哈希"
+// @Success 200 {file} binary
+// @Failure 404 {object} map[string]interface{}
+// @Router /view/cover/{hash} [get]
 func (s *AttachmentAPIService) ViewDocumentCover(ctx *gin.Context) {
 	hash := ctx.Param("hash")
 	if len(hash) != 32 {
@@ -282,6 +387,17 @@ func (s *AttachmentAPIService) ViewDocumentCover(ctx *gin.Context) {
 }
 
 // DownloadDocument 下载文档
+// @Summary 下载文档
+// @Description 根据带签名的 JWT 下载原始文档文件。
+// @Tags attachment
+// @Produce octet-stream
+// @Param jwt path string true "下载令牌"
+// @Param document_id query string true "文档 ID"
+// @Param user_id query string true "用户 ID"
+// @Param filename query string true "下载文件名"
+// @Success 200 {file} binary
+// @Failure 400 {string} string
+// @Router /download/{jwt} [get]
 func (s *AttachmentAPIService) DownloadDocument(ctx *gin.Context) {
 	claims := &jwt.StandardClaims{}
 	token := ctx.Param("jwt")
@@ -310,9 +426,19 @@ func (s *AttachmentAPIService) DownloadDocument(ctx *gin.Context) {
 	ctx.FileAttachment(file, filename)
 }
 
-//	UploadArticle 上传文章相关图片和视频。这里不验证文件格式。
+// UploadArticle 上传文章相关图片和视频。这里不验证文件格式。
 //
-// 注意：当前适配了wangeditor的接口规范，如果需要适配其他编辑器，需要修改此接口或者增加其他接口
+// 注意：当前适配了 wangeditor 的接口规范，如果需要适配其他编辑器，需要修改此接口或者增加其他接口。
+// @Summary 上传文章资源
+// @Description 上传文章编辑器使用的图片或视频资源。
+// @Tags attachment
+// @Accept multipart/form-data
+// @Produce json
+// @Security BearerAuth
+// @Param type query string true "资源类型(image/video)"
+// @Param file formData file true "文章资源文件"
+// @Success 200 {object} articleUploadResponse
+// @Router /api/v1/upload/article [post]
 func (s *AttachmentAPIService) UploadArticle(ctx *gin.Context) {
 	typ := ctx.Query("type")
 	if typ != "image" && typ != "video" {
@@ -365,11 +491,37 @@ func (s *AttachmentAPIService) UploadArticle(ctx *gin.Context) {
 }
 
 // UploadBanner 上传轮播图，创建轮播图的时候，要根据附件id，更新附件的type_id字段
+// @Summary 上传轮播图
+// @Description 上传轮播图图片，要求具备上传权限。
+// @Tags attachment
+// @Accept multipart/form-data
+// @Produce json
+// @Security BearerAuth
+// @Param file formData file true "轮播图图片"
+// @Success 200 {object} ginResponseAttachment
+// @Failure 400 {object} ginResponse
+// @Failure 401 {object} ginResponse
+// @Failure 403 {object} ginResponse
+// @Failure 500 {object} ginResponse
+// @Router /api/v1/upload/banner [post]
 func (s *AttachmentAPIService) UploadBanner(ctx *gin.Context) {
 	s.uploadImage(ctx, model.AttachmentTypeBanner)
 }
 
-// 上传文档分类封面
+// UploadCategory 上传文档分类封面
+// @Summary 上传分类封面
+// @Description 上传文档分类封面图片，要求具备上传权限。
+// @Tags attachment
+// @Accept multipart/form-data
+// @Produce json
+// @Security BearerAuth
+// @Param file formData file true "分类封面图片"
+// @Success 200 {object} ginResponseAttachment
+// @Failure 400 {object} ginResponse
+// @Failure 401 {object} ginResponse
+// @Failure 403 {object} ginResponse
+// @Failure 500 {object} ginResponse
+// @Router /api/v1/upload/category [post]
 func (s *AttachmentAPIService) UploadCategory(ctx *gin.Context) {
 	s.uploadImage(ctx, model.AttachmentTypeCategoryCover)
 }
@@ -491,6 +643,13 @@ func (s *AttachmentAPIService) saveFile(ctx *gin.Context, fileHeader *multipart.
 	return
 }
 
+// Favicon 返回站点 favicon。
+// @Summary 获取站点 favicon
+// @Description 返回当前站点配置的 favicon 文件。
+// @Tags attachment
+// @Produce octet-stream
+// @Success 200 {file} binary
+// @Router /favicon.ico [get]
 func (s *AttachmentAPIService) Favicon(ctx *gin.Context) {
 	favicon := strings.TrimLeft(s.dbModel.GetConfigOfSystem("favicon").Favicon, "./")
 	faviconIco := "favicon.ico"

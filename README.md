@@ -129,6 +129,8 @@
 
 除了文件上传相关的接口，其他接口统一使用 proto 进行定义。
 
+Gin 原生接口和 gRPC Gateway 的 OpenAPI 文档统一在同一个 Swagger 页面展示，默认访问地址为 `/swagger`，页面顶部可直接切换两套文档。
+
 <a name="dev-env"></a>
 
 ### 环境要求
@@ -216,6 +218,9 @@ make init
 
 # 编译proto api
 make api
+
+# 生成统一 Swagger 文档资源（包含 grpc gateway openapi + gin swagger）
+make swagger
 
 # 修改 app.toml 文件配置
 cp app.example.toml app.toml
