@@ -6,9 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	"github.com/swaggo/swag"
 
-	_ "moredoc/docs"
+	moredocdocs "moredoc/docs"
 )
 
 const swaggerIndexHTML = `<!DOCTYPE html>
@@ -85,14 +84,17 @@ func serveSwaggerInitializer(ctx *gin.Context) {
 }
 
 func serveGinSwaggerDoc(ctx *gin.Context) {
-	doc, err := swag.ReadDoc(swag.Name)
-	if err != nil {
-		ctx.String(http.StatusInternalServerError, err.Error())
+	if len(moredocdocs.SwaggerJSON) == 0 {
+		ctx.String(http.StatusInternalServerError, "embedded swagger.json is empty")
 		return
 	}
-	ctx.Data(http.StatusOK, "application/json; charset=utf-8", []byte(doc))
+	ctx.Data(http.StatusOK, "application/json; charset=utf-8", moredocdocs.SwaggerJSON)
 }
 
 func serveGatewayOpenAPI(ctx *gin.Context) {
-	ctx.File("./docs/openapi.yaml")
+	if len(moredocdocs.OpenAPIYAML) == 0 {
+		ctx.String(http.StatusInternalServerError, "embedded openapi.yaml is empty")
+		return
+	}
+	ctx.Data(http.StatusOK, "application/yaml; charset=utf-8", moredocdocs.OpenAPIYAML)
 }

@@ -29,20 +29,11 @@ api:
 		$(API_PROTO_FILES)
 
 doc:
-	for file in $(API_PROTO_FILES); do \
-		protoc --proto_path=. \
-		--proto_path=./third_party \
-		--proto_path=./api \
-		--doc_out=docs/api \
-		--doc_opt=markdown,`basename $$file .proto`.md \
-		--openapi_out==paths=source_relative:docs \
-		$$file; \
-	done
 	# 整合到单文件
 	protoc --proto_path=. \
 		--proto_path=./third_party \
 		--proto_path=./api \
-		--doc_out=docs/api \
+		--doc_out=docs \
 		--doc_opt=markdown,apis.md \
 		--openapi_out==paths=source_relative:docs \
 		$(API_PROTO_FILES)
