@@ -47,10 +47,10 @@ message ListFriendlinkReply {
   int64 total = 2;
 }
 
-// 友情链接服务
+// 友情链接 API 服务，提供友情链接的新增、编辑、删除和查询能力
 service FriendlinkAPI {
 
-  // 创建友情链接
+  // 创建友情链接：新增一条友情链接配置并返回创建结果
   rpc CreateFriendlink(Friendlink) returns (Friendlink) {
     option (google.api.http) = {
       post : '/api/v1/friendlink',
@@ -58,7 +58,7 @@ service FriendlinkAPI {
     };
   }
 
-  // 更新友情链接
+  // 更新友情链接：根据链接 ID 修改名称、地址和展示状态
   rpc UpdateFriendlink(Friendlink) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : '/api/v1/friendlink',
@@ -66,7 +66,7 @@ service FriendlinkAPI {
     };
   }
 
-  // 删除友情链接
+  // 删除友情链接：支持按链接 ID 批量删除友情链接
   rpc DeleteFriendlink(DeleteFriendlinkRequest)
       returns (google.protobuf.Empty) {
     option (google.api.http) = {
@@ -74,14 +74,14 @@ service FriendlinkAPI {
     };
   }
 
-  // 获取友情链接
+  // 获取友情链接：根据链接 ID 查询单条友情链接详情
   rpc GetFriendlink(GetFriendlinkRequest) returns (Friendlink) {
     option (google.api.http) = {
       get : '/api/v1/friendlink',
     };
   }
 
-  // 获取友情链接
+  // 友情链接列表：按关键词和启用状态分页查询友情链接
   rpc ListFriendlink(ListFriendlinkRequest) returns (ListFriendlinkReply) {
     option (google.api.http) = {
       get : '/api/v1/friendlink/list',

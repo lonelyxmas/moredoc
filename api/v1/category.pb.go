@@ -480,15 +480,15 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type CategoryAPIClient interface {
-	// 创建分类
+	// 创建分类：新增一个文档分类节点并保存分类属性
 	CreateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 更新分类
+	// 更新分类：根据分类 ID 修改名称、封面、排序和展示配置
 	UpdateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 删除分类
+	// 删除分类：支持按分类 ID 批量删除分类节点
 	DeleteCategory(ctx context.Context, in *DeleteCategoryRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 获取分类
+	// 获取分类：根据分类 ID 查询单个分类详情
 	GetCategory(ctx context.Context, in *GetCategoryRequest, opts ...grpc.CallOption) (*Category, error)
-	// 分类列表
+	// 分类列表：按父分类、启用状态和类型分页查询分类
 	ListCategory(ctx context.Context, in *ListCategoryRequest, opts ...grpc.CallOption) (*ListCategoryReply, error)
 }
 
@@ -547,15 +547,15 @@ func (c *categoryAPIClient) ListCategory(ctx context.Context, in *ListCategoryRe
 
 // CategoryAPIServer is the server API for CategoryAPI service.
 type CategoryAPIServer interface {
-	// 创建分类
+	// 创建分类：新增一个文档分类节点并保存分类属性
 	CreateCategory(context.Context, *Category) (*emptypb.Empty, error)
-	// 更新分类
+	// 更新分类：根据分类 ID 修改名称、封面、排序和展示配置
 	UpdateCategory(context.Context, *Category) (*emptypb.Empty, error)
-	// 删除分类
+	// 删除分类：支持按分类 ID 批量删除分类节点
 	DeleteCategory(context.Context, *DeleteCategoryRequest) (*emptypb.Empty, error)
-	// 获取分类
+	// 获取分类：根据分类 ID 查询单个分类详情
 	GetCategory(context.Context, *GetCategoryRequest) (*Category, error)
-	// 分类列表
+	// 分类列表：按父分类、启用状态和类型分页查询分类
 	ListCategory(context.Context, *ListCategoryRequest) (*ListCategoryReply, error)
 }
 

@@ -47,10 +47,10 @@ message ListReportReply {
   repeated Report report = 2;
 }
 
-// 举报服务
+// 举报 API 服务，提供举报提交、处理和列表查询能力
 service ReportAPI {
 
-  // 创建举报
+  // 创建举报：提交对文档内容的举报信息
   rpc CreateReport(Report) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post : '/api/v1/report',
@@ -58,7 +58,7 @@ service ReportAPI {
     };
   }
 
-  // 更新举报，审核举报内容
+  // 处理举报：更新举报状态并记录处理备注
   rpc UpdateReport(Report) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : '/api/v1/report',
@@ -66,14 +66,14 @@ service ReportAPI {
     };
   }
 
-  // 删除举报
+  // 删除举报：支持按举报 ID 批量删除举报记录
   rpc DeleteReport(DeleteReportRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       delete : '/api/v1/report',
     };
   }
 
-  // 获取举报列表
+  // 举报列表：按处理状态和关键词分页查询举报记录
   rpc ListReport(ListReportRequest) returns (ListReportReply) {
     option (google.api.http) = {
       get : '/api/v1/report/list',

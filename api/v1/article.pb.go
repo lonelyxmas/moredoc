@@ -907,33 +907,33 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ArticleAPIClient interface {
-	// 创建文章
+	// 创建文章：提交文章标题、内容和分类信息，返回新建后的文章详情
 	CreateArticle(ctx context.Context, in *Article, opts ...grpc.CallOption) (*Article, error)
-	// 更新文章
+	// 更新文章：根据文章 ID 修改文章内容、状态和展示信息
 	UpdateArticle(ctx context.Context, in *Article, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 删除文章
+	// 删除文章：支持按文章 ID 批量删除文章到回收站
 	DeleteArticle(ctx context.Context, in *DeleteArticleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 获取文章
+	// 获取文章：根据文章 ID 或唯一标识查询单篇文章详情
 	GetArticle(ctx context.Context, in *GetArticleRequest, opts ...grpc.CallOption) (*Article, error)
-	// 文章列表
+	// 文章列表：按关键词、分类、作者和状态分页查询文章
 	ListArticle(ctx context.Context, in *ListArticleRequest, opts ...grpc.CallOption) (*ListArticleReply, error)
-	// 批量更新文档分类
+	// 批量设置文章分类：为多篇文章统一更新所属分类
 	SetArticlesCategory(ctx context.Context, in *SetArticlesCategoryRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 批量推荐
+	// 批量推荐文章：统一设置文章推荐状态或重新推荐
 	RecommendArticles(ctx context.Context, in *RecommendArticlesRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 批量审核文档
+	// 批量审核文章：统一更新文章审核状态并记录拒绝原因
 	CheckArticles(ctx context.Context, in *CheckArticlesRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 回收站文章列表
+	// 回收站文章列表：分页查询已删除的文章记录
 	ListRecycleArticle(ctx context.Context, in *ListArticleRequest, opts ...grpc.CallOption) (*ListArticleReply, error)
-	// 恢复回收站文章
+	// 恢复回收站文章：支持按文章 ID 批量恢复已删除文章
 	RestoreRecycleArticle(ctx context.Context, in *RestoreArticleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 从回收站删除文章
+	// 彻底删除回收站文章：按文章 ID 从回收站永久删除文章
 	DeleteRecycleArticle(ctx context.Context, in *DeleteArticleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 清空回收站
+	// 清空文章回收站：永久删除回收站中的全部文章
 	EmptyRecycleArticle(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 搜索文章
+	// 搜索文章：根据关键词和筛选条件执行全文检索
 	SearchArticle(ctx context.Context, in *ListArticleRequest, opts ...grpc.CallOption) (*SearchArticleReply, error)
-	// 相关文章
+	// 相关文章：根据当前文章返回推荐的相关文章列表
 	GetRelatedArticles(ctx context.Context, in *GetArticleRequest, opts ...grpc.CallOption) (*ListArticleReply, error)
 }
 
@@ -1073,33 +1073,33 @@ func (c *articleAPIClient) GetRelatedArticles(ctx context.Context, in *GetArticl
 
 // ArticleAPIServer is the server API for ArticleAPI service.
 type ArticleAPIServer interface {
-	// 创建文章
+	// 创建文章：提交文章标题、内容和分类信息，返回新建后的文章详情
 	CreateArticle(context.Context, *Article) (*Article, error)
-	// 更新文章
+	// 更新文章：根据文章 ID 修改文章内容、状态和展示信息
 	UpdateArticle(context.Context, *Article) (*emptypb.Empty, error)
-	// 删除文章
+	// 删除文章：支持按文章 ID 批量删除文章到回收站
 	DeleteArticle(context.Context, *DeleteArticleRequest) (*emptypb.Empty, error)
-	// 获取文章
+	// 获取文章：根据文章 ID 或唯一标识查询单篇文章详情
 	GetArticle(context.Context, *GetArticleRequest) (*Article, error)
-	// 文章列表
+	// 文章列表：按关键词、分类、作者和状态分页查询文章
 	ListArticle(context.Context, *ListArticleRequest) (*ListArticleReply, error)
-	// 批量更新文档分类
+	// 批量设置文章分类：为多篇文章统一更新所属分类
 	SetArticlesCategory(context.Context, *SetArticlesCategoryRequest) (*emptypb.Empty, error)
-	// 批量推荐
+	// 批量推荐文章：统一设置文章推荐状态或重新推荐
 	RecommendArticles(context.Context, *RecommendArticlesRequest) (*emptypb.Empty, error)
-	// 批量审核文档
+	// 批量审核文章：统一更新文章审核状态并记录拒绝原因
 	CheckArticles(context.Context, *CheckArticlesRequest) (*emptypb.Empty, error)
-	// 回收站文章列表
+	// 回收站文章列表：分页查询已删除的文章记录
 	ListRecycleArticle(context.Context, *ListArticleRequest) (*ListArticleReply, error)
-	// 恢复回收站文章
+	// 恢复回收站文章：支持按文章 ID 批量恢复已删除文章
 	RestoreRecycleArticle(context.Context, *RestoreArticleRequest) (*emptypb.Empty, error)
-	// 从回收站删除文章
+	// 彻底删除回收站文章：按文章 ID 从回收站永久删除文章
 	DeleteRecycleArticle(context.Context, *DeleteArticleRequest) (*emptypb.Empty, error)
-	// 清空回收站
+	// 清空文章回收站：永久删除回收站中的全部文章
 	EmptyRecycleArticle(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
-	// 搜索文章
+	// 搜索文章：根据关键词和筛选条件执行全文检索
 	SearchArticle(context.Context, *ListArticleRequest) (*SearchArticleReply, error)
-	// 相关文章
+	// 相关文章：根据当前文章返回推荐的相关文章列表
 	GetRelatedArticles(context.Context, *GetArticleRequest) (*ListArticleReply, error)
 }
 

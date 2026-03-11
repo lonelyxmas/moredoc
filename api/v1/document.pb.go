@@ -1747,39 +1747,39 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type DocumentAPIClient interface {
-	// 针对首页的文档查询
+	// 首页文档推荐：返回首页场景下按分类聚合的文档列表
 	ListDocumentForHome(ctx context.Context, in *ListDocumentForHomeRequest, opts ...grpc.CallOption) (*ListDocumentForHomeResponse, error)
-	// 设置文档推荐
+	// 设置文档推荐：批量调整文档推荐状态或刷新推荐时间
 	SetDocumentRecommend(ctx context.Context, in *SetDocumentRecommendRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 创建文档
+	// 创建文档：批量提交附件生成文档记录并写入基础信息
 	CreateDocument(ctx context.Context, in *CreateDocumentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 更新文档
+	// 更新文档：根据文档 ID 修改标题、描述、价格和分类等信息
 	UpdateDocument(ctx context.Context, in *Document, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 删除文档
+	// 删除文档：支持按文档 ID 批量删除文档到回收站
 	DeleteDocument(ctx context.Context, in *DeleteDocumentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 查询文档
+	// 获取文档：根据文档 ID 或 UUID 查询文档详情
 	GetDocument(ctx context.Context, in *GetDocumentRequest, opts ...grpc.CallOption) (*Document, error)
-	// 根据文档ID查询当前文档的相关文档
+	// 相关文档：根据当前文档推荐相似或相关的文档列表
 	GetRelatedDocuments(ctx context.Context, in *Document, opts ...grpc.CallOption) (*ListDocumentReply, error)
-	// 根据文档ID，获取文档下载链接
+	// 获取下载链接：根据文档信息生成当前用户可用的下载地址
 	DownloadDocument(ctx context.Context, in *Document, opts ...grpc.CallOption) (*DownloadDocumentReply, error)
-	// 批量审核文档
+	// 审核文档：批量更新文档审核状态
 	CheckDocument(ctx context.Context, in *CheckDocumentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 文档列表查询
+	// 文档列表：按关键词、分类、作者、状态和语言分页查询文档
 	ListDocument(ctx context.Context, in *ListDocumentRequest, opts ...grpc.CallOption) (*ListDocumentReply, error)
-	// 文档搜索
+	// 搜索文档：根据全文检索条件返回匹配文档和耗时信息
 	SearchDocument(ctx context.Context, in *SearchDocumentRequest, opts ...grpc.CallOption) (*SearchDocumentReply, error)
-	// 设置文档评分
+	// 设置文档评分：提交当前用户对文档的评分结果
 	SetDocumentScore(ctx context.Context, in *DocumentScore, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 获取当前登录用户的文档评分
+	// 获取我的文档评分：查询当前登录用户对指定文档的评分记录
 	GetDocumentScore(ctx context.Context, in *DocumentScore, opts ...grpc.CallOption) (*DocumentScore, error)
-	// 将文档一键设置为重转
+	// 触发文档重转：将待处理文档标记为重新转换预览文件
 	SetDocumentReconvert(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 批量更新文档分类
+	// 批量设置文档分类：为多篇文档统一更新所属分类
 	SetDocumentsCategory(ctx context.Context, in *SetDocumentsCategoryRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 批量更新文档所属语言
+	// 批量设置文档语言：为多篇文档统一更新语言标签
 	SetDocumentsLanguage(ctx context.Context, in *SetDocumentsLanguageRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 下载待审核的文档(只有待审核、审核拒绝的文档才能下载)
+	// 下载待审核文档：为待审核或审核拒绝的文档生成下载地址
 	DownloadDocumentToBeReviewed(ctx context.Context, in *Document, opts ...grpc.CallOption) (*DownloadDocumentReply, error)
 }
 
@@ -1946,39 +1946,39 @@ func (c *documentAPIClient) DownloadDocumentToBeReviewed(ctx context.Context, in
 
 // DocumentAPIServer is the server API for DocumentAPI service.
 type DocumentAPIServer interface {
-	// 针对首页的文档查询
+	// 首页文档推荐：返回首页场景下按分类聚合的文档列表
 	ListDocumentForHome(context.Context, *ListDocumentForHomeRequest) (*ListDocumentForHomeResponse, error)
-	// 设置文档推荐
+	// 设置文档推荐：批量调整文档推荐状态或刷新推荐时间
 	SetDocumentRecommend(context.Context, *SetDocumentRecommendRequest) (*emptypb.Empty, error)
-	// 创建文档
+	// 创建文档：批量提交附件生成文档记录并写入基础信息
 	CreateDocument(context.Context, *CreateDocumentRequest) (*emptypb.Empty, error)
-	// 更新文档
+	// 更新文档：根据文档 ID 修改标题、描述、价格和分类等信息
 	UpdateDocument(context.Context, *Document) (*emptypb.Empty, error)
-	// 删除文档
+	// 删除文档：支持按文档 ID 批量删除文档到回收站
 	DeleteDocument(context.Context, *DeleteDocumentRequest) (*emptypb.Empty, error)
-	// 查询文档
+	// 获取文档：根据文档 ID 或 UUID 查询文档详情
 	GetDocument(context.Context, *GetDocumentRequest) (*Document, error)
-	// 根据文档ID查询当前文档的相关文档
+	// 相关文档：根据当前文档推荐相似或相关的文档列表
 	GetRelatedDocuments(context.Context, *Document) (*ListDocumentReply, error)
-	// 根据文档ID，获取文档下载链接
+	// 获取下载链接：根据文档信息生成当前用户可用的下载地址
 	DownloadDocument(context.Context, *Document) (*DownloadDocumentReply, error)
-	// 批量审核文档
+	// 审核文档：批量更新文档审核状态
 	CheckDocument(context.Context, *CheckDocumentRequest) (*emptypb.Empty, error)
-	// 文档列表查询
+	// 文档列表：按关键词、分类、作者、状态和语言分页查询文档
 	ListDocument(context.Context, *ListDocumentRequest) (*ListDocumentReply, error)
-	// 文档搜索
+	// 搜索文档：根据全文检索条件返回匹配文档和耗时信息
 	SearchDocument(context.Context, *SearchDocumentRequest) (*SearchDocumentReply, error)
-	// 设置文档评分
+	// 设置文档评分：提交当前用户对文档的评分结果
 	SetDocumentScore(context.Context, *DocumentScore) (*emptypb.Empty, error)
-	// 获取当前登录用户的文档评分
+	// 获取我的文档评分：查询当前登录用户对指定文档的评分记录
 	GetDocumentScore(context.Context, *DocumentScore) (*DocumentScore, error)
-	// 将文档一键设置为重转
+	// 触发文档重转：将待处理文档标记为重新转换预览文件
 	SetDocumentReconvert(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
-	// 批量更新文档分类
+	// 批量设置文档分类：为多篇文档统一更新所属分类
 	SetDocumentsCategory(context.Context, *SetDocumentsCategoryRequest) (*emptypb.Empty, error)
-	// 批量更新文档所属语言
+	// 批量设置文档语言：为多篇文档统一更新语言标签
 	SetDocumentsLanguage(context.Context, *SetDocumentsLanguageRequest) (*emptypb.Empty, error)
-	// 下载待审核的文档(只有待审核、审核拒绝的文档才能下载)
+	// 下载待审核文档：为待审核或审核拒绝的文档生成下载地址
 	DownloadDocumentToBeReviewed(context.Context, *Document) (*DownloadDocumentReply, error)
 }
 
@@ -2429,13 +2429,13 @@ var _DocumentAPI_serviceDesc = grpc.ServiceDesc{
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type RecycleAPIClient interface {
-	// 文档回收站列表
+	// 回收站列表：分页查询已进入回收站的文档
 	ListRecycleDocument(ctx context.Context, in *ListDocumentRequest, opts ...grpc.CallOption) (*ListDocumentReply, error)
-	// 恢复回收站文档，支持恢复单个文档或者是批量恢复
+	// 恢复回收站文档：支持单个或批量恢复已删除文档
 	RecoverRecycleDocument(ctx context.Context, in *RecoverRecycleDocumentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 删除回收站文档
+	// 彻底删除回收站文档：按文档 ID 从回收站永久移除
 	DeleteRecycleDocument(ctx context.Context, in *DeleteDocumentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 清空回收站文档
+	// 清空回收站：永久删除回收站中的全部文档记录
 	ClearRecycleDocument(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -2485,13 +2485,13 @@ func (c *recycleAPIClient) ClearRecycleDocument(ctx context.Context, in *emptypb
 
 // RecycleAPIServer is the server API for RecycleAPI service.
 type RecycleAPIServer interface {
-	// 文档回收站列表
+	// 回收站列表：分页查询已进入回收站的文档
 	ListRecycleDocument(context.Context, *ListDocumentRequest) (*ListDocumentReply, error)
-	// 恢复回收站文档，支持恢复单个文档或者是批量恢复
+	// 恢复回收站文档：支持单个或批量恢复已删除文档
 	RecoverRecycleDocument(context.Context, *RecoverRecycleDocumentRequest) (*emptypb.Empty, error)
-	// 删除回收站文档
+	// 彻底删除回收站文档：按文档 ID 从回收站永久移除
 	DeleteRecycleDocument(context.Context, *DeleteDocumentRequest) (*emptypb.Empty, error)
-	// 清空回收站文档
+	// 清空回收站：永久删除回收站中的全部文档记录
 	ClearRecycleDocument(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 }
 

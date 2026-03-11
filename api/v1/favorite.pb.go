@@ -443,13 +443,13 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type FavoriteAPIClient interface {
-	// 添加收藏
+	// 添加收藏：将指定文档或文章加入当前用户收藏夹
 	CreateFavorite(ctx context.Context, in *Favorite, opts ...grpc.CallOption) (*Favorite, error)
-	// 取消收藏
+	// 取消收藏：支持按收藏记录 ID 批量移除收藏
 	DeleteFavorite(ctx context.Context, in *DeleteFavoriteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 根据文章id，查询用户是否有收藏某篇文档
+	// 查询收藏状态：根据文档或文章 ID 判断当前用户是否已收藏
 	GetFavorite(ctx context.Context, in *GetFavoriteRequest, opts ...grpc.CallOption) (*Favorite, error)
-	// 查询用户的收藏
+	// 收藏列表：分页查询当前用户的文档或文章收藏记录
 	ListFavorite(ctx context.Context, in *ListFavoriteRequest, opts ...grpc.CallOption) (*ListFavoriteReply, error)
 }
 
@@ -499,13 +499,13 @@ func (c *favoriteAPIClient) ListFavorite(ctx context.Context, in *ListFavoriteRe
 
 // FavoriteAPIServer is the server API for FavoriteAPI service.
 type FavoriteAPIServer interface {
-	// 添加收藏
+	// 添加收藏：将指定文档或文章加入当前用户收藏夹
 	CreateFavorite(context.Context, *Favorite) (*Favorite, error)
-	// 取消收藏
+	// 取消收藏：支持按收藏记录 ID 批量移除收藏
 	DeleteFavorite(context.Context, *DeleteFavoriteRequest) (*emptypb.Empty, error)
-	// 根据文章id，查询用户是否有收藏某篇文档
+	// 查询收藏状态：根据文档或文章 ID 判断当前用户是否已收藏
 	GetFavorite(context.Context, *GetFavoriteRequest) (*Favorite, error)
-	// 查询用户的收藏
+	// 收藏列表：分页查询当前用户的文档或文章收藏记录
 	ListFavorite(context.Context, *ListFavoriteRequest) (*ListFavoriteReply, error)
 }
 

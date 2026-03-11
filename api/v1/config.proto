@@ -199,17 +199,17 @@ message Release {
   string current = 7;    // 当前版本
 }
 
-// 配置服务
+// 配置 API 服务，提供站点配置、运行状态和版本信息管理能力
 service ConfigAPI {
 
-  // 获取系统配置（针对所有用户，只读）
+  // 获取站点设置：返回前台可读取的系统、展示、安全和语言配置
   rpc GetSettings(google.protobuf.Empty) returns (Settings) {
     option (google.api.http) = {
       get : "/api/v1/settings"
     };
   }
 
-  // UpdateConfig 更新配置
+  // 更新配置：批量保存后台配置项的键值内容
   rpc UpdateConfig(Configs) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : '/api/v1/config',
@@ -217,63 +217,63 @@ service ConfigAPI {
     };
   }
 
-  // ListConfig 查询配置项
+  // 配置项列表：按配置分类查询后台配置项明细
   rpc ListConfig(ListConfigRequest) returns (Configs) {
     option (google.api.http) = {
       get : '/api/v1/config/list',
     };
   }
 
-  // 获取系统配置
+  // 获取系统统计：返回用户、文档、评论等核心统计指标
   rpc GetStats(google.protobuf.Empty) returns (Stats) {
     option (google.api.http) = {
       get : "/api/v1/stats"
     };
   }
 
-  // 获取系统环境依赖检测
+  // 获取环境依赖：检查程序运行依赖及安装状态
   rpc GetEnvs(google.protobuf.Empty) returns (Envs) {
     option (google.api.http) = {
       get : "/api/v1/envs"
     };
   }
 
-  // 更新站点地图
+  // 更新站点地图：重新生成或刷新站点 sitemap 数据
   rpc UpdateSitemap(google.protobuf.Empty) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : "/api/v1/sitemap"
     };
   }
 
-  // 获取设备信息
+  // 获取设备信息：返回当前服务所在机器的 CPU、内存和磁盘状态
   rpc GetDeviceInfo(google.protobuf.Empty) returns (DeviceInfo) {
     option (google.api.http) = {
       get : "/api/v1/device"
     };
   }
 
-  // 设置SQL mode，只针对id=1的用户，且sql_mode只处理only_full_group_by问题
+  // 设置 SQL Mode：修正数据库 only_full_group_by 等兼容性配置
   rpc SetSQLMode(google.protobuf.Empty) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : "/api/v1/sqlmode"
     };
   }
 
-  // 获取最近发布版本
+  // 获取最新版本：读取远程发布源中的最新版本信息
   rpc GetLatestRelease(google.protobuf.Empty) returns (Release) {
     option (google.api.http) = {
       get : "/api/v1/release"
     };
   }
 
-  // 更新最新发布版本
+  // 刷新最新版本：主动重新拉取远程版本发布信息
   rpc RefreshLatestRelease(google.protobuf.Empty) returns (Release) {
     option (google.api.http) = {
       post : "/api/v1/release",
     };
   }
 
-  // 忽略版本，设置ignore字段
+  // 忽略版本：记录指定版本为忽略状态，避免重复提示
   rpc IgnoreRelease(Release) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : "/api/v1/release/ignore",
@@ -281,7 +281,7 @@ service ConfigAPI {
     };
   }
 
-  // 设置release源，主要是更新 source 字段
+  // 设置发布源：切换版本检查使用的来源地址或渠道
   rpc SetReleaseSource(Release) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : "/api/v1/release/source",

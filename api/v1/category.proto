@@ -55,10 +55,10 @@ message DeleteCategoryRequest { repeated int64 id = 1; }
 // 获取分类请求
 message GetCategoryRequest { int64 id = 1; }
 
-// 文档分类API服务
+// 分类 API 服务，提供文档分类的维护与列表查询能力
 service CategoryAPI {
 
-  // 创建分类
+  // 创建分类：新增一个文档分类节点并保存分类属性
   rpc CreateCategory(Category) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post : '/api/v1/category',
@@ -66,7 +66,7 @@ service CategoryAPI {
     };
   }
 
-  // 更新分类
+  // 更新分类：根据分类 ID 修改名称、封面、排序和展示配置
   rpc UpdateCategory(Category) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : '/api/v1/category',
@@ -74,21 +74,21 @@ service CategoryAPI {
     };
   }
 
-  // 删除分类
+  // 删除分类：支持按分类 ID 批量删除分类节点
   rpc DeleteCategory(DeleteCategoryRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       delete : '/api/v1/category',
     };
   }
 
-  // 获取分类
+  // 获取分类：根据分类 ID 查询单个分类详情
   rpc GetCategory(GetCategoryRequest) returns (Category) {
     option (google.api.http) = {
       get : '/api/v1/category',
     };
   }
 
-  // 分类列表
+  // 分类列表：按父分类、启用状态和类型分页查询分类
   rpc ListCategory(ListCategoryRequest) returns (ListCategoryReply) {
     option (google.api.http) = {
       get : '/api/v1/category/list',

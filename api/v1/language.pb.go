@@ -420,10 +420,15 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type LanguageAPIClient interface {
+	// 创建语言：新增一种站点支持的语言配置
 	CreateLanguage(ctx context.Context, in *Language, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// 更新语言：根据语言 ID 修改名称、编码和排序信息
 	UpdateLanguage(ctx context.Context, in *Language, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// 批量更新语言状态：统一启用或停用指定语言项
 	UpdateLanguageStatus(ctx context.Context, in *UpdateLanguageStatusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// 语言列表：按关键词和启用状态分页查询语言配置
 	ListLanguage(ctx context.Context, in *ListLanguageRequest, opts ...grpc.CallOption) (*ListLanguageReply, error)
+	// 删除语言：支持按语言 ID 批量删除语言配置
 	DeleteLanguage(ctx context.Context, in *DeleteLanguageRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -482,10 +487,15 @@ func (c *languageAPIClient) DeleteLanguage(ctx context.Context, in *DeleteLangua
 
 // LanguageAPIServer is the server API for LanguageAPI service.
 type LanguageAPIServer interface {
+	// 创建语言：新增一种站点支持的语言配置
 	CreateLanguage(context.Context, *Language) (*emptypb.Empty, error)
+	// 更新语言：根据语言 ID 修改名称、编码和排序信息
 	UpdateLanguage(context.Context, *Language) (*emptypb.Empty, error)
+	// 批量更新语言状态：统一启用或停用指定语言项
 	UpdateLanguageStatus(context.Context, *UpdateLanguageStatusRequest) (*emptypb.Empty, error)
+	// 语言列表：按关键词和启用状态分页查询语言配置
 	ListLanguage(context.Context, *ListLanguageRequest) (*ListLanguageReply, error)
+	// 删除语言：支持按语言 ID 批量删除语言配置
 	DeleteLanguage(context.Context, *DeleteLanguageRequest) (*emptypb.Empty, error)
 }
 

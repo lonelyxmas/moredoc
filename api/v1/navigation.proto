@@ -44,7 +44,9 @@ message ListNavigationReply {
   repeated Navigation navigation = 2;
 }
 
+// 导航 API 服务，提供导航链接的新增、编辑、删除和查询能力
 service NavigationAPI {
+  // 创建导航：新增一条站点导航并返回创建后的数据
   rpc CreateNavigation(Navigation) returns (Navigation) {
     option (google.api.http) = {
       post : '/api/v1/navigation',
@@ -52,6 +54,7 @@ service NavigationAPI {
     };
   }
 
+  // 更新导航：根据导航 ID 修改名称、链接、排序和固定状态
   rpc UpdateNavigation(Navigation) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : '/api/v1/navigation',
@@ -59,6 +62,7 @@ service NavigationAPI {
     };
   }
 
+  // 删除导航：支持按导航 ID 批量删除导航项
   rpc DeleteNavigation(DeleteNavigationRequest)
       returns (google.protobuf.Empty) {
     option (google.api.http) = {
@@ -66,12 +70,14 @@ service NavigationAPI {
     };
   }
 
+  // 获取导航：根据导航 ID 查询单个导航项详情
   rpc GetNavigation(GetNavigationRequest) returns (Navigation) {
     option (google.api.http) = {
       get : '/api/v1/navigation',
     };
   }
 
+  // 导航列表：按关键词和排序规则分页查询导航项
   rpc ListNavigation(ListNavigationRequest) returns (ListNavigationReply) {
     option (google.api.http) = {
       get : '/api/v1/navigation/list',

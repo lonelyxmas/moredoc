@@ -562,11 +562,15 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type PunishmentAPIClient interface {
+	// 创建惩罚：批量为用户设置禁言、限制等处罚措施
 	CreatePunishment(ctx context.Context, in *CreatePunishmentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// 更新惩罚：修改处罚记录的状态、原因或截止时间
 	UpdatePunishment(ctx context.Context, in *Punishment, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// 获取惩罚：根据处罚记录 ID 查询单条处罚详情
 	GetPunishment(ctx context.Context, in *GetPunishmentRequest, opts ...grpc.CallOption) (*Punishment, error)
+	// 惩罚列表：按用户、处罚类型和状态分页查询处罚记录
 	ListPunishment(ctx context.Context, in *ListPunishmentRequest, opts ...grpc.CallOption) (*ListPunishmentReply, error)
-	// 批量取消惩罚
+	// 取消惩罚：按处罚记录 ID 批量解除已生效的处罚
 	CancelPunishment(ctx context.Context, in *CancelPunishmentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -625,11 +629,15 @@ func (c *punishmentAPIClient) CancelPunishment(ctx context.Context, in *CancelPu
 
 // PunishmentAPIServer is the server API for PunishmentAPI service.
 type PunishmentAPIServer interface {
+	// 创建惩罚：批量为用户设置禁言、限制等处罚措施
 	CreatePunishment(context.Context, *CreatePunishmentRequest) (*emptypb.Empty, error)
+	// 更新惩罚：修改处罚记录的状态、原因或截止时间
 	UpdatePunishment(context.Context, *Punishment) (*emptypb.Empty, error)
+	// 获取惩罚：根据处罚记录 ID 查询单条处罚详情
 	GetPunishment(context.Context, *GetPunishmentRequest) (*Punishment, error)
+	// 惩罚列表：按用户、处罚类型和状态分页查询处罚记录
 	ListPunishment(context.Context, *ListPunishmentRequest) (*ListPunishmentReply, error)
-	// 批量取消惩罚
+	// 取消惩罚：按处罚记录 ID 批量解除已生效的处罚
 	CancelPunishment(context.Context, *CancelPunishmentRequest) (*emptypb.Empty, error)
 }
 

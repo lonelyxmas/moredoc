@@ -410,7 +410,9 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type SearchRecordAPIClient interface {
+	// 删除搜索记录：支持按记录 ID 批量删除搜索日志
 	DeleteSearchRecord(ctx context.Context, in *DeleteSearchRecordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// 搜索记录列表：按关键词、用户和 IP 分页查询搜索日志
 	ListSearchRecord(ctx context.Context, in *ListSearchRecordRequest, opts ...grpc.CallOption) (*ListSearchRecordReply, error)
 }
 
@@ -442,7 +444,9 @@ func (c *searchRecordAPIClient) ListSearchRecord(ctx context.Context, in *ListSe
 
 // SearchRecordAPIServer is the server API for SearchRecordAPI service.
 type SearchRecordAPIServer interface {
+	// 删除搜索记录：支持按记录 ID 批量删除搜索日志
 	DeleteSearchRecord(context.Context, *DeleteSearchRecordRequest) (*emptypb.Empty, error)
+	// 搜索记录列表：按关键词、用户和 IP 分页查询搜索日志
 	ListSearchRecord(context.Context, *ListSearchRecordRequest) (*ListSearchRecordReply, error)
 }
 

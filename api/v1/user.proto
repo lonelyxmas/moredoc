@@ -198,8 +198,9 @@ message ListUserDownloadReply {
   repeated Download download = 2; // 下载列表
 }
 
+// 用户 API 服务，提供注册登录、资料维护、权限查询和用户行为能力
 service UserAPI {
-  // 用户注册
+  // 用户注册：通过用户名、密码、邮箱等信息创建账号并返回登录态
   rpc Register(RegisterAndLoginRequest) returns (LoginReply) {
     option (google.api.http) = {
       post : '/api/v1/user/register',
@@ -207,7 +208,7 @@ service UserAPI {
     };
   }
 
-  // 用户登录
+  // 用户登录：校验账号凭证并返回登录令牌和用户信息
   rpc Login(RegisterAndLoginRequest) returns (LoginReply) {
     option (google.api.http) = {
       post : '/api/v1/user/login',
@@ -215,22 +216,21 @@ service UserAPI {
     };
   }
 
-  // 退出登录
+  // 退出登录：使当前登录态失效
   rpc Logout(google.protobuf.Empty) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       delete : '/api/v1/user/logout',
     };
   }
 
-  // 查询用户信息。如果传递了Id参数，则表示查询用户的公开信息，否则查询当前用户的私有信息
+  // 获取用户信息：可查询指定用户公开资料，或查询当前用户的完整资料
   rpc GetUser(GetUserRequest) returns (User) {
     option (google.api.http) = {
       get : '/api/v1/user',
     };
   }
 
-  // 更新用户密码。如果不传用户ID，则表示更新当前用户的密码；
-  // 如果穿了用户ID，则表示更新指定用户的密码，这时需要验证当前用户的权限
+  // 更新用户密码：可修改当前用户密码，管理员也可代为重置指定用户密码
   rpc UpdateUserPassword(UpdateUserPasswordRequest)
       returns (google.protobuf.Empty) {
     option (google.api.http) = {
@@ -239,8 +239,7 @@ service UserAPI {
     };
   }
 
-  // 更新用户密码。如果不传用户ID，则表示更新当前用户的密码；
-  // 如果穿了用户ID，则表示更新指定用户的密码，这时需要验证当前用户的权限
+  // 更新用户资料：修改头像、签名、地址等基础资料信息
   rpc UpdateUserProfile(User) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : '/api/v1/user/profile',
@@ -248,14 +247,14 @@ service UserAPI {
     };
   }
 
-  // 删除用户。需要验证用户权限
+  // 删除用户：支持按用户 ID 批量删除用户，需校验操作权限
   rpc DeleteUser(DeleteUserRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       delete : '/api/v1/user',
     };
   }
 
-  // 新增用户
+  // 创建用户：管理员直接新增后台用户账号
   rpc AddUser(SetUserRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post : '/api/v1/user',
@@ -263,7 +262,7 @@ service UserAPI {
     };
   }
 
-  // 设置用户
+  // 设置用户：管理员更新用户基础信息和所属用户组
   rpc SetUser(SetUserRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : '/api/v1/user',
@@ -271,22 +270,21 @@ service UserAPI {
     };
   }
 
-  // 查询用户列表。对于非管理员，返回相应用户的公开信息；
-  // 对于管理员，返回相应用户的绝大部分信息
+  // 用户列表：分页查询用户，可按用户组、状态和关键词筛选
   rpc ListUser(ListUserRequest) returns (ListUserReply) {
     option (google.api.http) = {
       get : '/api/v1/user/list',
     };
   }
 
-  // GetUserCaptcha 获取用户验证码
+  // 获取验证码：根据业务场景返回是否启用验证码及验证码内容
   rpc GetUserCaptcha(GetUserCaptchaRequest) returns (GetUserCaptchaReply) {
     option (google.api.http) = {
       get : '/api/v1/user/captcha',
     };
   }
 
-  // GetUserCaptcha 获取用户验证码
+  // 获取用户权限：返回当前登录用户拥有的权限集合
   rpc GetUserPermissions(google.protobuf.Empty)
       returns (GetUserPermissionsReply) {
     option (google.api.http) = {
@@ -294,7 +292,7 @@ service UserAPI {
     };
   }
 
-  // 用户是否可以上传文档
+  // 检查上传权限：判断当前用户是否具备上传文档资格
   rpc CanIUploadDocument(google.protobuf.Empty)
       returns (google.protobuf.Empty) {
     option (google.api.http) = {
@@ -302,7 +300,7 @@ service UserAPI {
     };
   }
 
-  // 用户是否可以发布文章
+  // 检查发文权限：判断当前用户是否具备发布文章资格
   rpc CanIPublishArticle(google.protobuf.Empty)
       returns (google.protobuf.Empty) {
     option (google.api.http) = {
@@ -310,28 +308,28 @@ service UserAPI {
     };
   }
 
-  // 获取用户动态，包括获取关注的用户的动态
+  // 用户动态列表：查询当前用户及其关注对象的动态内容
   rpc ListUserDynamic(ListUserDynamicRequest) returns (ListUserDynamicReply) {
     option (google.api.http) = {
       get : '/api/v1/user/dynamic',
     };
   }
 
-  // 每日签到
+  // 每日签到：完成当天签到并返回签到记录和奖励信息
   rpc SignToday(google.protobuf.Empty) returns (Sign) {
     option (google.api.http) = {
       put : '/api/v1/user/sign',
     };
   }
 
-  // 获取今日已签到记录
+  // 查询今日签到：获取当前用户当天的签到记录
   rpc GetSignedToday(google.protobuf.Empty) returns (Sign) {
     option (google.api.http) = {
       get : '/api/v1/user/sign',
     };
   }
 
-  // 查询用户的下载记录
+  // 下载记录列表：分页查询当前用户的文档下载记录
   rpc ListUserDownload(ListUserDownloadRequest)
       returns (ListUserDownloadReply) {
     option (google.api.http) = {
@@ -339,13 +337,14 @@ service UserAPI {
     };
   }
 
+  // 用户组列表：返回当前站点可选的用户组集合
   rpc ListUserGroup(google.protobuf.Empty) returns (ListUserGroupReply) {
     option (google.api.http) = {
       get : '/api/v1/user/group',
     };
   }
 
-  // 找回密码：第一步，发送验证码
+  // 找回密码第一步：校验账号并发送找回密码验证码
   rpc FindPasswordStepOne(FindPasswordRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post : '/api/v1/user/findpassword/stepone',
@@ -353,7 +352,7 @@ service UserAPI {
     };
   }
 
-  // 找回密码：第二步，修改密码
+  // 找回密码第二步：校验验证码后重置账号密码
   rpc FindPasswordStepTwo(FindPasswordRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : '/api/v1/user/findpassword/steptwo',
@@ -361,7 +360,7 @@ service UserAPI {
     };
   }
 
-  // 发送邮箱验证码。
+  // 发送邮箱验证码：用于注册或登录等场景的邮箱校验
   rpc SendEmailCode(SendEmailCodeRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post : '/api/v1/user/email/code',

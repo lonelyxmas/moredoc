@@ -1786,29 +1786,29 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ConfigAPIClient interface {
-	// 获取系统配置（针对所有用户，只读）
+	// 获取站点设置：返回前台可读取的系统、展示、安全和语言配置
 	GetSettings(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Settings, error)
-	// UpdateConfig 更新配置
+	// 更新配置：批量保存后台配置项的键值内容
 	UpdateConfig(ctx context.Context, in *Configs, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// ListConfig 查询配置项
+	// 配置项列表：按配置分类查询后台配置项明细
 	ListConfig(ctx context.Context, in *ListConfigRequest, opts ...grpc.CallOption) (*Configs, error)
-	// 获取系统配置
+	// 获取系统统计：返回用户、文档、评论等核心统计指标
 	GetStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Stats, error)
-	// 获取系统环境依赖检测
+	// 获取环境依赖：检查程序运行依赖及安装状态
 	GetEnvs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Envs, error)
-	// 更新站点地图
+	// 更新站点地图：重新生成或刷新站点 sitemap 数据
 	UpdateSitemap(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 获取设备信息
+	// 获取设备信息：返回当前服务所在机器的 CPU、内存和磁盘状态
 	GetDeviceInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*DeviceInfo, error)
-	// 设置SQL mode，只针对id=1的用户，且sql_mode只处理only_full_group_by问题
+	// 设置 SQL Mode：修正数据库 only_full_group_by 等兼容性配置
 	SetSQLMode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 获取最近发布版本
+	// 获取最新版本：读取远程发布源中的最新版本信息
 	GetLatestRelease(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Release, error)
-	// 更新最新发布版本
+	// 刷新最新版本：主动重新拉取远程版本发布信息
 	RefreshLatestRelease(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Release, error)
-	// 忽略版本，设置ignore字段
+	// 忽略版本：记录指定版本为忽略状态，避免重复提示
 	IgnoreRelease(ctx context.Context, in *Release, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 设置release源，主要是更新 source 字段
+	// 设置发布源：切换版本检查使用的来源地址或渠道
 	SetReleaseSource(ctx context.Context, in *Release, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -1930,29 +1930,29 @@ func (c *configAPIClient) SetReleaseSource(ctx context.Context, in *Release, opt
 
 // ConfigAPIServer is the server API for ConfigAPI service.
 type ConfigAPIServer interface {
-	// 获取系统配置（针对所有用户，只读）
+	// 获取站点设置：返回前台可读取的系统、展示、安全和语言配置
 	GetSettings(context.Context, *emptypb.Empty) (*Settings, error)
-	// UpdateConfig 更新配置
+	// 更新配置：批量保存后台配置项的键值内容
 	UpdateConfig(context.Context, *Configs) (*emptypb.Empty, error)
-	// ListConfig 查询配置项
+	// 配置项列表：按配置分类查询后台配置项明细
 	ListConfig(context.Context, *ListConfigRequest) (*Configs, error)
-	// 获取系统配置
+	// 获取系统统计：返回用户、文档、评论等核心统计指标
 	GetStats(context.Context, *emptypb.Empty) (*Stats, error)
-	// 获取系统环境依赖检测
+	// 获取环境依赖：检查程序运行依赖及安装状态
 	GetEnvs(context.Context, *emptypb.Empty) (*Envs, error)
-	// 更新站点地图
+	// 更新站点地图：重新生成或刷新站点 sitemap 数据
 	UpdateSitemap(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
-	// 获取设备信息
+	// 获取设备信息：返回当前服务所在机器的 CPU、内存和磁盘状态
 	GetDeviceInfo(context.Context, *emptypb.Empty) (*DeviceInfo, error)
-	// 设置SQL mode，只针对id=1的用户，且sql_mode只处理only_full_group_by问题
+	// 设置 SQL Mode：修正数据库 only_full_group_by 等兼容性配置
 	SetSQLMode(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
-	// 获取最近发布版本
+	// 获取最新版本：读取远程发布源中的最新版本信息
 	GetLatestRelease(context.Context, *emptypb.Empty) (*Release, error)
-	// 更新最新发布版本
+	// 刷新最新版本：主动重新拉取远程版本发布信息
 	RefreshLatestRelease(context.Context, *emptypb.Empty) (*Release, error)
-	// 忽略版本，设置ignore字段
+	// 忽略版本：记录指定版本为忽略状态，避免重复提示
 	IgnoreRelease(context.Context, *Release) (*emptypb.Empty, error)
-	// 设置release源，主要是更新 source 字段
+	// 设置发布源：切换版本检查使用的来源地址或渠道
 	SetReleaseSource(context.Context, *Release) (*emptypb.Empty, error)
 }
 

@@ -395,17 +395,17 @@
 <a name="api-v1-GroupAPI"></a>
 
 ### GroupAPI
-
+用户组 API 服务，提供用户组和组权限的维护能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateGroup | [Group](#api-v1-Group) | [Group](#api-v1-Group) | 创建用户组 |
-| UpdateGroup | [Group](#api-v1-Group) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新用户组 |
-| DeleteGroup | [DeleteGroupRequest](#api-v1-DeleteGroupRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除用户组 |
-| GetGroup | [GetGroupRequest](#api-v1-GetGroupRequest) | [Group](#api-v1-Group) | 获取用户组 |
-| ListGroup | [ListGroupRequest](#api-v1-ListGroupRequest) | [ListGroupReply](#api-v1-ListGroupReply) | 获取用户组列表 |
-| GetGroupPermission | [GetGroupPermissionRequest](#api-v1-GetGroupPermissionRequest) | [GroupPermissions](#api-v1-GroupPermissions) | 获取用户组权限列表 |
-| UpdateGroupPermission | [UpdateGroupPermissionRequest](#api-v1-UpdateGroupPermissionRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新用户组权限，给用户组设置权限 |
+| CreateGroup | [Group](#api-v1-Group) | [Group](#api-v1-Group) | 创建用户组：新增一个用户组并返回创建后的用户组信息 |
+| UpdateGroup | [Group](#api-v1-Group) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新用户组：根据用户组 ID 修改名称、权限开关和展示属性 |
+| DeleteGroup | [DeleteGroupRequest](#api-v1-DeleteGroupRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除用户组：支持按用户组 ID 批量删除用户组 |
+| GetGroup | [GetGroupRequest](#api-v1-GetGroupRequest) | [Group](#api-v1-Group) | 获取用户组：根据用户组 ID 或名称查询单个用户组详情 |
+| ListGroup | [ListGroupRequest](#api-v1-ListGroupRequest) | [ListGroupReply](#api-v1-ListGroupReply) | 用户组列表：分页查询用户组并可指定返回字段 |
+| GetGroupPermission | [GetGroupPermissionRequest](#api-v1-GetGroupPermissionRequest) | [GroupPermissions](#api-v1-GroupPermissions) | 获取用户组权限：返回指定用户组绑定的权限 ID 列表 |
+| UpdateGroupPermission | [UpdateGroupPermissionRequest](#api-v1-UpdateGroupPermissionRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新用户组权限：为指定用户组批量设置权限集合 |
 
  
 
@@ -521,15 +521,15 @@
 <a name="api-v1-CategoryAPI"></a>
 
 ### CategoryAPI
-文档分类API服务
+分类 API 服务，提供文档分类的维护与列表查询能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateCategory | [Category](#api-v1-Category) | [.google.protobuf.Empty](#google-protobuf-Empty) | 创建分类 |
-| UpdateCategory | [Category](#api-v1-Category) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新分类 |
-| DeleteCategory | [DeleteCategoryRequest](#api-v1-DeleteCategoryRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除分类 |
-| GetCategory | [GetCategoryRequest](#api-v1-GetCategoryRequest) | [Category](#api-v1-Category) | 获取分类 |
-| ListCategory | [ListCategoryRequest](#api-v1-ListCategoryRequest) | [ListCategoryReply](#api-v1-ListCategoryReply) | 分类列表 |
+| CreateCategory | [Category](#api-v1-Category) | [.google.protobuf.Empty](#google-protobuf-Empty) | 创建分类：新增一个文档分类节点并保存分类属性 |
+| UpdateCategory | [Category](#api-v1-Category) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新分类：根据分类 ID 修改名称、封面、排序和展示配置 |
+| DeleteCategory | [DeleteCategoryRequest](#api-v1-DeleteCategoryRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除分类：支持按分类 ID 批量删除分类节点 |
+| GetCategory | [GetCategoryRequest](#api-v1-GetCategoryRequest) | [Category](#api-v1-Category) | 获取分类：根据分类 ID 查询单个分类详情 |
+| ListCategory | [ListCategoryRequest](#api-v1-ListCategoryRequest) | [ListCategoryReply](#api-v1-ListCategoryReply) | 分类列表：按父分类、启用状态和类型分页查询分类 |
 
  
 
@@ -925,40 +925,40 @@
 <a name="api-v1-DocumentAPI"></a>
 
 ### DocumentAPI
-文档服务
+文档 API 服务，提供文档创建、查询、检索、评分和推荐管理能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| ListDocumentForHome | [ListDocumentForHomeRequest](#api-v1-ListDocumentForHomeRequest) | [ListDocumentForHomeResponse](#api-v1-ListDocumentForHomeResponse) | 针对首页的文档查询 |
-| SetDocumentRecommend | [SetDocumentRecommendRequest](#api-v1-SetDocumentRecommendRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 设置文档推荐 |
-| CreateDocument | [CreateDocumentRequest](#api-v1-CreateDocumentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 创建文档 |
-| UpdateDocument | [Document](#api-v1-Document) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新文档 |
-| DeleteDocument | [DeleteDocumentRequest](#api-v1-DeleteDocumentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除文档 |
-| GetDocument | [GetDocumentRequest](#api-v1-GetDocumentRequest) | [Document](#api-v1-Document) | 查询文档 |
-| GetRelatedDocuments | [Document](#api-v1-Document) | [ListDocumentReply](#api-v1-ListDocumentReply) | 根据文档ID查询当前文档的相关文档 |
-| DownloadDocument | [Document](#api-v1-Document) | [DownloadDocumentReply](#api-v1-DownloadDocumentReply) | 根据文档ID，获取文档下载链接 |
-| CheckDocument | [CheckDocumentRequest](#api-v1-CheckDocumentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 批量审核文档 |
-| ListDocument | [ListDocumentRequest](#api-v1-ListDocumentRequest) | [ListDocumentReply](#api-v1-ListDocumentReply) | 文档列表查询 |
-| SearchDocument | [SearchDocumentRequest](#api-v1-SearchDocumentRequest) | [SearchDocumentReply](#api-v1-SearchDocumentReply) | 文档搜索 |
-| SetDocumentScore | [DocumentScore](#api-v1-DocumentScore) | [.google.protobuf.Empty](#google-protobuf-Empty) | 设置文档评分 |
-| GetDocumentScore | [DocumentScore](#api-v1-DocumentScore) | [DocumentScore](#api-v1-DocumentScore) | 获取当前登录用户的文档评分 |
-| SetDocumentReconvert | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 将文档一键设置为重转 |
-| SetDocumentsCategory | [SetDocumentsCategoryRequest](#api-v1-SetDocumentsCategoryRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 批量更新文档分类 |
-| SetDocumentsLanguage | [SetDocumentsLanguageRequest](#api-v1-SetDocumentsLanguageRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 批量更新文档所属语言 |
-| DownloadDocumentToBeReviewed | [Document](#api-v1-Document) | [DownloadDocumentReply](#api-v1-DownloadDocumentReply) | 下载待审核的文档(只有待审核、审核拒绝的文档才能下载) |
+| ListDocumentForHome | [ListDocumentForHomeRequest](#api-v1-ListDocumentForHomeRequest) | [ListDocumentForHomeResponse](#api-v1-ListDocumentForHomeResponse) | 首页文档推荐：返回首页场景下按分类聚合的文档列表 |
+| SetDocumentRecommend | [SetDocumentRecommendRequest](#api-v1-SetDocumentRecommendRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 设置文档推荐：批量调整文档推荐状态或刷新推荐时间 |
+| CreateDocument | [CreateDocumentRequest](#api-v1-CreateDocumentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 创建文档：批量提交附件生成文档记录并写入基础信息 |
+| UpdateDocument | [Document](#api-v1-Document) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新文档：根据文档 ID 修改标题、描述、价格和分类等信息 |
+| DeleteDocument | [DeleteDocumentRequest](#api-v1-DeleteDocumentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除文档：支持按文档 ID 批量删除文档到回收站 |
+| GetDocument | [GetDocumentRequest](#api-v1-GetDocumentRequest) | [Document](#api-v1-Document) | 获取文档：根据文档 ID 或 UUID 查询文档详情 |
+| GetRelatedDocuments | [Document](#api-v1-Document) | [ListDocumentReply](#api-v1-ListDocumentReply) | 相关文档：根据当前文档推荐相似或相关的文档列表 |
+| DownloadDocument | [Document](#api-v1-Document) | [DownloadDocumentReply](#api-v1-DownloadDocumentReply) | 获取下载链接：根据文档信息生成当前用户可用的下载地址 |
+| CheckDocument | [CheckDocumentRequest](#api-v1-CheckDocumentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 审核文档：批量更新文档审核状态 |
+| ListDocument | [ListDocumentRequest](#api-v1-ListDocumentRequest) | [ListDocumentReply](#api-v1-ListDocumentReply) | 文档列表：按关键词、分类、作者、状态和语言分页查询文档 |
+| SearchDocument | [SearchDocumentRequest](#api-v1-SearchDocumentRequest) | [SearchDocumentReply](#api-v1-SearchDocumentReply) | 搜索文档：根据全文检索条件返回匹配文档和耗时信息 |
+| SetDocumentScore | [DocumentScore](#api-v1-DocumentScore) | [.google.protobuf.Empty](#google-protobuf-Empty) | 设置文档评分：提交当前用户对文档的评分结果 |
+| GetDocumentScore | [DocumentScore](#api-v1-DocumentScore) | [DocumentScore](#api-v1-DocumentScore) | 获取我的文档评分：查询当前登录用户对指定文档的评分记录 |
+| SetDocumentReconvert | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 触发文档重转：将待处理文档标记为重新转换预览文件 |
+| SetDocumentsCategory | [SetDocumentsCategoryRequest](#api-v1-SetDocumentsCategoryRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 批量设置文档分类：为多篇文档统一更新所属分类 |
+| SetDocumentsLanguage | [SetDocumentsLanguageRequest](#api-v1-SetDocumentsLanguageRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 批量设置文档语言：为多篇文档统一更新语言标签 |
+| DownloadDocumentToBeReviewed | [Document](#api-v1-Document) | [DownloadDocumentReply](#api-v1-DownloadDocumentReply) | 下载待审核文档：为待审核或审核拒绝的文档生成下载地址 |
 
 
 <a name="api-v1-RecycleAPI"></a>
 
 ### RecycleAPI
-
+回收站 API 服务，提供已删除文档的查询、恢复和清理能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| ListRecycleDocument | [ListDocumentRequest](#api-v1-ListDocumentRequest) | [ListDocumentReply](#api-v1-ListDocumentReply) | 文档回收站列表 |
-| RecoverRecycleDocument | [RecoverRecycleDocumentRequest](#api-v1-RecoverRecycleDocumentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 恢复回收站文档，支持恢复单个文档或者是批量恢复 |
-| DeleteRecycleDocument | [DeleteDocumentRequest](#api-v1-DeleteDocumentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除回收站文档 |
-| ClearRecycleDocument | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 清空回收站文档 |
+| ListRecycleDocument | [ListDocumentRequest](#api-v1-ListDocumentRequest) | [ListDocumentReply](#api-v1-ListDocumentReply) | 回收站列表：分页查询已进入回收站的文档 |
+| RecoverRecycleDocument | [RecoverRecycleDocumentRequest](#api-v1-RecoverRecycleDocumentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 恢复回收站文档：支持单个或批量恢复已删除文档 |
+| DeleteRecycleDocument | [DeleteDocumentRequest](#api-v1-DeleteDocumentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 彻底删除回收站文档：按文档 ID 从回收站永久移除 |
+| ClearRecycleDocument | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 清空回收站：永久删除回收站中的全部文档记录 |
 
  
 
@@ -1170,24 +1170,24 @@
 <a name="api-v1-ArticleAPI"></a>
 
 ### ArticleAPI
-文章API服务
+文章 API 服务，提供文章的创建、审核、检索与回收站管理能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateArticle | [Article](#api-v1-Article) | [Article](#api-v1-Article) | 创建文章 |
-| UpdateArticle | [Article](#api-v1-Article) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新文章 |
-| DeleteArticle | [DeleteArticleRequest](#api-v1-DeleteArticleRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除文章 |
-| GetArticle | [GetArticleRequest](#api-v1-GetArticleRequest) | [Article](#api-v1-Article) | 获取文章 |
-| ListArticle | [ListArticleRequest](#api-v1-ListArticleRequest) | [ListArticleReply](#api-v1-ListArticleReply) | 文章列表 |
-| SetArticlesCategory | [SetArticlesCategoryRequest](#api-v1-SetArticlesCategoryRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 批量更新文档分类 |
-| RecommendArticles | [RecommendArticlesRequest](#api-v1-RecommendArticlesRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 批量推荐 |
-| CheckArticles | [CheckArticlesRequest](#api-v1-CheckArticlesRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 批量审核文档 |
-| ListRecycleArticle | [ListArticleRequest](#api-v1-ListArticleRequest) | [ListArticleReply](#api-v1-ListArticleReply) | 回收站文章列表 |
-| RestoreRecycleArticle | [RestoreArticleRequest](#api-v1-RestoreArticleRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 恢复回收站文章 |
-| DeleteRecycleArticle | [DeleteArticleRequest](#api-v1-DeleteArticleRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 从回收站删除文章 |
-| EmptyRecycleArticle | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 清空回收站 |
-| SearchArticle | [ListArticleRequest](#api-v1-ListArticleRequest) | [SearchArticleReply](#api-v1-SearchArticleReply) | 搜索文章 |
-| GetRelatedArticles | [GetArticleRequest](#api-v1-GetArticleRequest) | [ListArticleReply](#api-v1-ListArticleReply) | 相关文章 |
+| CreateArticle | [Article](#api-v1-Article) | [Article](#api-v1-Article) | 创建文章：提交文章标题、内容和分类信息，返回新建后的文章详情 |
+| UpdateArticle | [Article](#api-v1-Article) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新文章：根据文章 ID 修改文章内容、状态和展示信息 |
+| DeleteArticle | [DeleteArticleRequest](#api-v1-DeleteArticleRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除文章：支持按文章 ID 批量删除文章到回收站 |
+| GetArticle | [GetArticleRequest](#api-v1-GetArticleRequest) | [Article](#api-v1-Article) | 获取文章：根据文章 ID 或唯一标识查询单篇文章详情 |
+| ListArticle | [ListArticleRequest](#api-v1-ListArticleRequest) | [ListArticleReply](#api-v1-ListArticleReply) | 文章列表：按关键词、分类、作者和状态分页查询文章 |
+| SetArticlesCategory | [SetArticlesCategoryRequest](#api-v1-SetArticlesCategoryRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 批量设置文章分类：为多篇文章统一更新所属分类 |
+| RecommendArticles | [RecommendArticlesRequest](#api-v1-RecommendArticlesRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 批量推荐文章：统一设置文章推荐状态或重新推荐 |
+| CheckArticles | [CheckArticlesRequest](#api-v1-CheckArticlesRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 批量审核文章：统一更新文章审核状态并记录拒绝原因 |
+| ListRecycleArticle | [ListArticleRequest](#api-v1-ListArticleRequest) | [ListArticleReply](#api-v1-ListArticleReply) | 回收站文章列表：分页查询已删除的文章记录 |
+| RestoreRecycleArticle | [RestoreArticleRequest](#api-v1-RestoreArticleRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 恢复回收站文章：支持按文章 ID 批量恢复已删除文章 |
+| DeleteRecycleArticle | [DeleteArticleRequest](#api-v1-DeleteArticleRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 彻底删除回收站文章：按文章 ID 从回收站永久删除文章 |
+| EmptyRecycleArticle | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 清空文章回收站：永久删除回收站中的全部文章 |
+| SearchArticle | [ListArticleRequest](#api-v1-ListArticleRequest) | [SearchArticleReply](#api-v1-SearchArticleReply) | 搜索文章：根据关键词和筛选条件执行全文检索 |
+| GetRelatedArticles | [GetArticleRequest](#api-v1-GetArticleRequest) | [ListArticleReply](#api-v1-ListArticleReply) | 相关文章：根据当前文章返回推荐的相关文章列表 |
 
  
 
@@ -1286,12 +1286,12 @@
 <a name="api-v1-SearchRecordAPI"></a>
 
 ### SearchRecordAPI
-
+搜索记录 API 服务，提供搜索日志的查询和清理能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| DeleteSearchRecord | [DeleteSearchRecordRequest](#api-v1-DeleteSearchRecordRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
-| ListSearchRecord | [ListSearchRecordRequest](#api-v1-ListSearchRecordRequest) | [ListSearchRecordReply](#api-v1-ListSearchRecordReply) |  |
+| DeleteSearchRecord | [DeleteSearchRecordRequest](#api-v1-DeleteSearchRecordRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除搜索记录：支持按记录 ID 批量删除搜索日志 |
+| ListSearchRecord | [ListSearchRecordRequest](#api-v1-ListSearchRecordRequest) | [ListSearchRecordReply](#api-v1-ListSearchRecordReply) | 搜索记录列表：按关键词、用户和 IP 分页查询搜索日志 |
 
  
 
@@ -1403,15 +1403,15 @@ banner，轮播图
 <a name="api-v1-BannerAPI"></a>
 
 ### BannerAPI
-轮播图API服务
+轮播图 API 服务，提供轮播图内容的新增、编辑、删除和查询能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateBanner | [Banner](#api-v1-Banner) | [Banner](#api-v1-Banner) | 创建轮播图 |
-| UpdateBanner | [Banner](#api-v1-Banner) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新轮播图 |
-| DeleteBanner | [DeleteBannerRequest](#api-v1-DeleteBannerRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除轮播图 |
-| GetBanner | [GetBannerRequest](#api-v1-GetBannerRequest) | [Banner](#api-v1-Banner) | 查询轮播图 |
-| ListBanner | [ListBannerRequest](#api-v1-ListBannerRequest) | [ListBannerReply](#api-v1-ListBannerReply) | 轮播图列表 |
+| CreateBanner | [Banner](#api-v1-Banner) | [Banner](#api-v1-Banner) | 创建轮播图：新增一条轮播图并返回创建后的数据 |
+| UpdateBanner | [Banner](#api-v1-Banner) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新轮播图：根据轮播图 ID 修改标题、图片和展示状态 |
+| DeleteBanner | [DeleteBannerRequest](#api-v1-DeleteBannerRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除轮播图：支持按轮播图 ID 批量删除配置 |
+| GetBanner | [GetBannerRequest](#api-v1-GetBannerRequest) | [Banner](#api-v1-Banner) | 查询轮播图：根据轮播图 ID 获取单条详情 |
+| ListBanner | [ListBannerRequest](#api-v1-ListBannerRequest) | [ListBannerReply](#api-v1-ListBannerReply) | 轮播图列表：按类型、启用状态和关键词分页查询轮播图 |
 
  
 
@@ -1523,14 +1523,14 @@ banner，轮播图
 <a name="api-v1-FavoriteAPI"></a>
 
 ### FavoriteAPI
-
+收藏 API 服务，提供收藏的创建、取消和列表查询能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateFavorite | [Favorite](#api-v1-Favorite) | [Favorite](#api-v1-Favorite) | 添加收藏 |
-| DeleteFavorite | [DeleteFavoriteRequest](#api-v1-DeleteFavoriteRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 取消收藏 |
-| GetFavorite | [GetFavoriteRequest](#api-v1-GetFavoriteRequest) | [Favorite](#api-v1-Favorite) | 根据文章id，查询用户是否有收藏某篇文档 |
-| ListFavorite | [ListFavoriteRequest](#api-v1-ListFavoriteRequest) | [ListFavoriteReply](#api-v1-ListFavoriteReply) | 查询用户的收藏 |
+| CreateFavorite | [Favorite](#api-v1-Favorite) | [Favorite](#api-v1-Favorite) | 添加收藏：将指定文档或文章加入当前用户收藏夹 |
+| DeleteFavorite | [DeleteFavoriteRequest](#api-v1-DeleteFavoriteRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 取消收藏：支持按收藏记录 ID 批量移除收藏 |
+| GetFavorite | [GetFavoriteRequest](#api-v1-GetFavoriteRequest) | [Favorite](#api-v1-Favorite) | 查询收藏状态：根据文档或文章 ID 判断当前用户是否已收藏 |
+| ListFavorite | [ListFavoriteRequest](#api-v1-ListFavoriteRequest) | [ListFavoriteReply](#api-v1-ListFavoriteReply) | 收藏列表：分页查询当前用户的文档或文章收藏记录 |
 
  
 
@@ -1666,15 +1666,15 @@ banner，轮播图
 <a name="api-v1-PunishmentAPI"></a>
 
 ### PunishmentAPI
-
+惩罚 API 服务，提供处罚记录的创建、查询、更新和解除能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreatePunishment | [CreatePunishmentRequest](#api-v1-CreatePunishmentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
-| UpdatePunishment | [Punishment](#api-v1-Punishment) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
-| GetPunishment | [GetPunishmentRequest](#api-v1-GetPunishmentRequest) | [Punishment](#api-v1-Punishment) |  |
-| ListPunishment | [ListPunishmentRequest](#api-v1-ListPunishmentRequest) | [ListPunishmentReply](#api-v1-ListPunishmentReply) |  |
-| CancelPunishment | [CancelPunishmentRequest](#api-v1-CancelPunishmentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 批量取消惩罚 |
+| CreatePunishment | [CreatePunishmentRequest](#api-v1-CreatePunishmentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 创建惩罚：批量为用户设置禁言、限制等处罚措施 |
+| UpdatePunishment | [Punishment](#api-v1-Punishment) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新惩罚：修改处罚记录的状态、原因或截止时间 |
+| GetPunishment | [GetPunishmentRequest](#api-v1-GetPunishmentRequest) | [Punishment](#api-v1-Punishment) | 获取惩罚：根据处罚记录 ID 查询单条处罚详情 |
+| ListPunishment | [ListPunishmentRequest](#api-v1-ListPunishmentRequest) | [ListPunishmentReply](#api-v1-ListPunishmentReply) | 惩罚列表：按用户、处罚类型和状态分页查询处罚记录 |
+| CancelPunishment | [CancelPunishmentRequest](#api-v1-CancelPunishmentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 取消惩罚：按处罚记录 ID 批量解除已生效的处罚 |
 
  
 
@@ -1784,15 +1784,15 @@ banner，轮播图
 <a name="api-v1-LanguageAPI"></a>
 
 ### LanguageAPI
-
+语言 API 服务，提供站点语言配置的维护和列表查询能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateLanguage | [Language](#api-v1-Language) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
-| UpdateLanguage | [Language](#api-v1-Language) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
-| UpdateLanguageStatus | [UpdateLanguageStatusRequest](#api-v1-UpdateLanguageStatusRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
-| ListLanguage | [ListLanguageRequest](#api-v1-ListLanguageRequest) | [ListLanguageReply](#api-v1-ListLanguageReply) |  |
-| DeleteLanguage | [DeleteLanguageRequest](#api-v1-DeleteLanguageRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
+| CreateLanguage | [Language](#api-v1-Language) | [.google.protobuf.Empty](#google-protobuf-Empty) | 创建语言：新增一种站点支持的语言配置 |
+| UpdateLanguage | [Language](#api-v1-Language) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新语言：根据语言 ID 修改名称、编码和排序信息 |
+| UpdateLanguageStatus | [UpdateLanguageStatusRequest](#api-v1-UpdateLanguageStatusRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 批量更新语言状态：统一启用或停用指定语言项 |
+| ListLanguage | [ListLanguageRequest](#api-v1-ListLanguageRequest) | [ListLanguageReply](#api-v1-ListLanguageReply) | 语言列表：按关键词和启用状态分页查询语言配置 |
+| DeleteLanguage | [DeleteLanguageRequest](#api-v1-DeleteLanguageRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除语言：支持按语言 ID 批量删除语言配置 |
 
  
 
@@ -1921,16 +1921,16 @@ banner，轮播图
 <a name="api-v1-AdvertisementAPI"></a>
 
 ### AdvertisementAPI
-
+广告位 API 服务，提供广告配置的新增、更新、删除和查询能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateAdvertisement | [Advertisement](#api-v1-Advertisement) | [Advertisement](#api-v1-Advertisement) |  |
-| UpdateAdvertisement | [Advertisement](#api-v1-Advertisement) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
-| DeleteAdvertisement | [DeleteAdvertisementRequest](#api-v1-DeleteAdvertisementRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
-| GetAdvertisement | [GetAdvertisementRequest](#api-v1-GetAdvertisementRequest) | [Advertisement](#api-v1-Advertisement) |  |
-| GetAdvertisementByPosition | [GetAdvertisementByPositionRequest](#api-v1-GetAdvertisementByPositionRequest) | [ListAdvertisementReply](#api-v1-ListAdvertisementReply) |  |
-| ListAdvertisement | [ListAdvertisementRequest](#api-v1-ListAdvertisementRequest) | [ListAdvertisementReply](#api-v1-ListAdvertisementReply) |  |
+| CreateAdvertisement | [Advertisement](#api-v1-Advertisement) | [Advertisement](#api-v1-Advertisement) | 创建广告：新增一条广告位配置并返回创建后的广告详情 |
+| UpdateAdvertisement | [Advertisement](#api-v1-Advertisement) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新广告：根据广告 ID 修改广告位内容、投放时间和启用状态 |
+| DeleteAdvertisement | [DeleteAdvertisementRequest](#api-v1-DeleteAdvertisementRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除广告：支持按广告 ID 批量删除广告位配置 |
+| GetAdvertisement | [GetAdvertisementRequest](#api-v1-GetAdvertisementRequest) | [Advertisement](#api-v1-Advertisement) | 查询广告：根据广告 ID 获取单条广告位详情 |
+| GetAdvertisementByPosition | [GetAdvertisementByPositionRequest](#api-v1-GetAdvertisementByPositionRequest) | [ListAdvertisementReply](#api-v1-ListAdvertisementReply) | 按广告位查询广告：根据广告位标识返回对应的广告列表 |
+| ListAdvertisement | [ListAdvertisementRequest](#api-v1-ListAdvertisementRequest) | [ListAdvertisementReply](#api-v1-ListAdvertisementReply) | 广告列表：按关键词、位置和启用状态筛选广告位配置 |
 
  
 
@@ -1983,12 +1983,12 @@ banner，轮播图
 <a name="-HealthAPI"></a>
 
 ### HealthAPI
-
+健康检查 API 服务，提供服务存活探测和连通性测试能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Health | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
-| Ping | [.PingRequest](#PingRequest) | [.PongReply](#PongReply) |  |
+| Health | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 服务健康检查：用于探测服务是否正常存活并可响应请求 |
+| Ping | [.PingRequest](#PingRequest) | [.PongReply](#PongReply) | Ping 测试：回显请求信息并返回服务当前响应时间 |
 
  
 
@@ -2085,14 +2085,14 @@ banner，轮播图
 <a name="api-v1-ReportAPI"></a>
 
 ### ReportAPI
-举报服务
+举报 API 服务，提供举报提交、处理和列表查询能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateReport | [Report](#api-v1-Report) | [.google.protobuf.Empty](#google-protobuf-Empty) | 创建举报 |
-| UpdateReport | [Report](#api-v1-Report) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新举报，审核举报内容 |
-| DeleteReport | [DeleteReportRequest](#api-v1-DeleteReportRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除举报 |
-| ListReport | [ListReportRequest](#api-v1-ListReportRequest) | [ListReportReply](#api-v1-ListReportReply) | 获取举报列表 |
+| CreateReport | [Report](#api-v1-Report) | [.google.protobuf.Empty](#google-protobuf-Empty) | 创建举报：提交对文档内容的举报信息 |
+| UpdateReport | [Report](#api-v1-Report) | [.google.protobuf.Empty](#google-protobuf-Empty) | 处理举报：更新举报状态并记录处理备注 |
+| DeleteReport | [DeleteReportRequest](#api-v1-DeleteReportRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除举报：支持按举报 ID 批量删除举报记录 |
+| ListReport | [ListReportRequest](#api-v1-ListReportRequest) | [ListReportReply](#api-v1-ListReportReply) | 举报列表：按处理状态和关键词分页查询举报记录 |
 
  
 
@@ -2201,15 +2201,15 @@ banner，轮播图
 <a name="api-v1-FriendlinkAPI"></a>
 
 ### FriendlinkAPI
-友情链接服务
+友情链接 API 服务，提供友情链接的新增、编辑、删除和查询能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateFriendlink | [Friendlink](#api-v1-Friendlink) | [Friendlink](#api-v1-Friendlink) | 创建友情链接 |
-| UpdateFriendlink | [Friendlink](#api-v1-Friendlink) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新友情链接 |
-| DeleteFriendlink | [DeleteFriendlinkRequest](#api-v1-DeleteFriendlinkRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除友情链接 |
-| GetFriendlink | [GetFriendlinkRequest](#api-v1-GetFriendlinkRequest) | [Friendlink](#api-v1-Friendlink) | 获取友情链接 |
-| ListFriendlink | [ListFriendlinkRequest](#api-v1-ListFriendlinkRequest) | [ListFriendlinkReply](#api-v1-ListFriendlinkReply) | 获取友情链接 |
+| CreateFriendlink | [Friendlink](#api-v1-Friendlink) | [Friendlink](#api-v1-Friendlink) | 创建友情链接：新增一条友情链接配置并返回创建结果 |
+| UpdateFriendlink | [Friendlink](#api-v1-Friendlink) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新友情链接：根据链接 ID 修改名称、地址和展示状态 |
+| DeleteFriendlink | [DeleteFriendlinkRequest](#api-v1-DeleteFriendlinkRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除友情链接：支持按链接 ID 批量删除友情链接 |
+| GetFriendlink | [GetFriendlinkRequest](#api-v1-GetFriendlinkRequest) | [Friendlink](#api-v1-Friendlink) | 获取友情链接：根据链接 ID 查询单条友情链接详情 |
+| ListFriendlink | [ListFriendlinkRequest](#api-v1-ListFriendlinkRequest) | [ListFriendlinkReply](#api-v1-ListFriendlinkReply) | 友情链接列表：按关键词和启用状态分页查询友情链接 |
 
  
 
@@ -2317,13 +2317,13 @@ banner，轮播图
 <a name="api-v1-PermissionAPI"></a>
 
 ### PermissionAPI
-权限API服务
+权限 API 服务，提供权限元数据的查询和维护能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| UpdatePermission | [Permission](#api-v1-Permission) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新权限信息。这里只能操作title和description |
-| GetPermission | [GetPermissionRequest](#api-v1-GetPermissionRequest) | [Permission](#api-v1-Permission) | 查询权限信息 |
-| ListPermission | [ListPermissionRequest](#api-v1-ListPermissionRequest) | [ListPermissionReply](#api-v1-ListPermissionReply) | 查询权限列表 |
+| UpdatePermission | [Permission](#api-v1-Permission) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新权限：维护权限名称和描述等展示信息 |
+| GetPermission | [GetPermissionRequest](#api-v1-GetPermissionRequest) | [Permission](#api-v1-Permission) | 获取权限：根据权限 ID 查询单个权限详情 |
+| ListPermission | [ListPermissionRequest](#api-v1-ListPermissionRequest) | [ListPermissionReply](#api-v1-ListPermissionReply) | 权限列表：按请求方法、路径和关键词分页查询权限 |
 
  
 
@@ -2436,15 +2436,15 @@ banner，轮播图
 <a name="api-v1-NavigationAPI"></a>
 
 ### NavigationAPI
-
+导航 API 服务，提供导航链接的新增、编辑、删除和查询能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateNavigation | [Navigation](#api-v1-Navigation) | [Navigation](#api-v1-Navigation) |  |
-| UpdateNavigation | [Navigation](#api-v1-Navigation) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
-| DeleteNavigation | [DeleteNavigationRequest](#api-v1-DeleteNavigationRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
-| GetNavigation | [GetNavigationRequest](#api-v1-GetNavigationRequest) | [Navigation](#api-v1-Navigation) |  |
-| ListNavigation | [ListNavigationRequest](#api-v1-ListNavigationRequest) | [ListNavigationReply](#api-v1-ListNavigationReply) |  |
+| CreateNavigation | [Navigation](#api-v1-Navigation) | [Navigation](#api-v1-Navigation) | 创建导航：新增一条站点导航并返回创建后的数据 |
+| UpdateNavigation | [Navigation](#api-v1-Navigation) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新导航：根据导航 ID 修改名称、链接、排序和固定状态 |
+| DeleteNavigation | [DeleteNavigationRequest](#api-v1-DeleteNavigationRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除导航：支持按导航 ID 批量删除导航项 |
+| GetNavigation | [GetNavigationRequest](#api-v1-GetNavigationRequest) | [Navigation](#api-v1-Navigation) | 获取导航：根据导航 ID 查询单个导航项详情 |
+| ListNavigation | [ListNavigationRequest](#api-v1-ListNavigationRequest) | [ListNavigationReply](#api-v1-ListNavigationReply) | 导航列表：按关键词和排序规则分页查询导航项 |
 
  
 
@@ -2600,16 +2600,16 @@ banner，轮播图
 <a name="api-v1-CommentAPI"></a>
 
 ### CommentAPI
-评论服务
+评论 API 服务，提供评论发布、审核、删除和查询能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateComment | [CreateCommentRequest](#api-v1-CreateCommentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 创建评论 |
-| UpdateComment | [Comment](#api-v1-Comment) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新评论，仅限管理员操作 |
-| DeleteComment | [DeleteCommentRequest](#api-v1-DeleteCommentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 管理员或用户自己删除自己的评论 |
-| GetComment | [GetCommentRequest](#api-v1-GetCommentRequest) | [Comment](#api-v1-Comment) | 获取单个评论 |
-| ListComment | [ListCommentRequest](#api-v1-ListCommentRequest) | [ListCommentReply](#api-v1-ListCommentReply) | 获取评论列表 |
-| CheckComment | [CheckCommentRequest](#api-v1-CheckCommentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 审核评论 |
+| CreateComment | [CreateCommentRequest](#api-v1-CreateCommentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 创建评论：提交评论内容并关联到文档或文章 |
+| UpdateComment | [Comment](#api-v1-Comment) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新评论：管理员修改评论内容或状态时使用 |
+| DeleteComment | [DeleteCommentRequest](#api-v1-DeleteCommentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除评论：管理员或评论作者可按评论 ID 删除评论 |
+| GetComment | [GetCommentRequest](#api-v1-GetCommentRequest) | [Comment](#api-v1-Comment) | 获取评论详情：根据评论 ID 查询单条评论信息 |
+| ListComment | [ListCommentRequest](#api-v1-ListCommentRequest) | [ListCommentReply](#api-v1-ListCommentReply) | 评论列表：按状态、文档、用户和评论类型分页查询评论 |
+| CheckComment | [CheckCommentRequest](#api-v1-CheckCommentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 审核评论：批量更新评论审核状态 |
 
  
 
@@ -2730,14 +2730,14 @@ banner，轮播图
 <a name="api-v1-AttachmentAPI"></a>
 
 ### AttachmentAPI
-附件服务。只有管理员才有权限操作
+附件 API 服务，提供附件信息的维护、软删除和后台查询能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| UpdateAttachment | [Attachment](#api-v1-Attachment) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新附件 |
-| DeleteAttachment | [DeleteAttachmentRequest](#api-v1-DeleteAttachmentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除附件。这里只是软删除，不会真正删除附件，默认24小时候会真正清除附件 |
-| GetAttachment | [GetAttachmentRequest](#api-v1-GetAttachmentRequest) | [Attachment](#api-v1-Attachment) | 查询附件 |
-| ListAttachment | [ListAttachmentRequest](#api-v1-ListAttachmentRequest) | [ListAttachmentReply](#api-v1-ListAttachmentReply) | 列出附件 |
+| UpdateAttachment | [Attachment](#api-v1-Attachment) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新附件：修改附件名称、描述、状态等元数据信息 |
+| DeleteAttachment | [DeleteAttachmentRequest](#api-v1-DeleteAttachmentRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除附件：执行软删除，附件会进入延迟清理流程而不是立即物理删除 |
+| GetAttachment | [GetAttachmentRequest](#api-v1-GetAttachmentRequest) | [Attachment](#api-v1-Attachment) | 查询附件：根据附件 ID 获取单个附件详情 |
+| ListAttachment | [ListAttachmentRequest](#api-v1-ListAttachmentRequest) | [ListAttachmentReply](#api-v1-ListAttachmentReply) | 附件列表：按关键词、上传用户、类型和扩展名分页筛选附件 |
 
  
 
@@ -3207,22 +3207,22 @@ rpc CreateDownload(Download) returns (Download) {
 <a name="api-v1-ConfigAPI"></a>
 
 ### ConfigAPI
-配置服务
+配置 API 服务，提供站点配置、运行状态和版本信息管理能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| GetSettings | [.google.protobuf.Empty](#google-protobuf-Empty) | [Settings](#api-v1-Settings) | 获取系统配置（针对所有用户，只读） |
-| UpdateConfig | [Configs](#api-v1-Configs) | [.google.protobuf.Empty](#google-protobuf-Empty) | UpdateConfig 更新配置 |
-| ListConfig | [ListConfigRequest](#api-v1-ListConfigRequest) | [Configs](#api-v1-Configs) | ListConfig 查询配置项 |
-| GetStats | [.google.protobuf.Empty](#google-protobuf-Empty) | [Stats](#api-v1-Stats) | 获取系统配置 |
-| GetEnvs | [.google.protobuf.Empty](#google-protobuf-Empty) | [Envs](#api-v1-Envs) | 获取系统环境依赖检测 |
-| UpdateSitemap | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新站点地图 |
-| GetDeviceInfo | [.google.protobuf.Empty](#google-protobuf-Empty) | [DeviceInfo](#api-v1-DeviceInfo) | 获取设备信息 |
-| SetSQLMode | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 设置SQL mode，只针对id=1的用户，且sql_mode只处理only_full_group_by问题 |
-| GetLatestRelease | [.google.protobuf.Empty](#google-protobuf-Empty) | [Release](#api-v1-Release) | 获取最近发布版本 |
-| RefreshLatestRelease | [.google.protobuf.Empty](#google-protobuf-Empty) | [Release](#api-v1-Release) | 更新最新发布版本 |
-| IgnoreRelease | [Release](#api-v1-Release) | [.google.protobuf.Empty](#google-protobuf-Empty) | 忽略版本，设置ignore字段 |
-| SetReleaseSource | [Release](#api-v1-Release) | [.google.protobuf.Empty](#google-protobuf-Empty) | 设置release源，主要是更新 source 字段 |
+| GetSettings | [.google.protobuf.Empty](#google-protobuf-Empty) | [Settings](#api-v1-Settings) | 获取站点设置：返回前台可读取的系统、展示、安全和语言配置 |
+| UpdateConfig | [Configs](#api-v1-Configs) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新配置：批量保存后台配置项的键值内容 |
+| ListConfig | [ListConfigRequest](#api-v1-ListConfigRequest) | [Configs](#api-v1-Configs) | 配置项列表：按配置分类查询后台配置项明细 |
+| GetStats | [.google.protobuf.Empty](#google-protobuf-Empty) | [Stats](#api-v1-Stats) | 获取系统统计：返回用户、文档、评论等核心统计指标 |
+| GetEnvs | [.google.protobuf.Empty](#google-protobuf-Empty) | [Envs](#api-v1-Envs) | 获取环境依赖：检查程序运行依赖及安装状态 |
+| UpdateSitemap | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新站点地图：重新生成或刷新站点 sitemap 数据 |
+| GetDeviceInfo | [.google.protobuf.Empty](#google-protobuf-Empty) | [DeviceInfo](#api-v1-DeviceInfo) | 获取设备信息：返回当前服务所在机器的 CPU、内存和磁盘状态 |
+| SetSQLMode | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 设置 SQL Mode：修正数据库 only_full_group_by 等兼容性配置 |
+| GetLatestRelease | [.google.protobuf.Empty](#google-protobuf-Empty) | [Release](#api-v1-Release) | 获取最新版本：读取远程发布源中的最新版本信息 |
+| RefreshLatestRelease | [.google.protobuf.Empty](#google-protobuf-Empty) | [Release](#api-v1-Release) | 刷新最新版本：主动重新拉取远程版本发布信息 |
+| IgnoreRelease | [Release](#api-v1-Release) | [.google.protobuf.Empty](#google-protobuf-Empty) | 忽略版本：记录指定版本为忽略状态，避免重复提示 |
+| SetReleaseSource | [Release](#api-v1-Release) | [.google.protobuf.Empty](#google-protobuf-Empty) | 设置发布源：切换版本检查使用的来源地址或渠道 |
 
  
 
@@ -3641,32 +3641,32 @@ rpc CreateDownload(Download) returns (Download) {
 <a name="api-v1-UserAPI"></a>
 
 ### UserAPI
-
+用户 API 服务，提供注册登录、资料维护、权限查询和用户行为能力
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Register | [RegisterAndLoginRequest](#api-v1-RegisterAndLoginRequest) | [LoginReply](#api-v1-LoginReply) | 用户注册 |
-| Login | [RegisterAndLoginRequest](#api-v1-RegisterAndLoginRequest) | [LoginReply](#api-v1-LoginReply) | 用户登录 |
-| Logout | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 退出登录 |
-| GetUser | [GetUserRequest](#api-v1-GetUserRequest) | [User](#api-v1-User) | 查询用户信息。如果传递了Id参数，则表示查询用户的公开信息，否则查询当前用户的私有信息 |
-| UpdateUserPassword | [UpdateUserPasswordRequest](#api-v1-UpdateUserPasswordRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新用户密码。如果不传用户ID，则表示更新当前用户的密码； 如果穿了用户ID，则表示更新指定用户的密码，这时需要验证当前用户的权限 |
-| UpdateUserProfile | [User](#api-v1-User) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新用户密码。如果不传用户ID，则表示更新当前用户的密码； 如果穿了用户ID，则表示更新指定用户的密码，这时需要验证当前用户的权限 |
-| DeleteUser | [DeleteUserRequest](#api-v1-DeleteUserRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除用户。需要验证用户权限 |
-| AddUser | [SetUserRequest](#api-v1-SetUserRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 新增用户 |
-| SetUser | [SetUserRequest](#api-v1-SetUserRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 设置用户 |
-| ListUser | [ListUserRequest](#api-v1-ListUserRequest) | [ListUserReply](#api-v1-ListUserReply) | 查询用户列表。对于非管理员，返回相应用户的公开信息； 对于管理员，返回相应用户的绝大部分信息 |
-| GetUserCaptcha | [GetUserCaptchaRequest](#api-v1-GetUserCaptchaRequest) | [GetUserCaptchaReply](#api-v1-GetUserCaptchaReply) | GetUserCaptcha 获取用户验证码 |
-| GetUserPermissions | [.google.protobuf.Empty](#google-protobuf-Empty) | [GetUserPermissionsReply](#api-v1-GetUserPermissionsReply) | GetUserCaptcha 获取用户验证码 |
-| CanIUploadDocument | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 用户是否可以上传文档 |
-| CanIPublishArticle | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 用户是否可以发布文章 |
-| ListUserDynamic | [ListUserDynamicRequest](#api-v1-ListUserDynamicRequest) | [ListUserDynamicReply](#api-v1-ListUserDynamicReply) | 获取用户动态，包括获取关注的用户的动态 |
-| SignToday | [.google.protobuf.Empty](#google-protobuf-Empty) | [Sign](#api-v1-Sign) | 每日签到 |
-| GetSignedToday | [.google.protobuf.Empty](#google-protobuf-Empty) | [Sign](#api-v1-Sign) | 获取今日已签到记录 |
-| ListUserDownload | [ListUserDownloadRequest](#api-v1-ListUserDownloadRequest) | [ListUserDownloadReply](#api-v1-ListUserDownloadReply) | 查询用户的下载记录 |
-| ListUserGroup | [.google.protobuf.Empty](#google-protobuf-Empty) | [ListUserGroupReply](#api-v1-ListUserGroupReply) |  |
-| FindPasswordStepOne | [FindPasswordRequest](#api-v1-FindPasswordRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 找回密码：第一步，发送验证码 |
-| FindPasswordStepTwo | [FindPasswordRequest](#api-v1-FindPasswordRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 找回密码：第二步，修改密码 |
-| SendEmailCode | [SendEmailCodeRequest](#api-v1-SendEmailCodeRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 发送邮箱验证码。 |
+| Register | [RegisterAndLoginRequest](#api-v1-RegisterAndLoginRequest) | [LoginReply](#api-v1-LoginReply) | 用户注册：通过用户名、密码、邮箱等信息创建账号并返回登录态 |
+| Login | [RegisterAndLoginRequest](#api-v1-RegisterAndLoginRequest) | [LoginReply](#api-v1-LoginReply) | 用户登录：校验账号凭证并返回登录令牌和用户信息 |
+| Logout | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 退出登录：使当前登录态失效 |
+| GetUser | [GetUserRequest](#api-v1-GetUserRequest) | [User](#api-v1-User) | 获取用户信息：可查询指定用户公开资料，或查询当前用户的完整资料 |
+| UpdateUserPassword | [UpdateUserPasswordRequest](#api-v1-UpdateUserPasswordRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新用户密码：可修改当前用户密码，管理员也可代为重置指定用户密码 |
+| UpdateUserProfile | [User](#api-v1-User) | [.google.protobuf.Empty](#google-protobuf-Empty) | 更新用户资料：修改头像、签名、地址等基础资料信息 |
+| DeleteUser | [DeleteUserRequest](#api-v1-DeleteUserRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 删除用户：支持按用户 ID 批量删除用户，需校验操作权限 |
+| AddUser | [SetUserRequest](#api-v1-SetUserRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 创建用户：管理员直接新增后台用户账号 |
+| SetUser | [SetUserRequest](#api-v1-SetUserRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 设置用户：管理员更新用户基础信息和所属用户组 |
+| ListUser | [ListUserRequest](#api-v1-ListUserRequest) | [ListUserReply](#api-v1-ListUserReply) | 用户列表：分页查询用户，可按用户组、状态和关键词筛选 |
+| GetUserCaptcha | [GetUserCaptchaRequest](#api-v1-GetUserCaptchaRequest) | [GetUserCaptchaReply](#api-v1-GetUserCaptchaReply) | 获取验证码：根据业务场景返回是否启用验证码及验证码内容 |
+| GetUserPermissions | [.google.protobuf.Empty](#google-protobuf-Empty) | [GetUserPermissionsReply](#api-v1-GetUserPermissionsReply) | 获取用户权限：返回当前登录用户拥有的权限集合 |
+| CanIUploadDocument | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 检查上传权限：判断当前用户是否具备上传文档资格 |
+| CanIPublishArticle | [.google.protobuf.Empty](#google-protobuf-Empty) | [.google.protobuf.Empty](#google-protobuf-Empty) | 检查发文权限：判断当前用户是否具备发布文章资格 |
+| ListUserDynamic | [ListUserDynamicRequest](#api-v1-ListUserDynamicRequest) | [ListUserDynamicReply](#api-v1-ListUserDynamicReply) | 用户动态列表：查询当前用户及其关注对象的动态内容 |
+| SignToday | [.google.protobuf.Empty](#google-protobuf-Empty) | [Sign](#api-v1-Sign) | 每日签到：完成当天签到并返回签到记录和奖励信息 |
+| GetSignedToday | [.google.protobuf.Empty](#google-protobuf-Empty) | [Sign](#api-v1-Sign) | 查询今日签到：获取当前用户当天的签到记录 |
+| ListUserDownload | [ListUserDownloadRequest](#api-v1-ListUserDownloadRequest) | [ListUserDownloadReply](#api-v1-ListUserDownloadReply) | 下载记录列表：分页查询当前用户的文档下载记录 |
+| ListUserGroup | [.google.protobuf.Empty](#google-protobuf-Empty) | [ListUserGroupReply](#api-v1-ListUserGroupReply) | 用户组列表：返回当前站点可选的用户组集合 |
+| FindPasswordStepOne | [FindPasswordRequest](#api-v1-FindPasswordRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 找回密码第一步：校验账号并发送找回密码验证码 |
+| FindPasswordStepTwo | [FindPasswordRequest](#api-v1-FindPasswordRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 找回密码第二步：校验验证码后重置账号密码 |
+| SendEmailCode | [SendEmailCodeRequest](#api-v1-SendEmailCodeRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | 发送邮箱验证码：用于注册或登录等场景的邮箱校验 |
 
  
 

@@ -396,13 +396,13 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ReportAPIClient interface {
-	// 创建举报
+	// 创建举报：提交对文档内容的举报信息
 	CreateReport(ctx context.Context, in *Report, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 更新举报，审核举报内容
+	// 处理举报：更新举报状态并记录处理备注
 	UpdateReport(ctx context.Context, in *Report, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 删除举报
+	// 删除举报：支持按举报 ID 批量删除举报记录
 	DeleteReport(ctx context.Context, in *DeleteReportRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 获取举报列表
+	// 举报列表：按处理状态和关键词分页查询举报记录
 	ListReport(ctx context.Context, in *ListReportRequest, opts ...grpc.CallOption) (*ListReportReply, error)
 }
 
@@ -452,13 +452,13 @@ func (c *reportAPIClient) ListReport(ctx context.Context, in *ListReportRequest,
 
 // ReportAPIServer is the server API for ReportAPI service.
 type ReportAPIServer interface {
-	// 创建举报
+	// 创建举报：提交对文档内容的举报信息
 	CreateReport(context.Context, *Report) (*emptypb.Empty, error)
-	// 更新举报，审核举报内容
+	// 处理举报：更新举报状态并记录处理备注
 	UpdateReport(context.Context, *Report) (*emptypb.Empty, error)
-	// 删除举报
+	// 删除举报：支持按举报 ID 批量删除举报记录
 	DeleteReport(context.Context, *DeleteReportRequest) (*emptypb.Empty, error)
-	// 获取举报列表
+	// 举报列表：按处理状态和关键词分页查询举报记录
 	ListReport(context.Context, *ListReportRequest) (*ListReportReply, error)
 }
 

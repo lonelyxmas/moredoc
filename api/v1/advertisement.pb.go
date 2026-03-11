@@ -504,11 +504,17 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AdvertisementAPIClient interface {
+	// 创建广告：新增一条广告位配置并返回创建后的广告详情
 	CreateAdvertisement(ctx context.Context, in *Advertisement, opts ...grpc.CallOption) (*Advertisement, error)
+	// 更新广告：根据广告 ID 修改广告位内容、投放时间和启用状态
 	UpdateAdvertisement(ctx context.Context, in *Advertisement, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// 删除广告：支持按广告 ID 批量删除广告位配置
 	DeleteAdvertisement(ctx context.Context, in *DeleteAdvertisementRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// 查询广告：根据广告 ID 获取单条广告位详情
 	GetAdvertisement(ctx context.Context, in *GetAdvertisementRequest, opts ...grpc.CallOption) (*Advertisement, error)
+	// 按广告位查询广告：根据广告位标识返回对应的广告列表
 	GetAdvertisementByPosition(ctx context.Context, in *GetAdvertisementByPositionRequest, opts ...grpc.CallOption) (*ListAdvertisementReply, error)
+	// 广告列表：按关键词、位置和启用状态筛选广告位配置
 	ListAdvertisement(ctx context.Context, in *ListAdvertisementRequest, opts ...grpc.CallOption) (*ListAdvertisementReply, error)
 }
 
@@ -576,11 +582,17 @@ func (c *advertisementAPIClient) ListAdvertisement(ctx context.Context, in *List
 
 // AdvertisementAPIServer is the server API for AdvertisementAPI service.
 type AdvertisementAPIServer interface {
+	// 创建广告：新增一条广告位配置并返回创建后的广告详情
 	CreateAdvertisement(context.Context, *Advertisement) (*Advertisement, error)
+	// 更新广告：根据广告 ID 修改广告位内容、投放时间和启用状态
 	UpdateAdvertisement(context.Context, *Advertisement) (*emptypb.Empty, error)
+	// 删除广告：支持按广告 ID 批量删除广告位配置
 	DeleteAdvertisement(context.Context, *DeleteAdvertisementRequest) (*emptypb.Empty, error)
+	// 查询广告：根据广告 ID 获取单条广告位详情
 	GetAdvertisement(context.Context, *GetAdvertisementRequest) (*Advertisement, error)
+	// 按广告位查询广告：根据广告位标识返回对应的广告列表
 	GetAdvertisementByPosition(context.Context, *GetAdvertisementByPositionRequest) (*ListAdvertisementReply, error)
+	// 广告列表：按关键词、位置和启用状态筛选广告位配置
 	ListAdvertisement(context.Context, *ListAdvertisementRequest) (*ListAdvertisementReply, error)
 }
 

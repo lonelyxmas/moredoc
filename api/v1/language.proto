@@ -43,7 +43,9 @@ message ListLanguageReply {
 
 message DeleteLanguageRequest { repeated int64 id = 1; }
 
+// 语言 API 服务，提供站点语言配置的维护和列表查询能力
 service LanguageAPI {
+  // 创建语言：新增一种站点支持的语言配置
   rpc CreateLanguage(Language) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post : '/api/v1/language',
@@ -51,6 +53,7 @@ service LanguageAPI {
     };
   }
 
+  // 更新语言：根据语言 ID 修改名称、编码和排序信息
   rpc UpdateLanguage(Language) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : '/api/v1/language',
@@ -58,6 +61,7 @@ service LanguageAPI {
     };
   }
 
+  // 批量更新语言状态：统一启用或停用指定语言项
   rpc UpdateLanguageStatus(UpdateLanguageStatusRequest)
       returns (google.protobuf.Empty) {
     option (google.api.http) = {
@@ -66,12 +70,14 @@ service LanguageAPI {
     };
   }
 
+  // 语言列表：按关键词和启用状态分页查询语言配置
   rpc ListLanguage(ListLanguageRequest) returns (ListLanguageReply) {
     option (google.api.http) = {
       get : '/api/v1/language/list',
     };
   }
 
+  // 删除语言：支持按语言 ID 批量删除语言配置
   rpc DeleteLanguage(DeleteLanguageRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       delete : '/api/v1/language',

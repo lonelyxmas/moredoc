@@ -406,11 +406,11 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type PermissionAPIClient interface {
-	// 更新权限信息。这里只能操作title和description
+	// 更新权限：维护权限名称和描述等展示信息
 	UpdatePermission(ctx context.Context, in *Permission, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 查询权限信息
+	// 获取权限：根据权限 ID 查询单个权限详情
 	GetPermission(ctx context.Context, in *GetPermissionRequest, opts ...grpc.CallOption) (*Permission, error)
-	// 查询权限列表
+	// 权限列表：按请求方法、路径和关键词分页查询权限
 	ListPermission(ctx context.Context, in *ListPermissionRequest, opts ...grpc.CallOption) (*ListPermissionReply, error)
 }
 
@@ -451,11 +451,11 @@ func (c *permissionAPIClient) ListPermission(ctx context.Context, in *ListPermis
 
 // PermissionAPIServer is the server API for PermissionAPI service.
 type PermissionAPIServer interface {
-	// 更新权限信息。这里只能操作title和description
+	// 更新权限：维护权限名称和描述等展示信息
 	UpdatePermission(context.Context, *Permission) (*emptypb.Empty, error)
-	// 查询权限信息
+	// 获取权限：根据权限 ID 查询单个权限详情
 	GetPermission(context.Context, *GetPermissionRequest) (*Permission, error)
-	// 查询权限列表
+	// 权限列表：按请求方法、路径和关键词分页查询权限
 	ListPermission(context.Context, *ListPermissionRequest) (*ListPermissionReply, error)
 }
 

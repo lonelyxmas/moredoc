@@ -44,7 +44,9 @@ message ListSearchRecordReply {
   repeated SearchRecord search_record = 2;
 }
 
+// 搜索记录 API 服务，提供搜索日志的查询和清理能力
 service SearchRecordAPI {
+  // 删除搜索记录：支持按记录 ID 批量删除搜索日志
   rpc DeleteSearchRecord(DeleteSearchRecordRequest)
       returns (google.protobuf.Empty) {
     option (google.api.http) = {
@@ -52,6 +54,7 @@ service SearchRecordAPI {
     };
   }
 
+  // 搜索记录列表：按关键词、用户和 IP 分页查询搜索日志
   rpc ListSearchRecord(ListSearchRecordRequest)
       returns (ListSearchRecordReply) {
     option (google.api.http) = {

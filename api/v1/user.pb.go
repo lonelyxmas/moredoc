@@ -1721,51 +1721,49 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type UserAPIClient interface {
-	// 用户注册
+	// 用户注册：通过用户名、密码、邮箱等信息创建账号并返回登录态
 	Register(ctx context.Context, in *RegisterAndLoginRequest, opts ...grpc.CallOption) (*LoginReply, error)
-	// 用户登录
+	// 用户登录：校验账号凭证并返回登录令牌和用户信息
 	Login(ctx context.Context, in *RegisterAndLoginRequest, opts ...grpc.CallOption) (*LoginReply, error)
-	// 退出登录
+	// 退出登录：使当前登录态失效
 	Logout(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 查询用户信息。如果传递了Id参数，则表示查询用户的公开信息，否则查询当前用户的私有信息
+	// 获取用户信息：可查询指定用户公开资料，或查询当前用户的完整资料
 	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*User, error)
-	// 更新用户密码。如果不传用户ID，则表示更新当前用户的密码；
-	// 如果穿了用户ID，则表示更新指定用户的密码，这时需要验证当前用户的权限
+	// 更新用户密码：可修改当前用户密码，管理员也可代为重置指定用户密码
 	UpdateUserPassword(ctx context.Context, in *UpdateUserPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 更新用户密码。如果不传用户ID，则表示更新当前用户的密码；
-	// 如果穿了用户ID，则表示更新指定用户的密码，这时需要验证当前用户的权限
+	// 更新用户资料：修改头像、签名、地址等基础资料信息
 	UpdateUserProfile(ctx context.Context, in *User, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 删除用户。需要验证用户权限
+	// 删除用户：支持按用户 ID 批量删除用户，需校验操作权限
 	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 新增用户
+	// 创建用户：管理员直接新增后台用户账号
 	AddUser(ctx context.Context, in *SetUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 设置用户
+	// 设置用户：管理员更新用户基础信息和所属用户组
 	SetUser(ctx context.Context, in *SetUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 查询用户列表。对于非管理员，返回相应用户的公开信息；
-	// 对于管理员，返回相应用户的绝大部分信息
+	// 用户列表：分页查询用户，可按用户组、状态和关键词筛选
 	ListUser(ctx context.Context, in *ListUserRequest, opts ...grpc.CallOption) (*ListUserReply, error)
-	// GetUserCaptcha 获取用户验证码
+	// 获取验证码：根据业务场景返回是否启用验证码及验证码内容
 	GetUserCaptcha(ctx context.Context, in *GetUserCaptchaRequest, opts ...grpc.CallOption) (*GetUserCaptchaReply, error)
-	// GetUserCaptcha 获取用户验证码
+	// 获取用户权限：返回当前登录用户拥有的权限集合
 	GetUserPermissions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetUserPermissionsReply, error)
-	// 用户是否可以上传文档
+	// 检查上传权限：判断当前用户是否具备上传文档资格
 	CanIUploadDocument(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 用户是否可以发布文章
+	// 检查发文权限：判断当前用户是否具备发布文章资格
 	CanIPublishArticle(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 获取用户动态，包括获取关注的用户的动态
+	// 用户动态列表：查询当前用户及其关注对象的动态内容
 	ListUserDynamic(ctx context.Context, in *ListUserDynamicRequest, opts ...grpc.CallOption) (*ListUserDynamicReply, error)
-	// 每日签到
+	// 每日签到：完成当天签到并返回签到记录和奖励信息
 	SignToday(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Sign, error)
-	// 获取今日已签到记录
+	// 查询今日签到：获取当前用户当天的签到记录
 	GetSignedToday(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Sign, error)
-	// 查询用户的下载记录
+	// 下载记录列表：分页查询当前用户的文档下载记录
 	ListUserDownload(ctx context.Context, in *ListUserDownloadRequest, opts ...grpc.CallOption) (*ListUserDownloadReply, error)
+	// 用户组列表：返回当前站点可选的用户组集合
 	ListUserGroup(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListUserGroupReply, error)
-	// 找回密码：第一步，发送验证码
+	// 找回密码第一步：校验账号并发送找回密码验证码
 	FindPasswordStepOne(ctx context.Context, in *FindPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 找回密码：第二步，修改密码
+	// 找回密码第二步：校验验证码后重置账号密码
 	FindPasswordStepTwo(ctx context.Context, in *FindPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 发送邮箱验证码。
+	// 发送邮箱验证码：用于注册或登录等场景的邮箱校验
 	SendEmailCode(ctx context.Context, in *SendEmailCodeRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -1977,51 +1975,49 @@ func (c *userAPIClient) SendEmailCode(ctx context.Context, in *SendEmailCodeRequ
 
 // UserAPIServer is the server API for UserAPI service.
 type UserAPIServer interface {
-	// 用户注册
+	// 用户注册：通过用户名、密码、邮箱等信息创建账号并返回登录态
 	Register(context.Context, *RegisterAndLoginRequest) (*LoginReply, error)
-	// 用户登录
+	// 用户登录：校验账号凭证并返回登录令牌和用户信息
 	Login(context.Context, *RegisterAndLoginRequest) (*LoginReply, error)
-	// 退出登录
+	// 退出登录：使当前登录态失效
 	Logout(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
-	// 查询用户信息。如果传递了Id参数，则表示查询用户的公开信息，否则查询当前用户的私有信息
+	// 获取用户信息：可查询指定用户公开资料，或查询当前用户的完整资料
 	GetUser(context.Context, *GetUserRequest) (*User, error)
-	// 更新用户密码。如果不传用户ID，则表示更新当前用户的密码；
-	// 如果穿了用户ID，则表示更新指定用户的密码，这时需要验证当前用户的权限
+	// 更新用户密码：可修改当前用户密码，管理员也可代为重置指定用户密码
 	UpdateUserPassword(context.Context, *UpdateUserPasswordRequest) (*emptypb.Empty, error)
-	// 更新用户密码。如果不传用户ID，则表示更新当前用户的密码；
-	// 如果穿了用户ID，则表示更新指定用户的密码，这时需要验证当前用户的权限
+	// 更新用户资料：修改头像、签名、地址等基础资料信息
 	UpdateUserProfile(context.Context, *User) (*emptypb.Empty, error)
-	// 删除用户。需要验证用户权限
+	// 删除用户：支持按用户 ID 批量删除用户，需校验操作权限
 	DeleteUser(context.Context, *DeleteUserRequest) (*emptypb.Empty, error)
-	// 新增用户
+	// 创建用户：管理员直接新增后台用户账号
 	AddUser(context.Context, *SetUserRequest) (*emptypb.Empty, error)
-	// 设置用户
+	// 设置用户：管理员更新用户基础信息和所属用户组
 	SetUser(context.Context, *SetUserRequest) (*emptypb.Empty, error)
-	// 查询用户列表。对于非管理员，返回相应用户的公开信息；
-	// 对于管理员，返回相应用户的绝大部分信息
+	// 用户列表：分页查询用户，可按用户组、状态和关键词筛选
 	ListUser(context.Context, *ListUserRequest) (*ListUserReply, error)
-	// GetUserCaptcha 获取用户验证码
+	// 获取验证码：根据业务场景返回是否启用验证码及验证码内容
 	GetUserCaptcha(context.Context, *GetUserCaptchaRequest) (*GetUserCaptchaReply, error)
-	// GetUserCaptcha 获取用户验证码
+	// 获取用户权限：返回当前登录用户拥有的权限集合
 	GetUserPermissions(context.Context, *emptypb.Empty) (*GetUserPermissionsReply, error)
-	// 用户是否可以上传文档
+	// 检查上传权限：判断当前用户是否具备上传文档资格
 	CanIUploadDocument(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
-	// 用户是否可以发布文章
+	// 检查发文权限：判断当前用户是否具备发布文章资格
 	CanIPublishArticle(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
-	// 获取用户动态，包括获取关注的用户的动态
+	// 用户动态列表：查询当前用户及其关注对象的动态内容
 	ListUserDynamic(context.Context, *ListUserDynamicRequest) (*ListUserDynamicReply, error)
-	// 每日签到
+	// 每日签到：完成当天签到并返回签到记录和奖励信息
 	SignToday(context.Context, *emptypb.Empty) (*Sign, error)
-	// 获取今日已签到记录
+	// 查询今日签到：获取当前用户当天的签到记录
 	GetSignedToday(context.Context, *emptypb.Empty) (*Sign, error)
-	// 查询用户的下载记录
+	// 下载记录列表：分页查询当前用户的文档下载记录
 	ListUserDownload(context.Context, *ListUserDownloadRequest) (*ListUserDownloadReply, error)
+	// 用户组列表：返回当前站点可选的用户组集合
 	ListUserGroup(context.Context, *emptypb.Empty) (*ListUserGroupReply, error)
-	// 找回密码：第一步，发送验证码
+	// 找回密码第一步：校验账号并发送找回密码验证码
 	FindPasswordStepOne(context.Context, *FindPasswordRequest) (*emptypb.Empty, error)
-	// 找回密码：第二步，修改密码
+	// 找回密码第二步：校验验证码后重置账号密码
 	FindPasswordStepTwo(context.Context, *FindPasswordRequest) (*emptypb.Empty, error)
-	// 发送邮箱验证码。
+	// 发送邮箱验证码：用于注册或登录等场景的邮箱校验
 	SendEmailCode(context.Context, *SendEmailCodeRequest) (*emptypb.Empty, error)
 }
 

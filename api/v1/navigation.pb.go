@@ -448,10 +448,15 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type NavigationAPIClient interface {
+	// 创建导航：新增一条站点导航并返回创建后的数据
 	CreateNavigation(ctx context.Context, in *Navigation, opts ...grpc.CallOption) (*Navigation, error)
+	// 更新导航：根据导航 ID 修改名称、链接、排序和固定状态
 	UpdateNavigation(ctx context.Context, in *Navigation, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// 删除导航：支持按导航 ID 批量删除导航项
 	DeleteNavigation(ctx context.Context, in *DeleteNavigationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// 获取导航：根据导航 ID 查询单个导航项详情
 	GetNavigation(ctx context.Context, in *GetNavigationRequest, opts ...grpc.CallOption) (*Navigation, error)
+	// 导航列表：按关键词和排序规则分页查询导航项
 	ListNavigation(ctx context.Context, in *ListNavigationRequest, opts ...grpc.CallOption) (*ListNavigationReply, error)
 }
 
@@ -510,10 +515,15 @@ func (c *navigationAPIClient) ListNavigation(ctx context.Context, in *ListNaviga
 
 // NavigationAPIServer is the server API for NavigationAPI service.
 type NavigationAPIServer interface {
+	// 创建导航：新增一条站点导航并返回创建后的数据
 	CreateNavigation(context.Context, *Navigation) (*Navigation, error)
+	// 更新导航：根据导航 ID 修改名称、链接、排序和固定状态
 	UpdateNavigation(context.Context, *Navigation) (*emptypb.Empty, error)
+	// 删除导航：支持按导航 ID 批量删除导航项
 	DeleteNavigation(context.Context, *DeleteNavigationRequest) (*emptypb.Empty, error)
+	// 获取导航：根据导航 ID 查询单个导航项详情
 	GetNavigation(context.Context, *GetNavigationRequest) (*Navigation, error)
+	// 导航列表：按关键词和排序规则分页查询导航项
 	ListNavigation(context.Context, *ListNavigationRequest) (*ListNavigationReply, error)
 }
 

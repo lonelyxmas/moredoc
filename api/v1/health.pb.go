@@ -172,7 +172,9 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type HealthAPIClient interface {
+	// 服务健康检查：用于探测服务是否正常存活并可响应请求
 	Health(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// Ping 测试：回显请求信息并返回服务当前响应时间
 	Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PongReply, error)
 }
 
@@ -204,7 +206,9 @@ func (c *healthAPIClient) Ping(ctx context.Context, in *PingRequest, opts ...grp
 
 // HealthAPIServer is the server API for HealthAPI service.
 type HealthAPIServer interface {
+	// 服务健康检查：用于探测服务是否正常存活并可响应请求
 	Health(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	// Ping 测试：回显请求信息并返回服务当前响应时间
 	Ping(context.Context, *PingRequest) (*PongReply, error)
 }
 

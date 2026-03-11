@@ -30,6 +30,7 @@ produces:
 paths:
   /api/v1/advertisement:
     get:
+      summary: 查询广告：根据广告 ID 获取单条广告位详情
       operationId: AdvertisementAPI_GetAdvertisement
       responses:
         "200":
@@ -49,6 +50,7 @@ paths:
       tags:
         - AdvertisementAPI
     delete:
+      summary: 删除广告：支持按广告 ID 批量删除广告位配置
       operationId: AdvertisementAPI_DeleteAdvertisement
       responses:
         "200":
@@ -72,6 +74,7 @@ paths:
       tags:
         - AdvertisementAPI
     post:
+      summary: 创建广告：新增一条广告位配置并返回创建后的广告详情
       operationId: AdvertisementAPI_CreateAdvertisement
       responses:
         "200":
@@ -91,6 +94,7 @@ paths:
       tags:
         - AdvertisementAPI
     put:
+      summary: 更新广告：根据广告 ID 修改广告位内容、投放时间和启用状态
       operationId: AdvertisementAPI_UpdateAdvertisement
       responses:
         "200":
@@ -112,6 +116,7 @@ paths:
         - AdvertisementAPI
   /api/v1/advertisement/list:
     get:
+      summary: 广告列表：按关键词、位置和启用状态筛选广告位配置
       operationId: AdvertisementAPI_ListAdvertisement
       responses:
         "200":
@@ -166,6 +171,7 @@ paths:
         - AdvertisementAPI
   /api/v1/advertisement/position:
     get:
+      summary: 按广告位查询广告：根据广告位标识返回对应的广告列表
       operationId: AdvertisementAPI_GetAdvertisementByPosition
       responses:
         "200":
@@ -188,7 +194,7 @@ paths:
         - AdvertisementAPI
   /api/v1/article:
     get:
-      summary: 获取文章
+      summary: 获取文章：根据文章 ID 或唯一标识查询单篇文章详情
       operationId: ArticleAPI_GetArticle
       responses:
         "200":
@@ -214,7 +220,7 @@ paths:
       tags:
         - ArticleAPI
     delete:
-      summary: 删除文章
+      summary: 删除文章：支持按文章 ID 批量删除文章到回收站
       operationId: ArticleAPI_DeleteArticle
       responses:
         "200":
@@ -238,7 +244,7 @@ paths:
       tags:
         - ArticleAPI
     post:
-      summary: 创建文章
+      summary: 创建文章：提交文章标题、内容和分类信息，返回新建后的文章详情
       operationId: ArticleAPI_CreateArticle
       responses:
         "200":
@@ -258,7 +264,7 @@ paths:
       tags:
         - ArticleAPI
     put:
-      summary: 更新文章
+      summary: 更新文章：根据文章 ID 修改文章内容、状态和展示信息
       operationId: ArticleAPI_UpdateArticle
       responses:
         "200":
@@ -280,7 +286,7 @@ paths:
         - ArticleAPI
   /api/v1/article/category:
     put:
-      summary: 批量更新文档分类
+      summary: 批量设置文章分类：为多篇文章统一更新所属分类
       operationId: ArticleAPI_SetArticlesCategory
       responses:
         "200":
@@ -302,7 +308,7 @@ paths:
         - ArticleAPI
   /api/v1/article/check:
     put:
-      summary: 批量审核文档
+      summary: 批量审核文章：统一更新文章审核状态并记录拒绝原因
       operationId: ArticleAPI_CheckArticles
       responses:
         "200":
@@ -324,7 +330,7 @@ paths:
         - ArticleAPI
   /api/v1/article/list:
     get:
-      summary: 文章列表
+      summary: 文章列表：按关键词、分类、作者和状态分页查询文章
       operationId: ArticleAPI_ListArticle
       responses:
         "200":
@@ -418,7 +424,7 @@ paths:
         - ArticleAPI
   /api/v1/article/recommend:
     put:
-      summary: 批量推荐
+      summary: 批量推荐文章：统一设置文章推荐状态或重新推荐
       operationId: ArticleAPI_RecommendArticles
       responses:
         "200":
@@ -440,7 +446,7 @@ paths:
         - ArticleAPI
   /api/v1/article/recycle:
     delete:
-      summary: 从回收站删除文章
+      summary: 彻底删除回收站文章：按文章 ID 从回收站永久删除文章
       operationId: ArticleAPI_DeleteRecycleArticle
       responses:
         "200":
@@ -465,7 +471,7 @@ paths:
         - ArticleAPI
   /api/v1/article/recycle/empty:
     delete:
-      summary: 清空回收站
+      summary: 清空文章回收站：永久删除回收站中的全部文章
       operationId: ArticleAPI_EmptyRecycleArticle
       responses:
         "200":
@@ -481,7 +487,7 @@ paths:
         - ArticleAPI
   /api/v1/article/recycle/list:
     get:
-      summary: 回收站文章列表
+      summary: 回收站文章列表：分页查询已删除的文章记录
       operationId: ArticleAPI_ListRecycleArticle
       responses:
         "200":
@@ -575,7 +581,7 @@ paths:
         - ArticleAPI
   /api/v1/article/recycle/restore:
     post:
-      summary: 恢复回收站文章
+      summary: 恢复回收站文章：支持按文章 ID 批量恢复已删除文章
       operationId: ArticleAPI_RestoreRecycleArticle
       responses:
         "200":
@@ -597,7 +603,7 @@ paths:
         - ArticleAPI
   /api/v1/article/related:
     get:
-      summary: 相关文章
+      summary: 相关文章：根据当前文章返回推荐的相关文章列表
       operationId: ArticleAPI_GetRelatedArticles
       responses:
         "200":
@@ -624,7 +630,7 @@ paths:
         - ArticleAPI
   /api/v1/article/search:
     get:
-      summary: 搜索文章
+      summary: 搜索文章：根据关键词和筛选条件执行全文检索
       operationId: ArticleAPI_SearchArticle
       responses:
         "200":
@@ -718,7 +724,7 @@ paths:
         - ArticleAPI
   /api/v1/attachment:
     get:
-      summary: 查询附件
+      summary: 查询附件：根据附件 ID 获取单个附件详情
       operationId: AttachmentAPI_GetAttachment
       responses:
         "200":
@@ -738,7 +744,7 @@ paths:
       tags:
         - AttachmentAPI
     delete:
-      summary: 删除附件。这里只是软删除，不会真正删除附件，默认24小时候会真正清除附件
+      summary: 删除附件：执行软删除，附件会进入延迟清理流程而不是立即物理删除
       operationId: AttachmentAPI_DeleteAttachment
       responses:
         "200":
@@ -762,7 +768,7 @@ paths:
       tags:
         - AttachmentAPI
     put:
-      summary: 更新附件
+      summary: 更新附件：修改附件名称、描述、状态等元数据信息
       operationId: AttachmentAPI_UpdateAttachment
       responses:
         "200":
@@ -784,7 +790,7 @@ paths:
         - AttachmentAPI
   /api/v1/attachment/list:
     get:
-      summary: 列出附件
+      summary: 附件列表：按关键词、上传用户、类型和扩展名分页筛选附件
       operationId: AttachmentAPI_ListAttachment
       responses:
         "200":
@@ -848,7 +854,7 @@ paths:
         - AttachmentAPI
   /api/v1/banner:
     get:
-      summary: 查询轮播图
+      summary: 查询轮播图：根据轮播图 ID 获取单条详情
       operationId: BannerAPI_GetBanner
       responses:
         "200":
@@ -868,7 +874,7 @@ paths:
       tags:
         - BannerAPI
     delete:
-      summary: 删除轮播图
+      summary: 删除轮播图：支持按轮播图 ID 批量删除配置
       operationId: BannerAPI_DeleteBanner
       responses:
         "200":
@@ -892,7 +898,7 @@ paths:
       tags:
         - BannerAPI
     post:
-      summary: 创建轮播图
+      summary: 创建轮播图：新增一条轮播图并返回创建后的数据
       operationId: BannerAPI_CreateBanner
       responses:
         "200":
@@ -912,7 +918,7 @@ paths:
       tags:
         - BannerAPI
     put:
-      summary: 更新轮播图
+      summary: 更新轮播图：根据轮播图 ID 修改标题、图片和展示状态
       operationId: BannerAPI_UpdateBanner
       responses:
         "200":
@@ -934,7 +940,7 @@ paths:
         - BannerAPI
   /api/v1/banner/list:
     get:
-      summary: 轮播图列表
+      summary: 轮播图列表：按类型、启用状态和关键词分页查询轮播图
       operationId: BannerAPI_ListBanner
       responses:
         "200":
@@ -992,7 +998,7 @@ paths:
         - BannerAPI
   /api/v1/category:
     get:
-      summary: 获取分类
+      summary: 获取分类：根据分类 ID 查询单个分类详情
       operationId: CategoryAPI_GetCategory
       responses:
         "200":
@@ -1012,7 +1018,7 @@ paths:
       tags:
         - CategoryAPI
     delete:
-      summary: 删除分类
+      summary: 删除分类：支持按分类 ID 批量删除分类节点
       operationId: CategoryAPI_DeleteCategory
       responses:
         "200":
@@ -1036,7 +1042,7 @@ paths:
       tags:
         - CategoryAPI
     post:
-      summary: 创建分类
+      summary: 创建分类：新增一个文档分类节点并保存分类属性
       operationId: CategoryAPI_CreateCategory
       responses:
         "200":
@@ -1057,7 +1063,7 @@ paths:
       tags:
         - CategoryAPI
     put:
-      summary: 更新分类
+      summary: 更新分类：根据分类 ID 修改名称、封面、排序和展示配置
       operationId: CategoryAPI_UpdateCategory
       responses:
         "200":
@@ -1079,7 +1085,7 @@ paths:
         - CategoryAPI
   /api/v1/category/list:
     get:
-      summary: 分类列表
+      summary: 分类列表：按父分类、启用状态和类型分页查询分类
       operationId: CategoryAPI_ListCategory
       responses:
         "200":
@@ -1146,7 +1152,7 @@ paths:
         - CategoryAPI
   /api/v1/comment:
     get:
-      summary: 获取单个评论
+      summary: 获取评论详情：根据评论 ID 查询单条评论信息
       operationId: CommentAPI_GetComment
       responses:
         "200":
@@ -1166,7 +1172,7 @@ paths:
       tags:
         - CommentAPI
     delete:
-      summary: 管理员或用户自己删除自己的评论
+      summary: 删除评论：管理员或评论作者可按评论 ID 删除评论
       operationId: CommentAPI_DeleteComment
       responses:
         "200":
@@ -1190,7 +1196,7 @@ paths:
       tags:
         - CommentAPI
     post:
-      summary: 创建评论
+      summary: 创建评论：提交评论内容并关联到文档或文章
       operationId: CommentAPI_CreateComment
       responses:
         "200":
@@ -1211,7 +1217,7 @@ paths:
       tags:
         - CommentAPI
     put:
-      summary: 更新评论，仅限管理员操作
+      summary: 更新评论：管理员修改评论内容或状态时使用
       operationId: CommentAPI_UpdateComment
       responses:
         "200":
@@ -1233,7 +1239,7 @@ paths:
         - CommentAPI
   /api/v1/comment/check:
     post:
-      summary: 审核评论
+      summary: 审核评论：批量更新评论审核状态
       operationId: CommentAPI_CheckComment
       responses:
         "200":
@@ -1255,7 +1261,7 @@ paths:
         - CommentAPI
   /api/v1/comment/list:
     get:
-      summary: 获取评论列表
+      summary: 评论列表：按状态、文档、用户和评论类型分页查询评论
       operationId: CommentAPI_ListComment
       responses:
         "200":
@@ -1345,7 +1351,7 @@ paths:
         - CommentAPI
   /api/v1/config:
     put:
-      summary: UpdateConfig 更新配置
+      summary: 更新配置：批量保存后台配置项的键值内容
       operationId: ConfigAPI_UpdateConfig
       responses:
         "200":
@@ -1367,7 +1373,7 @@ paths:
         - ConfigAPI
   /api/v1/config/list:
     get:
-      summary: ListConfig 查询配置项
+      summary: 配置项列表：按配置分类查询后台配置项明细
       operationId: ConfigAPI_ListConfig
       responses:
         "200":
@@ -1390,7 +1396,7 @@ paths:
         - ConfigAPI
   /api/v1/device:
     get:
-      summary: 获取设备信息
+      summary: 获取设备信息：返回当前服务所在机器的 CPU、内存和磁盘状态
       operationId: ConfigAPI_GetDeviceInfo
       responses:
         "200":
@@ -1405,7 +1411,7 @@ paths:
         - ConfigAPI
   /api/v1/document:
     get:
-      summary: 查询文档
+      summary: 获取文档：根据文档 ID 或 UUID 查询文档详情
       operationId: DocumentAPI_GetDocument
       responses:
         "200":
@@ -1441,7 +1447,7 @@ paths:
       tags:
         - DocumentAPI
     delete:
-      summary: 删除文档
+      summary: 删除文档：支持按文档 ID 批量删除文档到回收站
       operationId: DocumentAPI_DeleteDocument
       responses:
         "200":
@@ -1465,7 +1471,7 @@ paths:
       tags:
         - DocumentAPI
     post:
-      summary: 创建文档
+      summary: 创建文档：批量提交附件生成文档记录并写入基础信息
       operationId: DocumentAPI_CreateDocument
       responses:
         "200":
@@ -1486,7 +1492,7 @@ paths:
       tags:
         - DocumentAPI
     put:
-      summary: 更新文档
+      summary: 更新文档：根据文档 ID 修改标题、描述、价格和分类等信息
       operationId: DocumentAPI_UpdateDocument
       responses:
         "200":
@@ -1508,7 +1514,7 @@ paths:
         - DocumentAPI
   /api/v1/document/category:
     put:
-      summary: 批量更新文档分类
+      summary: 批量设置文档分类：为多篇文档统一更新所属分类
       operationId: DocumentAPI_SetDocumentsCategory
       responses:
         "200":
@@ -1530,7 +1536,7 @@ paths:
         - DocumentAPI
   /api/v1/document/check:
     put:
-      summary: 批量审核文档
+      summary: 审核文档：批量更新文档审核状态
       operationId: DocumentAPI_CheckDocument
       responses:
         "200":
@@ -1552,7 +1558,7 @@ paths:
         - DocumentAPI
   /api/v1/document/download:
     get:
-      summary: 根据文档ID，获取文档下载链接
+      summary: 获取下载链接：根据文档信息生成当前用户可用的下载地址
       operationId: DocumentAPI_DownloadDocument
       responses:
         "200":
@@ -2007,7 +2013,7 @@ paths:
         - DocumentAPI
   /api/v1/document/download/bereviewed:
     get:
-      summary: 下载待审核的文档(只有待审核、审核拒绝的文档才能下载)
+      summary: 下载待审核文档：为待审核或审核拒绝的文档生成下载地址
       operationId: DocumentAPI_DownloadDocumentToBeReviewed
       responses:
         "200":
@@ -2462,7 +2468,7 @@ paths:
         - DocumentAPI
   /api/v1/document/home:
     get:
-      summary: 针对首页的文档查询
+      summary: 首页文档推荐：返回首页场景下按分类聚合的文档列表
       operationId: DocumentAPI_ListDocumentForHome
       responses:
         "200":
@@ -2490,7 +2496,7 @@ paths:
         - DocumentAPI
   /api/v1/document/language:
     put:
-      summary: 批量更新文档所属语言
+      summary: 批量设置文档语言：为多篇文档统一更新语言标签
       operationId: DocumentAPI_SetDocumentsLanguage
       responses:
         "200":
@@ -2512,7 +2518,7 @@ paths:
         - DocumentAPI
   /api/v1/document/list:
     get:
-      summary: 文档列表查询
+      summary: 文档列表：按关键词、分类、作者、状态和语言分页查询文档
       operationId: DocumentAPI_ListDocument
       responses:
         "200":
@@ -2625,7 +2631,7 @@ paths:
         - DocumentAPI
   /api/v1/document/recommend:
     put:
-      summary: 设置文档推荐
+      summary: 设置文档推荐：批量调整文档推荐状态或刷新推荐时间
       operationId: DocumentAPI_SetDocumentRecommend
       responses:
         "200":
@@ -2647,7 +2653,7 @@ paths:
         - DocumentAPI
   /api/v1/document/reconvert:
     put:
-      summary: 将文档一键设置为重转
+      summary: 触发文档重转：将待处理文档标记为重新转换预览文件
       operationId: DocumentAPI_SetDocumentReconvert
       responses:
         "200":
@@ -2663,7 +2669,7 @@ paths:
         - DocumentAPI
   /api/v1/document/recycle:
     get:
-      summary: 文档回收站列表
+      summary: 回收站列表：分页查询已进入回收站的文档
       operationId: RecycleAPI_ListRecycleDocument
       responses:
         "200":
@@ -2775,7 +2781,7 @@ paths:
       tags:
         - RecycleAPI
     delete:
-      summary: 删除回收站文档
+      summary: 彻底删除回收站文档：按文档 ID 从回收站永久移除
       operationId: RecycleAPI_DeleteRecycleDocument
       responses:
         "200":
@@ -2799,7 +2805,7 @@ paths:
       tags:
         - RecycleAPI
     put:
-      summary: 恢复回收站文档，支持恢复单个文档或者是批量恢复
+      summary: 恢复回收站文档：支持单个或批量恢复已删除文档
       operationId: RecycleAPI_RecoverRecycleDocument
       responses:
         "200":
@@ -2821,7 +2827,7 @@ paths:
         - RecycleAPI
   /api/v1/document/recycle/all:
     delete:
-      summary: 清空回收站文档
+      summary: 清空回收站：永久删除回收站中的全部文档记录
       operationId: RecycleAPI_ClearRecycleDocument
       responses:
         "200":
@@ -2837,7 +2843,7 @@ paths:
         - RecycleAPI
   /api/v1/document/related:
     get:
-      summary: 根据文档ID查询当前文档的相关文档
+      summary: 相关文档：根据当前文档推荐相似或相关的文档列表
       operationId: DocumentAPI_GetRelatedDocuments
       responses:
         "200":
@@ -3292,7 +3298,7 @@ paths:
         - DocumentAPI
   /api/v1/document/score:
     get:
-      summary: 获取当前登录用户的文档评分
+      summary: 获取我的文档评分：查询当前登录用户对指定文档的评分记录
       operationId: DocumentAPI_GetDocumentScore
       responses:
         "200":
@@ -3343,7 +3349,7 @@ paths:
       tags:
         - DocumentAPI
     post:
-      summary: 设置文档评分
+      summary: 设置文档评分：提交当前用户对文档的评分结果
       operationId: DocumentAPI_SetDocumentScore
       responses:
         "200":
@@ -3365,7 +3371,7 @@ paths:
         - DocumentAPI
   /api/v1/document/search:
     get:
-      summary: 文档搜索
+      summary: 搜索文档：根据全文检索条件返回匹配文档和耗时信息
       operationId: DocumentAPI_SearchDocument
       responses:
         "200":
@@ -3442,7 +3448,7 @@ paths:
         - DocumentAPI
   /api/v1/envs:
     get:
-      summary: 获取系统环境依赖检测
+      summary: 获取环境依赖：检查程序运行依赖及安装状态
       operationId: ConfigAPI_GetEnvs
       responses:
         "200":
@@ -3457,7 +3463,7 @@ paths:
         - ConfigAPI
   /api/v1/favorite:
     get:
-      summary: 根据文章id，查询用户是否有收藏某篇文档
+      summary: 查询收藏状态：根据文档或文章 ID 判断当前用户是否已收藏
       operationId: FavoriteAPI_GetFavorite
       responses:
         "200":
@@ -3482,7 +3488,7 @@ paths:
       tags:
         - FavoriteAPI
     delete:
-      summary: 取消收藏
+      summary: 取消收藏：支持按收藏记录 ID 批量移除收藏
       operationId: FavoriteAPI_DeleteFavorite
       responses:
         "200":
@@ -3506,7 +3512,7 @@ paths:
       tags:
         - FavoriteAPI
     post:
-      summary: 添加收藏
+      summary: 添加收藏：将指定文档或文章加入当前用户收藏夹
       operationId: FavoriteAPI_CreateFavorite
       responses:
         "200":
@@ -3527,7 +3533,7 @@ paths:
         - FavoriteAPI
   /api/v1/favorite/list:
     get:
-      summary: 查询用户的收藏
+      summary: 收藏列表：分页查询当前用户的文档或文章收藏记录
       operationId: FavoriteAPI_ListFavorite
       responses:
         "200":
@@ -3559,7 +3565,7 @@ paths:
         - FavoriteAPI
   /api/v1/friendlink:
     get:
-      summary: 获取友情链接
+      summary: 获取友情链接：根据链接 ID 查询单条友情链接详情
       operationId: FriendlinkAPI_GetFriendlink
       responses:
         "200":
@@ -3579,7 +3585,7 @@ paths:
       tags:
         - FriendlinkAPI
     delete:
-      summary: 删除友情链接
+      summary: 删除友情链接：支持按链接 ID 批量删除友情链接
       operationId: FriendlinkAPI_DeleteFriendlink
       responses:
         "200":
@@ -3603,7 +3609,7 @@ paths:
       tags:
         - FriendlinkAPI
     post:
-      summary: 创建友情链接
+      summary: 创建友情链接：新增一条友情链接配置并返回创建结果
       operationId: FriendlinkAPI_CreateFriendlink
       responses:
         "200":
@@ -3623,7 +3629,7 @@ paths:
       tags:
         - FriendlinkAPI
     put:
-      summary: 更新友情链接
+      summary: 更新友情链接：根据链接 ID 修改名称、地址和展示状态
       operationId: FriendlinkAPI_UpdateFriendlink
       responses:
         "200":
@@ -3645,7 +3651,7 @@ paths:
         - FriendlinkAPI
   /api/v1/friendlink/list:
     get:
-      summary: 获取友情链接
+      summary: 友情链接列表：按关键词和启用状态分页查询友情链接
       operationId: FriendlinkAPI_ListFriendlink
       responses:
         "200":
@@ -3689,7 +3695,7 @@ paths:
         - FriendlinkAPI
   /api/v1/group:
     get:
-      summary: 获取用户组
+      summary: 获取用户组：根据用户组 ID 或名称查询单个用户组详情
       operationId: GroupAPI_GetGroup
       responses:
         "200":
@@ -3713,7 +3719,7 @@ paths:
       tags:
         - GroupAPI
     delete:
-      summary: 删除用户组
+      summary: 删除用户组：支持按用户组 ID 批量删除用户组
       operationId: GroupAPI_DeleteGroup
       responses:
         "200":
@@ -3737,7 +3743,7 @@ paths:
       tags:
         - GroupAPI
     post:
-      summary: 创建用户组
+      summary: 创建用户组：新增一个用户组并返回创建后的用户组信息
       operationId: GroupAPI_CreateGroup
       responses:
         "200":
@@ -3757,7 +3763,7 @@ paths:
       tags:
         - GroupAPI
     put:
-      summary: 更新用户组
+      summary: 更新用户组：根据用户组 ID 修改名称、权限开关和展示属性
       operationId: GroupAPI_UpdateGroup
       responses:
         "200":
@@ -3779,7 +3785,7 @@ paths:
         - GroupAPI
   /api/v1/group/list:
     get:
-      summary: 获取用户组列表
+      summary: 用户组列表：分页查询用户组并可指定返回字段
       operationId: GroupAPI_ListGroup
       responses:
         "200":
@@ -3820,7 +3826,7 @@ paths:
         - GroupAPI
   /api/v1/group/permission:
     get:
-      summary: 获取用户组权限列表
+      summary: 获取用户组权限：返回指定用户组绑定的权限 ID 列表
       operationId: GroupAPI_GetGroupPermission
       responses:
         "200":
@@ -3840,7 +3846,7 @@ paths:
       tags:
         - GroupAPI
     put:
-      summary: 更新用户组权限，给用户组设置权限
+      summary: 更新用户组权限：为指定用户组批量设置权限集合
       operationId: GroupAPI_UpdateGroupPermission
       responses:
         "200":
@@ -3862,6 +3868,7 @@ paths:
         - GroupAPI
   /api/v1/language:
     delete:
+      summary: 删除语言：支持按语言 ID 批量删除语言配置
       operationId: LanguageAPI_DeleteLanguage
       responses:
         "200":
@@ -3885,6 +3892,7 @@ paths:
       tags:
         - LanguageAPI
     post:
+      summary: 创建语言：新增一种站点支持的语言配置
       operationId: LanguageAPI_CreateLanguage
       responses:
         "200":
@@ -3905,6 +3913,7 @@ paths:
       tags:
         - LanguageAPI
     put:
+      summary: 更新语言：根据语言 ID 修改名称、编码和排序信息
       operationId: LanguageAPI_UpdateLanguage
       responses:
         "200":
@@ -3926,6 +3935,7 @@ paths:
         - LanguageAPI
   /api/v1/language/list:
     get:
+      summary: 语言列表：按关键词和启用状态分页查询语言配置
       operationId: LanguageAPI_ListLanguage
       responses:
         "200":
@@ -3969,6 +3979,7 @@ paths:
         - LanguageAPI
   /api/v1/language/status:
     put:
+      summary: 批量更新语言状态：统一启用或停用指定语言项
       operationId: LanguageAPI_UpdateLanguageStatus
       responses:
         "200":
@@ -3990,6 +4001,7 @@ paths:
         - LanguageAPI
   /api/v1/navigation:
     get:
+      summary: 获取导航：根据导航 ID 查询单个导航项详情
       operationId: NavigationAPI_GetNavigation
       responses:
         "200":
@@ -4009,6 +4021,7 @@ paths:
       tags:
         - NavigationAPI
     delete:
+      summary: 删除导航：支持按导航 ID 批量删除导航项
       operationId: NavigationAPI_DeleteNavigation
       responses:
         "200":
@@ -4032,6 +4045,7 @@ paths:
       tags:
         - NavigationAPI
     post:
+      summary: 创建导航：新增一条站点导航并返回创建后的数据
       operationId: NavigationAPI_CreateNavigation
       responses:
         "200":
@@ -4051,6 +4065,7 @@ paths:
       tags:
         - NavigationAPI
     put:
+      summary: 更新导航：根据导航 ID 修改名称、链接、排序和固定状态
       operationId: NavigationAPI_UpdateNavigation
       responses:
         "200":
@@ -4072,6 +4087,7 @@ paths:
         - NavigationAPI
   /api/v1/navigation/list:
     get:
+      summary: 导航列表：按关键词和排序规则分页查询导航项
       operationId: NavigationAPI_ListNavigation
       responses:
         "200":
@@ -4112,7 +4128,7 @@ paths:
         - NavigationAPI
   /api/v1/permission:
     get:
-      summary: 查询权限信息
+      summary: 获取权限：根据权限 ID 查询单个权限详情
       operationId: PermissionAPI_GetPermission
       responses:
         "200":
@@ -4132,7 +4148,7 @@ paths:
       tags:
         - PermissionAPI
     put:
-      summary: 更新权限信息。这里只能操作title和description
+      summary: 更新权限：维护权限名称和描述等展示信息
       operationId: PermissionAPI_UpdatePermission
       responses:
         "200":
@@ -4154,7 +4170,7 @@ paths:
         - PermissionAPI
   /api/v1/permission/list:
     get:
-      summary: 查询权限列表
+      summary: 权限列表：按请求方法、路径和关键词分页查询权限
       operationId: PermissionAPI_ListPermission
       responses:
         "200":
@@ -4195,6 +4211,7 @@ paths:
         - PermissionAPI
   /api/v1/ping:
     get:
+      summary: Ping 测试：回显请求信息并返回服务当前响应时间
       operationId: HealthAPI_Ping
       responses:
         "200":
@@ -4214,6 +4231,7 @@ paths:
         - HealthAPI
   /api/v1/punishment:
     get:
+      summary: 获取惩罚：根据处罚记录 ID 查询单条处罚详情
       operationId: PunishmentAPI_GetPunishment
       responses:
         "200":
@@ -4233,6 +4251,7 @@ paths:
       tags:
         - PunishmentAPI
     post:
+      summary: 创建惩罚：批量为用户设置禁言、限制等处罚措施
       operationId: PunishmentAPI_CreatePunishment
       responses:
         "200":
@@ -4253,6 +4272,7 @@ paths:
       tags:
         - PunishmentAPI
     put:
+      summary: 更新惩罚：修改处罚记录的状态、原因或截止时间
       operationId: PunishmentAPI_UpdatePunishment
       responses:
         "200":
@@ -4274,7 +4294,7 @@ paths:
         - PunishmentAPI
   /api/v1/punishment/cancel:
     put:
-      summary: 批量取消惩罚
+      summary: 取消惩罚：按处罚记录 ID 批量解除已生效的处罚
       operationId: PunishmentAPI_CancelPunishment
       responses:
         "200":
@@ -4296,6 +4316,7 @@ paths:
         - PunishmentAPI
   /api/v1/punishment/list:
     get:
+      summary: 惩罚列表：按用户、处罚类型和状态分页查询处罚记录
       operationId: PunishmentAPI_ListPunishment
       responses:
         "200":
@@ -4360,7 +4381,7 @@ paths:
         - PunishmentAPI
   /api/v1/release:
     get:
-      summary: 获取最近发布版本
+      summary: 获取最新版本：读取远程发布源中的最新版本信息
       operationId: ConfigAPI_GetLatestRelease
       responses:
         "200":
@@ -4374,7 +4395,7 @@ paths:
       tags:
         - ConfigAPI
     post:
-      summary: 更新最新发布版本
+      summary: 刷新最新版本：主动重新拉取远程版本发布信息
       operationId: ConfigAPI_RefreshLatestRelease
       responses:
         "200":
@@ -4389,7 +4410,7 @@ paths:
         - ConfigAPI
   /api/v1/release/ignore:
     put:
-      summary: 忽略版本，设置ignore字段
+      summary: 忽略版本：记录指定版本为忽略状态，避免重复提示
       operationId: ConfigAPI_IgnoreRelease
       responses:
         "200":
@@ -4411,7 +4432,7 @@ paths:
         - ConfigAPI
   /api/v1/release/source:
     put:
-      summary: 设置release源，主要是更新 source 字段
+      summary: 设置发布源：切换版本检查使用的来源地址或渠道
       operationId: ConfigAPI_SetReleaseSource
       responses:
         "200":
@@ -4433,7 +4454,7 @@ paths:
         - ConfigAPI
   /api/v1/report:
     delete:
-      summary: 删除举报
+      summary: 删除举报：支持按举报 ID 批量删除举报记录
       operationId: ReportAPI_DeleteReport
       responses:
         "200":
@@ -4457,7 +4478,7 @@ paths:
       tags:
         - ReportAPI
     post:
-      summary: 创建举报
+      summary: 创建举报：提交对文档内容的举报信息
       operationId: ReportAPI_CreateReport
       responses:
         "200":
@@ -4478,7 +4499,7 @@ paths:
       tags:
         - ReportAPI
     put:
-      summary: 更新举报，审核举报内容
+      summary: 处理举报：更新举报状态并记录处理备注
       operationId: ReportAPI_UpdateReport
       responses:
         "200":
@@ -4500,7 +4521,7 @@ paths:
         - ReportAPI
   /api/v1/report/list:
     get:
-      summary: 获取举报列表
+      summary: 举报列表：按处理状态和关键词分页查询举报记录
       operationId: ReportAPI_ListReport
       responses:
         "200":
@@ -4548,6 +4569,7 @@ paths:
         - ReportAPI
   /api/v1/searchrecord:
     delete:
+      summary: 删除搜索记录：支持按记录 ID 批量删除搜索日志
       operationId: SearchRecordAPI_DeleteSearchRecord
       responses:
         "200":
@@ -4572,6 +4594,7 @@ paths:
         - SearchRecordAPI
   /api/v1/searchrecord/list:
     get:
+      summary: 搜索记录列表：按关键词、用户和 IP 分页查询搜索日志
       operationId: SearchRecordAPI_ListSearchRecord
       responses:
         "200":
@@ -4624,7 +4647,7 @@ paths:
         - SearchRecordAPI
   /api/v1/settings:
     get:
-      summary: 获取系统配置（针对所有用户，只读）
+      summary: 获取站点设置：返回前台可读取的系统、展示、安全和语言配置
       operationId: ConfigAPI_GetSettings
       responses:
         "200":
@@ -4639,7 +4662,7 @@ paths:
         - ConfigAPI
   /api/v1/sitemap:
     put:
-      summary: 更新站点地图
+      summary: 更新站点地图：重新生成或刷新站点 sitemap 数据
       operationId: ConfigAPI_UpdateSitemap
       responses:
         "200":
@@ -4655,7 +4678,7 @@ paths:
         - ConfigAPI
   /api/v1/sqlmode:
     put:
-      summary: 设置SQL mode，只针对id=1的用户，且sql_mode只处理only_full_group_by问题
+      summary: 设置 SQL Mode：修正数据库 only_full_group_by 等兼容性配置
       operationId: ConfigAPI_SetSQLMode
       responses:
         "200":
@@ -4671,7 +4694,7 @@ paths:
         - ConfigAPI
   /api/v1/stats:
     get:
-      summary: 获取系统配置
+      summary: 获取系统统计：返回用户、文档、评论等核心统计指标
       operationId: ConfigAPI_GetStats
       responses:
         "200":
@@ -4686,7 +4709,7 @@ paths:
         - ConfigAPI
   /api/v1/user:
     get:
-      summary: 查询用户信息。如果传递了Id参数，则表示查询用户的公开信息，否则查询当前用户的私有信息
+      summary: 获取用户信息：可查询指定用户公开资料，或查询当前用户的完整资料
       operationId: UserAPI_GetUser
       responses:
         "200":
@@ -4706,7 +4729,7 @@ paths:
       tags:
         - UserAPI
     delete:
-      summary: 删除用户。需要验证用户权限
+      summary: 删除用户：支持按用户 ID 批量删除用户，需校验操作权限
       operationId: UserAPI_DeleteUser
       responses:
         "200":
@@ -4735,7 +4758,7 @@ paths:
       tags:
         - UserAPI
     post:
-      summary: 新增用户
+      summary: 创建用户：管理员直接新增后台用户账号
       operationId: UserAPI_AddUser
       responses:
         "200":
@@ -4756,7 +4779,7 @@ paths:
       tags:
         - UserAPI
     put:
-      summary: 设置用户
+      summary: 设置用户：管理员更新用户基础信息和所属用户组
       operationId: UserAPI_SetUser
       responses:
         "200":
@@ -4778,7 +4801,7 @@ paths:
         - UserAPI
   /api/v1/user/canipublisharticle:
     get:
-      summary: 用户是否可以发布文章
+      summary: 检查发文权限：判断当前用户是否具备发布文章资格
       operationId: UserAPI_CanIPublishArticle
       responses:
         "200":
@@ -4794,7 +4817,7 @@ paths:
         - UserAPI
   /api/v1/user/caniuploaddocument:
     get:
-      summary: 用户是否可以上传文档
+      summary: 检查上传权限：判断当前用户是否具备上传文档资格
       operationId: UserAPI_CanIUploadDocument
       responses:
         "200":
@@ -4810,7 +4833,7 @@ paths:
         - UserAPI
   /api/v1/user/captcha:
     get:
-      summary: GetUserCaptcha 获取用户验证码
+      summary: 获取验证码：根据业务场景返回是否启用验证码及验证码内容
       operationId: UserAPI_GetUserCaptcha
       responses:
         "200":
@@ -4831,7 +4854,7 @@ paths:
         - UserAPI
   /api/v1/user/download:
     get:
-      summary: 查询用户的下载记录
+      summary: 下载记录列表：分页查询当前用户的文档下载记录
       operationId: UserAPI_ListUserDownload
       responses:
         "200":
@@ -4859,7 +4882,7 @@ paths:
         - UserAPI
   /api/v1/user/dynamic:
     get:
-      summary: 获取用户动态，包括获取关注的用户的动态
+      summary: 用户动态列表：查询当前用户及其关注对象的动态内容
       operationId: UserAPI_ListUserDynamic
       responses:
         "200":
@@ -4887,7 +4910,7 @@ paths:
         - UserAPI
   /api/v1/user/email/code:
     post:
-      summary: 发送邮箱验证码。
+      summary: 发送邮箱验证码：用于注册或登录等场景的邮箱校验
       operationId: UserAPI_SendEmailCode
       responses:
         "200":
@@ -4909,7 +4932,7 @@ paths:
         - UserAPI
   /api/v1/user/findpassword/stepone:
     post:
-      summary: 找回密码：第一步，发送验证码
+      summary: 找回密码第一步：校验账号并发送找回密码验证码
       operationId: UserAPI_FindPasswordStepOne
       responses:
         "200":
@@ -4931,7 +4954,7 @@ paths:
         - UserAPI
   /api/v1/user/findpassword/steptwo:
     put:
-      summary: 找回密码：第二步，修改密码
+      summary: 找回密码第二步：校验验证码后重置账号密码
       operationId: UserAPI_FindPasswordStepTwo
       responses:
         "200":
@@ -4953,6 +4976,7 @@ paths:
         - UserAPI
   /api/v1/user/group:
     get:
+      summary: 用户组列表：返回当前站点可选的用户组集合
       operationId: UserAPI_ListUserGroup
       responses:
         "200":
@@ -4967,9 +4991,7 @@ paths:
         - UserAPI
   /api/v1/user/list:
     get:
-      summary: |-
-        查询用户列表。对于非管理员，返回相应用户的公开信息；
-        对于管理员，返回相应用户的绝大部分信息
+      summary: 用户列表：分页查询用户，可按用户组、状态和关键词筛选
       operationId: UserAPI_ListUser
       responses:
         "200":
@@ -5048,7 +5070,7 @@ paths:
         - UserAPI
   /api/v1/user/login:
     post:
-      summary: 用户登录
+      summary: 用户登录：校验账号凭证并返回登录令牌和用户信息
       operationId: UserAPI_Login
       responses:
         "200":
@@ -5069,7 +5091,7 @@ paths:
         - UserAPI
   /api/v1/user/logout:
     delete:
-      summary: 退出登录
+      summary: 退出登录：使当前登录态失效
       operationId: UserAPI_Logout
       responses:
         "200":
@@ -5085,9 +5107,7 @@ paths:
         - UserAPI
   /api/v1/user/password:
     put:
-      summary: |-
-        更新用户密码。如果不传用户ID，则表示更新当前用户的密码；
-        如果穿了用户ID，则表示更新指定用户的密码，这时需要验证当前用户的权限
+      summary: 更新用户密码：可修改当前用户密码，管理员也可代为重置指定用户密码
       operationId: UserAPI_UpdateUserPassword
       responses:
         "200":
@@ -5109,7 +5129,7 @@ paths:
         - UserAPI
   /api/v1/user/permission:
     get:
-      summary: GetUserCaptcha 获取用户验证码
+      summary: 获取用户权限：返回当前登录用户拥有的权限集合
       operationId: UserAPI_GetUserPermissions
       responses:
         "200":
@@ -5124,9 +5144,7 @@ paths:
         - UserAPI
   /api/v1/user/profile:
     put:
-      summary: |-
-        更新用户密码。如果不传用户ID，则表示更新当前用户的密码；
-        如果穿了用户ID，则表示更新指定用户的密码，这时需要验证当前用户的权限
+      summary: 更新用户资料：修改头像、签名、地址等基础资料信息
       operationId: UserAPI_UpdateUserProfile
       responses:
         "200":
@@ -5148,7 +5166,7 @@ paths:
         - UserAPI
   /api/v1/user/register:
     post:
-      summary: 用户注册
+      summary: 用户注册：通过用户名、密码、邮箱等信息创建账号并返回登录态
       operationId: UserAPI_Register
       responses:
         "200":
@@ -5169,7 +5187,7 @@ paths:
         - UserAPI
   /api/v1/user/sign:
     get:
-      summary: 获取今日已签到记录
+      summary: 查询今日签到：获取当前用户当天的签到记录
       operationId: UserAPI_GetSignedToday
       responses:
         "200":
@@ -5183,7 +5201,7 @@ paths:
       tags:
         - UserAPI
     put:
-      summary: 每日签到
+      summary: 每日签到：完成当天签到并返回签到记录和奖励信息
       operationId: UserAPI_SignToday
       responses:
         "200":
@@ -5198,6 +5216,7 @@ paths:
         - UserAPI
   /health:
     get:
+      summary: 服务健康检查：用于探测服务是否正常存活并可响应请求
       operationId: HealthAPI_Health
       responses:
         "200":

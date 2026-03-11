@@ -52,8 +52,9 @@ message GetFavoriteRequest {
   int32 type = 2;
 }
 
+// 收藏 API 服务，提供收藏的创建、取消和列表查询能力
 service FavoriteAPI {
-  // 添加收藏
+  // 添加收藏：将指定文档或文章加入当前用户收藏夹
   rpc CreateFavorite(Favorite) returns (Favorite) {
     option (google.api.http) = {
       post : '/api/v1/favorite',
@@ -61,21 +62,21 @@ service FavoriteAPI {
     };
   }
 
-  // 取消收藏
+  // 取消收藏：支持按收藏记录 ID 批量移除收藏
   rpc DeleteFavorite(DeleteFavoriteRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       delete : '/api/v1/favorite',
     };
   }
 
-  // 根据文章id，查询用户是否有收藏某篇文档
+  // 查询收藏状态：根据文档或文章 ID 判断当前用户是否已收藏
   rpc GetFavorite(GetFavoriteRequest) returns (Favorite) {
     option (google.api.http) = {
       get : '/api/v1/favorite',
     };
   }
 
-  // 查询用户的收藏
+  // 收藏列表：分页查询当前用户的文档或文章收藏记录
   rpc ListFavorite(ListFavoriteRequest) returns (ListFavoriteReply) {
     option (google.api.http) = {
       get : '/api/v1/favorite/list',

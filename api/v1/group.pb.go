@@ -652,19 +652,19 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type GroupAPIClient interface {
-	// 创建用户组
+	// 创建用户组：新增一个用户组并返回创建后的用户组信息
 	CreateGroup(ctx context.Context, in *Group, opts ...grpc.CallOption) (*Group, error)
-	// 更新用户组
+	// 更新用户组：根据用户组 ID 修改名称、权限开关和展示属性
 	UpdateGroup(ctx context.Context, in *Group, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 删除用户组
+	// 删除用户组：支持按用户组 ID 批量删除用户组
 	DeleteGroup(ctx context.Context, in *DeleteGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 获取用户组
+	// 获取用户组：根据用户组 ID 或名称查询单个用户组详情
 	GetGroup(ctx context.Context, in *GetGroupRequest, opts ...grpc.CallOption) (*Group, error)
-	// 获取用户组列表
+	// 用户组列表：分页查询用户组并可指定返回字段
 	ListGroup(ctx context.Context, in *ListGroupRequest, opts ...grpc.CallOption) (*ListGroupReply, error)
-	// 获取用户组权限列表
+	// 获取用户组权限：返回指定用户组绑定的权限 ID 列表
 	GetGroupPermission(ctx context.Context, in *GetGroupPermissionRequest, opts ...grpc.CallOption) (*GroupPermissions, error)
-	// 更新用户组权限，给用户组设置权限
+	// 更新用户组权限：为指定用户组批量设置权限集合
 	UpdateGroupPermission(ctx context.Context, in *UpdateGroupPermissionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -741,19 +741,19 @@ func (c *groupAPIClient) UpdateGroupPermission(ctx context.Context, in *UpdateGr
 
 // GroupAPIServer is the server API for GroupAPI service.
 type GroupAPIServer interface {
-	// 创建用户组
+	// 创建用户组：新增一个用户组并返回创建后的用户组信息
 	CreateGroup(context.Context, *Group) (*Group, error)
-	// 更新用户组
+	// 更新用户组：根据用户组 ID 修改名称、权限开关和展示属性
 	UpdateGroup(context.Context, *Group) (*emptypb.Empty, error)
-	// 删除用户组
+	// 删除用户组：支持按用户组 ID 批量删除用户组
 	DeleteGroup(context.Context, *DeleteGroupRequest) (*emptypb.Empty, error)
-	// 获取用户组
+	// 获取用户组：根据用户组 ID 或名称查询单个用户组详情
 	GetGroup(context.Context, *GetGroupRequest) (*Group, error)
-	// 获取用户组列表
+	// 用户组列表：分页查询用户组并可指定返回字段
 	ListGroup(context.Context, *ListGroupRequest) (*ListGroupReply, error)
-	// 获取用户组权限列表
+	// 获取用户组权限：返回指定用户组绑定的权限 ID 列表
 	GetGroupPermission(context.Context, *GetGroupPermissionRequest) (*GroupPermissions, error)
-	// 更新用户组权限，给用户组设置权限
+	// 更新用户组权限：为指定用户组批量设置权限集合
 	UpdateGroupPermission(context.Context, *UpdateGroupPermissionRequest) (*emptypb.Empty, error)
 }
 

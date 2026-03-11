@@ -57,7 +57,9 @@ message ListPunishmentReply {
   repeated Punishment punishment = 2;
 }
 
+// 惩罚 API 服务，提供处罚记录的创建、查询、更新和解除能力
 service PunishmentAPI {
+  // 创建惩罚：批量为用户设置禁言、限制等处罚措施
   rpc CreatePunishment(CreatePunishmentRequest)
       returns (google.protobuf.Empty) {
     option (google.api.http) = {
@@ -66,6 +68,7 @@ service PunishmentAPI {
     };
   }
 
+  // 更新惩罚：修改处罚记录的状态、原因或截止时间
   rpc UpdatePunishment(Punishment) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : '/api/v1/punishment',
@@ -73,19 +76,21 @@ service PunishmentAPI {
     };
   }
 
+  // 获取惩罚：根据处罚记录 ID 查询单条处罚详情
   rpc GetPunishment(GetPunishmentRequest) returns (Punishment) {
     option (google.api.http) = {
       get : '/api/v1/punishment',
     };
   }
 
+  // 惩罚列表：按用户、处罚类型和状态分页查询处罚记录
   rpc ListPunishment(ListPunishmentRequest) returns (ListPunishmentReply) {
     option (google.api.http) = {
       get : '/api/v1/punishment/list',
     };
   }
 
-  // 批量取消惩罚
+  // 取消惩罚：按处罚记录 ID 批量解除已生效的处罚
   rpc CancelPunishment(CancelPunishmentRequest)
       returns (google.protobuf.Empty) {
     option (google.api.http) = {

@@ -70,8 +70,9 @@ message UpdateGroupPermissionRequest {
 // 用户组权限
 message GroupPermissions { repeated int64 permission_id = 1; }
 
+// 用户组 API 服务，提供用户组和组权限的维护能力
 service GroupAPI {
-  // 创建用户组
+  // 创建用户组：新增一个用户组并返回创建后的用户组信息
   rpc CreateGroup(Group) returns (Group) {
     option (google.api.http) = {
       post : '/api/v1/group',
@@ -79,7 +80,7 @@ service GroupAPI {
     };
   }
 
-  //   更新用户组
+  // 更新用户组：根据用户组 ID 修改名称、权限开关和展示属性
   rpc UpdateGroup(Group) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : '/api/v1/group',
@@ -87,35 +88,35 @@ service GroupAPI {
     };
   }
 
-  //   删除用户组
+  // 删除用户组：支持按用户组 ID 批量删除用户组
   rpc DeleteGroup(DeleteGroupRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       delete : '/api/v1/group',
     };
   }
 
-  //   获取用户组
+  // 获取用户组：根据用户组 ID 或名称查询单个用户组详情
   rpc GetGroup(GetGroupRequest) returns (Group) {
     option (google.api.http) = {
       get : '/api/v1/group',
     };
   }
 
-  //  获取用户组列表
+  // 用户组列表：分页查询用户组并可指定返回字段
   rpc ListGroup(ListGroupRequest) returns (ListGroupReply) {
     option (google.api.http) = {
       get : '/api/v1/group/list',
     };
   }
 
-  //  获取用户组权限列表
+  // 获取用户组权限：返回指定用户组绑定的权限 ID 列表
   rpc GetGroupPermission(GetGroupPermissionRequest) returns (GroupPermissions) {
     option (google.api.http) = {
       get : '/api/v1/group/permission',
     };
   }
 
-  // 更新用户组权限，给用户组设置权限
+  // 更新用户组权限：为指定用户组批量设置权限集合
   rpc UpdateGroupPermission(UpdateGroupPermissionRequest)
       returns (google.protobuf.Empty) {
     option (google.api.http) = {

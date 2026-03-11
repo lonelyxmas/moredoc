@@ -47,7 +47,9 @@ message ListAdvertisementReply {
   repeated Advertisement advertisement = 2;
 }
 
+// 广告位 API 服务，提供广告配置的新增、更新、删除和查询能力
 service AdvertisementAPI {
+  // 创建广告：新增一条广告位配置并返回创建后的广告详情
   rpc CreateAdvertisement(Advertisement) returns (Advertisement) {
     option (google.api.http) = {
       post : '/api/v1/advertisement',
@@ -55,6 +57,7 @@ service AdvertisementAPI {
     };
   }
 
+  // 更新广告：根据广告 ID 修改广告位内容、投放时间和启用状态
   rpc UpdateAdvertisement(Advertisement) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : '/api/v1/advertisement',
@@ -62,6 +65,7 @@ service AdvertisementAPI {
     };
   }
 
+  // 删除广告：支持按广告 ID 批量删除广告位配置
   rpc DeleteAdvertisement(DeleteAdvertisementRequest)
       returns (google.protobuf.Empty) {
     option (google.api.http) = {
@@ -69,12 +73,14 @@ service AdvertisementAPI {
     };
   }
 
+  // 查询广告：根据广告 ID 获取单条广告位详情
   rpc GetAdvertisement(GetAdvertisementRequest) returns (Advertisement) {
     option (google.api.http) = {
       get : '/api/v1/advertisement',
     };
   }
 
+  // 按广告位查询广告：根据广告位标识返回对应的广告列表
   rpc GetAdvertisementByPosition(GetAdvertisementByPositionRequest)
       returns (ListAdvertisementReply) {
     option (google.api.http) = {
@@ -82,6 +88,7 @@ service AdvertisementAPI {
     };
   }
 
+  // 广告列表：按关键词、位置和启用状态筛选广告位配置
   rpc ListAdvertisement(ListAdvertisementRequest)
       returns (ListAdvertisementReply) {
     option (google.api.http) = {

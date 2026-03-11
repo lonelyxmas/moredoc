@@ -59,9 +59,9 @@ message ListAttachmentReply {
   repeated Attachment attachment = 2;
 }
 
-// 附件服务。只有管理员才有权限操作
+// 附件 API 服务，提供附件信息的维护、软删除和后台查询能力
 service AttachmentAPI {
-  // 更新附件
+  // 更新附件：修改附件名称、描述、状态等元数据信息
   rpc UpdateAttachment(Attachment) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : '/api/v1/attachment',
@@ -69,7 +69,7 @@ service AttachmentAPI {
     };
   }
 
-  // 删除附件。这里只是软删除，不会真正删除附件，默认24小时候会真正清除附件
+  // 删除附件：执行软删除，附件会进入延迟清理流程而不是立即物理删除
   rpc DeleteAttachment(DeleteAttachmentRequest)
       returns (google.protobuf.Empty) {
     option (google.api.http) = {
@@ -77,14 +77,14 @@ service AttachmentAPI {
     };
   }
 
-  // 查询附件
+  // 查询附件：根据附件 ID 获取单个附件详情
   rpc GetAttachment(GetAttachmentRequest) returns (Attachment) {
     option (google.api.http) = {
       get : '/api/v1/attachment',
     };
   }
 
-  // 列出附件
+  // 附件列表：按关键词、上传用户、类型和扩展名分页筛选附件
   rpc ListAttachment(ListAttachmentRequest) returns (ListAttachmentReply) {
     option (google.api.http) = {
       get : '/api/v1/attachment/list',

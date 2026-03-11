@@ -75,10 +75,10 @@ message CreateCommentRequest {
   int32 type = 6;
 }
 
-// 评论服务
+// 评论 API 服务，提供评论发布、审核、删除和查询能力
 service CommentAPI {
 
-  // 创建评论
+  // 创建评论：提交评论内容并关联到文档或文章
   rpc CreateComment(CreateCommentRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post : '/api/v1/comment',
@@ -86,7 +86,7 @@ service CommentAPI {
     };
   }
 
-  // 更新评论，仅限管理员操作
+  // 更新评论：管理员修改评论内容或状态时使用
   rpc UpdateComment(Comment) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : '/api/v1/comment',
@@ -94,28 +94,28 @@ service CommentAPI {
     };
   }
 
-  // 管理员或用户自己删除自己的评论
+  // 删除评论：管理员或评论作者可按评论 ID 删除评论
   rpc DeleteComment(DeleteCommentRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       delete : '/api/v1/comment',
     };
   }
 
-  // 获取单个评论
+  // 获取评论详情：根据评论 ID 查询单条评论信息
   rpc GetComment(GetCommentRequest) returns (Comment) {
     option (google.api.http) = {
       get : '/api/v1/comment',
     };
   }
 
-  // 获取评论列表
+  // 评论列表：按状态、文档、用户和评论类型分页查询评论
   rpc ListComment(ListCommentRequest) returns (ListCommentReply) {
     option (google.api.http) = {
       get : '/api/v1/comment/list',
     };
   }
 
-  // 审核评论
+  // 审核评论：批量更新评论审核状态
   rpc CheckComment(CheckCommentRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post : '/api/v1/comment/check',

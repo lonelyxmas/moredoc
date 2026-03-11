@@ -418,15 +418,15 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type FriendlinkAPIClient interface {
-	// 创建友情链接
+	// 创建友情链接：新增一条友情链接配置并返回创建结果
 	CreateFriendlink(ctx context.Context, in *Friendlink, opts ...grpc.CallOption) (*Friendlink, error)
-	// 更新友情链接
+	// 更新友情链接：根据链接 ID 修改名称、地址和展示状态
 	UpdateFriendlink(ctx context.Context, in *Friendlink, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 删除友情链接
+	// 删除友情链接：支持按链接 ID 批量删除友情链接
 	DeleteFriendlink(ctx context.Context, in *DeleteFriendlinkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 获取友情链接
+	// 获取友情链接：根据链接 ID 查询单条友情链接详情
 	GetFriendlink(ctx context.Context, in *GetFriendlinkRequest, opts ...grpc.CallOption) (*Friendlink, error)
-	// 获取友情链接
+	// 友情链接列表：按关键词和启用状态分页查询友情链接
 	ListFriendlink(ctx context.Context, in *ListFriendlinkRequest, opts ...grpc.CallOption) (*ListFriendlinkReply, error)
 }
 
@@ -485,15 +485,15 @@ func (c *friendlinkAPIClient) ListFriendlink(ctx context.Context, in *ListFriend
 
 // FriendlinkAPIServer is the server API for FriendlinkAPI service.
 type FriendlinkAPIServer interface {
-	// 创建友情链接
+	// 创建友情链接：新增一条友情链接配置并返回创建结果
 	CreateFriendlink(context.Context, *Friendlink) (*Friendlink, error)
-	// 更新友情链接
+	// 更新友情链接：根据链接 ID 修改名称、地址和展示状态
 	UpdateFriendlink(context.Context, *Friendlink) (*emptypb.Empty, error)
-	// 删除友情链接
+	// 删除友情链接：支持按链接 ID 批量删除友情链接
 	DeleteFriendlink(context.Context, *DeleteFriendlinkRequest) (*emptypb.Empty, error)
-	// 获取友情链接
+	// 获取友情链接：根据链接 ID 查询单条友情链接详情
 	GetFriendlink(context.Context, *GetFriendlinkRequest) (*Friendlink, error)
-	// 获取友情链接
+	// 友情链接列表：按关键词和启用状态分页查询友情链接
 	ListFriendlink(context.Context, *ListFriendlinkRequest) (*ListFriendlinkReply, error)
 }
 

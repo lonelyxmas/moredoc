@@ -661,17 +661,17 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type CommentAPIClient interface {
-	// 创建评论
+	// 创建评论：提交评论内容并关联到文档或文章
 	CreateComment(ctx context.Context, in *CreateCommentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 更新评论，仅限管理员操作
+	// 更新评论：管理员修改评论内容或状态时使用
 	UpdateComment(ctx context.Context, in *Comment, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 管理员或用户自己删除自己的评论
+	// 删除评论：管理员或评论作者可按评论 ID 删除评论
 	DeleteComment(ctx context.Context, in *DeleteCommentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 获取单个评论
+	// 获取评论详情：根据评论 ID 查询单条评论信息
 	GetComment(ctx context.Context, in *GetCommentRequest, opts ...grpc.CallOption) (*Comment, error)
-	// 获取评论列表
+	// 评论列表：按状态、文档、用户和评论类型分页查询评论
 	ListComment(ctx context.Context, in *ListCommentRequest, opts ...grpc.CallOption) (*ListCommentReply, error)
-	// 审核评论
+	// 审核评论：批量更新评论审核状态
 	CheckComment(ctx context.Context, in *CheckCommentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -739,17 +739,17 @@ func (c *commentAPIClient) CheckComment(ctx context.Context, in *CheckCommentReq
 
 // CommentAPIServer is the server API for CommentAPI service.
 type CommentAPIServer interface {
-	// 创建评论
+	// 创建评论：提交评论内容并关联到文档或文章
 	CreateComment(context.Context, *CreateCommentRequest) (*emptypb.Empty, error)
-	// 更新评论，仅限管理员操作
+	// 更新评论：管理员修改评论内容或状态时使用
 	UpdateComment(context.Context, *Comment) (*emptypb.Empty, error)
-	// 管理员或用户自己删除自己的评论
+	// 删除评论：管理员或评论作者可按评论 ID 删除评论
 	DeleteComment(context.Context, *DeleteCommentRequest) (*emptypb.Empty, error)
-	// 获取单个评论
+	// 获取评论详情：根据评论 ID 查询单条评论信息
 	GetComment(context.Context, *GetCommentRequest) (*Comment, error)
-	// 获取评论列表
+	// 评论列表：按状态、文档、用户和评论类型分页查询评论
 	ListComment(context.Context, *ListCommentRequest) (*ListCommentReply, error)
-	// 审核评论
+	// 审核评论：批量更新评论审核状态
 	CheckComment(context.Context, *CheckCommentRequest) (*emptypb.Empty, error)
 }
 

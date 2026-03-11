@@ -17,13 +17,16 @@ message PongReply{
     google.protobuf.Timestamp   created_at  = 2 [(gogoproto.stdtime) = true];
 }
 
+// 健康检查 API 服务，提供服务存活探测和连通性测试能力
 service HealthAPI{
+    // 服务健康检查：用于探测服务是否正常存活并可响应请求
     rpc Health (google.protobuf.Empty) returns (google.protobuf.Empty){
         option (google.api.http) = {
             get: '/health',
         };
     }
 
+    // Ping 测试：回显请求信息并返回服务当前响应时间
     rpc Ping (PingRequest) returns (PongReply){
         option (google.api.http) = {
             get: '/api/v1/ping',

@@ -520,13 +520,13 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AttachmentAPIClient interface {
-	// 更新附件
+	// 更新附件：修改附件名称、描述、状态等元数据信息
 	UpdateAttachment(ctx context.Context, in *Attachment, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 删除附件。这里只是软删除，不会真正删除附件，默认24小时候会真正清除附件
+	// 删除附件：执行软删除，附件会进入延迟清理流程而不是立即物理删除
 	DeleteAttachment(ctx context.Context, in *DeleteAttachmentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 查询附件
+	// 查询附件：根据附件 ID 获取单个附件详情
 	GetAttachment(ctx context.Context, in *GetAttachmentRequest, opts ...grpc.CallOption) (*Attachment, error)
-	// 列出附件
+	// 附件列表：按关键词、上传用户、类型和扩展名分页筛选附件
 	ListAttachment(ctx context.Context, in *ListAttachmentRequest, opts ...grpc.CallOption) (*ListAttachmentReply, error)
 }
 
@@ -576,13 +576,13 @@ func (c *attachmentAPIClient) ListAttachment(ctx context.Context, in *ListAttach
 
 // AttachmentAPIServer is the server API for AttachmentAPI service.
 type AttachmentAPIServer interface {
-	// 更新附件
+	// 更新附件：修改附件名称、描述、状态等元数据信息
 	UpdateAttachment(context.Context, *Attachment) (*emptypb.Empty, error)
-	// 删除附件。这里只是软删除，不会真正删除附件，默认24小时候会真正清除附件
+	// 删除附件：执行软删除，附件会进入延迟清理流程而不是立即物理删除
 	DeleteAttachment(context.Context, *DeleteAttachmentRequest) (*emptypb.Empty, error)
-	// 查询附件
+	// 查询附件：根据附件 ID 获取单个附件详情
 	GetAttachment(context.Context, *GetAttachmentRequest) (*Attachment, error)
-	// 列出附件
+	// 附件列表：按关键词、上传用户、类型和扩展名分页筛选附件
 	ListAttachment(context.Context, *ListAttachmentRequest) (*ListAttachmentReply, error)
 }
 

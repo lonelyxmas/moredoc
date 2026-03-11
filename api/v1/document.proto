@@ -195,10 +195,10 @@ message SearchDocumentReply {
 // 文档下载
 message DownloadDocumentReply { string url = 1; }
 
-// 文档服务
+// 文档 API 服务，提供文档创建、查询、检索、评分和推荐管理能力
 service DocumentAPI {
 
-  // 针对首页的文档查询
+  // 首页文档推荐：返回首页场景下按分类聚合的文档列表
   rpc ListDocumentForHome(ListDocumentForHomeRequest)
       returns (ListDocumentForHomeResponse) {
     option (google.api.http) = {
@@ -206,7 +206,7 @@ service DocumentAPI {
     };
   }
 
-  // 设置文档推荐
+  // 设置文档推荐：批量调整文档推荐状态或刷新推荐时间
   rpc SetDocumentRecommend(SetDocumentRecommendRequest)
       returns (google.protobuf.Empty) {
     option (google.api.http) = {
@@ -215,7 +215,7 @@ service DocumentAPI {
     };
   }
 
-  // 创建文档
+  // 创建文档：批量提交附件生成文档记录并写入基础信息
   rpc CreateDocument(CreateDocumentRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post : '/api/v1/document',
@@ -223,7 +223,7 @@ service DocumentAPI {
     };
   }
 
-  // 更新文档
+  // 更新文档：根据文档 ID 修改标题、描述、价格和分类等信息
   rpc UpdateDocument(Document) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : '/api/v1/document',
@@ -231,35 +231,35 @@ service DocumentAPI {
     };
   }
 
-  // 删除文档
+  // 删除文档：支持按文档 ID 批量删除文档到回收站
   rpc DeleteDocument(DeleteDocumentRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       delete : '/api/v1/document',
     };
   }
 
-  // 查询文档
+  // 获取文档：根据文档 ID 或 UUID 查询文档详情
   rpc GetDocument(GetDocumentRequest) returns (Document) {
     option (google.api.http) = {
       get : '/api/v1/document',
     };
   }
 
-  // 根据文档ID查询当前文档的相关文档
+  // 相关文档：根据当前文档推荐相似或相关的文档列表
   rpc GetRelatedDocuments(Document) returns (ListDocumentReply) {
     option (google.api.http) = {
       get : '/api/v1/document/related',
     };
   }
 
-  // 根据文档ID，获取文档下载链接
+  // 获取下载链接：根据文档信息生成当前用户可用的下载地址
   rpc DownloadDocument(Document) returns (DownloadDocumentReply) {
     option (google.api.http) = {
       get : '/api/v1/document/download',
     };
   }
 
-  // 批量审核文档
+  // 审核文档：批量更新文档审核状态
   rpc CheckDocument(CheckDocumentRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put : '/api/v1/document/check',
@@ -267,21 +267,21 @@ service DocumentAPI {
     };
   }
 
-  // 文档列表查询
+  // 文档列表：按关键词、分类、作者、状态和语言分页查询文档
   rpc ListDocument(ListDocumentRequest) returns (ListDocumentReply) {
     option (google.api.http) = {
       get : '/api/v1/document/list',
     };
   }
 
-  // 文档搜索
+  // 搜索文档：根据全文检索条件返回匹配文档和耗时信息
   rpc SearchDocument(SearchDocumentRequest) returns (SearchDocumentReply) {
     option (google.api.http) = {
       get : '/api/v1/document/search',
     };
   }
 
-  // 设置文档评分
+  // 设置文档评分：提交当前用户对文档的评分结果
   rpc SetDocumentScore(DocumentScore) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post : '/api/v1/document/score',
@@ -289,14 +289,14 @@ service DocumentAPI {
     };
   }
 
-  // 获取当前登录用户的文档评分
+  // 获取我的文档评分：查询当前登录用户对指定文档的评分记录
   rpc GetDocumentScore(DocumentScore) returns (DocumentScore) {
     option (google.api.http) = {
       get : '/api/v1/document/score',
     };
   }
 
-  // 将文档一键设置为重转
+  // 触发文档重转：将待处理文档标记为重新转换预览文件
   rpc SetDocumentReconvert(google.protobuf.Empty)
       returns (google.protobuf.Empty) {
     option (google.api.http) = {
@@ -304,7 +304,7 @@ service DocumentAPI {
     };
   }
 
-  // 批量更新文档分类
+  // 批量设置文档分类：为多篇文档统一更新所属分类
   rpc SetDocumentsCategory(SetDocumentsCategoryRequest)
       returns (google.protobuf.Empty) {
     option (google.api.http) = {
@@ -313,7 +313,7 @@ service DocumentAPI {
     };
   }
 
-  // 批量更新文档所属语言
+  // 批量设置文档语言：为多篇文档统一更新语言标签
   rpc SetDocumentsLanguage(SetDocumentsLanguageRequest)
       returns (google.protobuf.Empty) {
     option (google.api.http) = {
@@ -322,7 +322,7 @@ service DocumentAPI {
     };
   }
 
-  // 下载待审核的文档(只有待审核、审核拒绝的文档才能下载)
+  // 下载待审核文档：为待审核或审核拒绝的文档生成下载地址
   rpc DownloadDocumentToBeReviewed(Document) returns (DownloadDocumentReply) {
     option (google.api.http) = {
       get : '/api/v1/document/download/bereviewed',
@@ -330,15 +330,16 @@ service DocumentAPI {
   }
 }
 
+// 回收站 API 服务，提供已删除文档的查询、恢复和清理能力
 service RecycleAPI {
-  // 文档回收站列表
+  // 回收站列表：分页查询已进入回收站的文档
   rpc ListRecycleDocument(ListDocumentRequest) returns (ListDocumentReply) {
     option (google.api.http) = {
       get : '/api/v1/document/recycle',
     };
   }
 
-  // 恢复回收站文档，支持恢复单个文档或者是批量恢复
+  // 恢复回收站文档：支持单个或批量恢复已删除文档
   rpc RecoverRecycleDocument(RecoverRecycleDocumentRequest)
       returns (google.protobuf.Empty) {
     option (google.api.http) = {
@@ -347,7 +348,7 @@ service RecycleAPI {
     };
   }
 
-  // 删除回收站文档
+  // 彻底删除回收站文档：按文档 ID 从回收站永久移除
   rpc DeleteRecycleDocument(DeleteDocumentRequest)
       returns (google.protobuf.Empty) {
     option (google.api.http) = {
@@ -355,7 +356,7 @@ service RecycleAPI {
     };
   }
 
-  // 清空回收站文档
+  // 清空回收站：永久删除回收站中的全部文档记录
   rpc ClearRecycleDocument(google.protobuf.Empty)
       returns (google.protobuf.Empty) {
     option (google.api.http) = {

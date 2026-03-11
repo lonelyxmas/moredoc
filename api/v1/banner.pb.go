@@ -443,15 +443,15 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type BannerAPIClient interface {
-	// 创建轮播图
+	// 创建轮播图：新增一条轮播图并返回创建后的数据
 	CreateBanner(ctx context.Context, in *Banner, opts ...grpc.CallOption) (*Banner, error)
-	// 更新轮播图
+	// 更新轮播图：根据轮播图 ID 修改标题、图片和展示状态
 	UpdateBanner(ctx context.Context, in *Banner, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 删除轮播图
+	// 删除轮播图：支持按轮播图 ID 批量删除配置
 	DeleteBanner(ctx context.Context, in *DeleteBannerRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// 查询轮播图
+	// 查询轮播图：根据轮播图 ID 获取单条详情
 	GetBanner(ctx context.Context, in *GetBannerRequest, opts ...grpc.CallOption) (*Banner, error)
-	// 轮播图列表
+	// 轮播图列表：按类型、启用状态和关键词分页查询轮播图
 	ListBanner(ctx context.Context, in *ListBannerRequest, opts ...grpc.CallOption) (*ListBannerReply, error)
 }
 
@@ -510,15 +510,15 @@ func (c *bannerAPIClient) ListBanner(ctx context.Context, in *ListBannerRequest,
 
 // BannerAPIServer is the server API for BannerAPI service.
 type BannerAPIServer interface {
-	// 创建轮播图
+	// 创建轮播图：新增一条轮播图并返回创建后的数据
 	CreateBanner(context.Context, *Banner) (*Banner, error)
-	// 更新轮播图
+	// 更新轮播图：根据轮播图 ID 修改标题、图片和展示状态
 	UpdateBanner(context.Context, *Banner) (*emptypb.Empty, error)
-	// 删除轮播图
+	// 删除轮播图：支持按轮播图 ID 批量删除配置
 	DeleteBanner(context.Context, *DeleteBannerRequest) (*emptypb.Empty, error)
-	// 查询轮播图
+	// 查询轮播图：根据轮播图 ID 获取单条详情
 	GetBanner(context.Context, *GetBannerRequest) (*Banner, error)
-	// 轮播图列表
+	// 轮播图列表：按类型、启用状态和关键词分页查询轮播图
 	ListBanner(context.Context, *ListBannerRequest) (*ListBannerReply, error)
 }
 
