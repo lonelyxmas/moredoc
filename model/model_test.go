@@ -59,7 +59,7 @@ func TestGenData(t *testing.T) {
 		languageTableName   = Language{}.TableName()
 	)
 
-	err = db.Table(permissionTableName).Find(&permissions).Error
+	err = db.Table(permissionTableName).Order("`path` asc").Find(&permissions).Error
 	if err != nil {
 		t.Errorf("生成 data.go 文件失败： %s", err.Error())
 		return
