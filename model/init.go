@@ -452,13 +452,14 @@ func (m *DBModel) initGroupAndPermission() (err error) {
 			continue
 		}
 
-		if existPermission.Title == "" {
-			existPermission.Title = permission.Title
-			err = sess.Save(&existPermission).Error
-			if err != nil {
-				m.logger.Error("initPermission", zap.Error(err))
-				return
-			}
+		existPermission.Title = permission.Title
+		if existPermission.Description == "" {
+			existPermission.Description = permission.Description
+		}
+		err = sess.Save(&existPermission).Error
+		if err != nil {
+			m.logger.Error("initPermission", zap.Error(err))
+			return
 		}
 	}
 
