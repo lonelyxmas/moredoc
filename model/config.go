@@ -55,19 +55,20 @@ const (
 )
 
 type Config struct {
-	Id          int64      `form:"id" json:"id,omitempty" gorm:"primaryKey;autoIncrement;column:id;comment:;"`
-	Label       string     `form:"label" json:"label,omitempty" gorm:"column:label;type:varchar(64);size:64;comment:标签名称;"`
-	Name        string     `form:"name" json:"name,omitempty" gorm:"column:name;type:varchar(64);size:64;index:name_category,unique;comment:表单字段名称;"`
-	Value       string     `form:"value" json:"value,omitempty" gorm:"column:value;type:text;comment:值;"`
-	Placeholder string     `form:"placeholder" json:"placeholder,omitempty" gorm:"column:placeholder;type:varchar(255);size:255;comment:提示信息;"`
-	InputType   string     `form:"input_type" json:"input_type,omitempty" gorm:"column:input_type;type:varchar(32);size:32;default:text;comment:输入类型;"`
-	Category    string     `form:"category" json:"category,omitempty" gorm:"column:category;type:varchar(32);size:32;index:name_category,unique;index:category;comment:所属类别;"`
-	Sort        int        `form:"sort" json:"sort,omitempty" gorm:"column:sort;type:int(11);size:11;default:0;comment:同一category下的排序，这里按顺序排序，值越小越靠前;"`
-	Options     string     `form:"options" json:"options,omitempty" gorm:"column:options;type:text;comment:针对checkbox等的枚举值;"`
-	CreatedAt   *time.Time `form:"created_at" json:"created_at,omitempty" gorm:"column:created_at;type:datetime;comment:创建时间;"`
-	UpdatedAt   *time.Time `form:"updated_at" json:"updated_at,omitempty" gorm:"column:updated_at;type:datetime;comment:更新时间;"`
-	IsSecret    bool       `form:"is_secret" json:"is_secret,omitempty" gorm:"column:is_secret;type:tinyint(1);size:1;default:0;comment:是否是私密信息;"`
-	ColNum      int        `form:"col_num" json:"col_num,omitempty" gorm:"column:col_num;type:int(11);size:11;default:24;comment:占据的列数;"`
+	Id          int64          `form:"id" json:"id,omitempty" gorm:"primaryKey;autoIncrement;column:id;comment:;"`
+	Label       string         `form:"label" json:"label,omitempty" gorm:"column:label;type:varchar(64);size:64;comment:标签名称;"`
+	Name        string         `form:"name" json:"name,omitempty" gorm:"column:name;type:varchar(64);size:64;index:name_category,unique;comment:表单字段名称;"`
+	Value       string         `form:"value" json:"value,omitempty" gorm:"column:value;type:text;comment:值;"`
+	Placeholder string         `form:"placeholder" json:"placeholder,omitempty" gorm:"column:placeholder;type:varchar(255);size:255;comment:提示信息;"`
+	InputType   string         `form:"input_type" json:"input_type,omitempty" gorm:"column:input_type;type:varchar(32);size:32;default:text;comment:输入类型;"`
+	Category    string         `form:"category" json:"category,omitempty" gorm:"column:category;type:varchar(32);size:32;index:name_category,unique;index:category;comment:所属类别;"`
+	Sort        int            `form:"sort" json:"sort,omitempty" gorm:"column:sort;type:int(11);size:11;default:0;comment:同一category下的排序，这里按顺序排序，值越小越靠前;"`
+	Options     string         `form:"options" json:"options,omitempty" gorm:"column:options;type:text;comment:针对checkbox等的枚举值;"`
+	CreatedAt   *time.Time     `form:"created_at" json:"created_at,omitempty" gorm:"column:created_at;type:datetime;comment:创建时间;"`
+	UpdatedAt   *time.Time     `form:"updated_at" json:"updated_at,omitempty" gorm:"column:updated_at;type:datetime;comment:更新时间;"`
+	IsSecret    bool           `form:"is_secret" json:"is_secret,omitempty" gorm:"column:is_secret;type:tinyint(1);size:1;default:0;comment:是否是私密信息;"`
+	ColNum      int            `form:"col_num" json:"col_num,omitempty" gorm:"column:col_num;type:int(11);size:11;default:24;comment:占据的列数;"`
+	DeletedAt   gorm.DeletedAt `gorm:"index" json:"-"` // 软删除
 }
 
 func (Config) TableName() string {
@@ -142,7 +143,7 @@ func (m *DBModel) GetConfig(id interface{}, fields ...string) (config Config, er
 
 // GetConfigByNameCategory(name string, category string, fields ...string) 根据唯一索引获取Config
 func (m *DBModel) GetConfigByNameCategory(name string, category string, fields ...string) (config Config, err error) {
-	db := m.db
+	db := m.db.Unscoped()
 
 	fields = m.FilterValidFields(Config{}.TableName(), fields...)
 	if len(fields) > 0 {
@@ -170,7 +171,7 @@ type OptionGetConfigList struct {
 func (m *DBModel) GetConfigList(opt *OptionGetConfigList) (configList []Config, err error) {
 	db := m.db.Model(&Config{})
 	db = m.generateQueryIn(db, Config{}.TableName(), opt.QueryIn)
-	err = db.Order("sort asc").Find(&configList).Error
+	err = db.Debug().Order("sort asc").Find(&configList).Error
 	if err != nil && err != gorm.ErrRecordNotFound {
 		m.logger.Error("GetConfigList", zap.Error(err))
 	}
@@ -792,6 +793,19 @@ func (m *DBModel) convertConfig2Map(cfgs []Config) (data map[string]interface{})
 }
 
 func (m *DBModel) initConfig() (err error) {
+	defer func() {
+		ivalidFields := map[string][]string{
+			ConfigCategoryDisplay: {
+				ConfigDisplayHomeVersion,
+				ConfigDisplayIndexDocumentStyle,
+				ConfigDisplayShowIndexCategories,
+			},
+		}
+		for category, fields := range ivalidFields {
+			m.db.Where("category = ? AND name IN (?)", category, fields).Delete(&Config{})
+		}
+	}()
+
 	closeStatement := `<div>尊敬的用户，您好：</div>
 	<div>为了给您带来更好的使用体验，<strong>魔豆文库</strong> 正在对服务进行升级维护，预计恢复时间为 <span style="color:red">2024-10-24 06:00:00</span>，请您稍后再进行访问。</div>
 	<div>升级维护期间，普通用户将无法正常使用（系统管理人员出于维护的需要不受升级影响）。</div>
@@ -919,7 +933,7 @@ func (m *DBModel) initConfig() (err error) {
 		if existConfig.Id > 0 {
 			// 更新除了值之外的所有字段
 			cfg.Id = existConfig.Id
-			err = m.db.Omit("value").Updates(&cfg).Error
+			err = m.db.Unscoped().Omit("value").Updates(&cfg).Error
 			if err != nil {
 				m.logger.Error("initConfig", zap.Error(err))
 				return
